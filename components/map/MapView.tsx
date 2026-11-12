@@ -689,7 +689,7 @@ export function MapView({
               type="button"
               onClick={() => zoomBy(1.6)}
               aria-label="Acercar"
-              className="grid h-9 w-9 place-items-center text-ink-2 transition-colors hover:bg-bg hover:text-ink"
+              className="grid h-10 w-10 place-items-center text-ink-2 transition-colors hover:bg-bg hover:text-ink"
             >
               <Plus size={16} strokeWidth={1.8} />
             </button>
@@ -698,7 +698,7 @@ export function MapView({
               type="button"
               onClick={() => zoomBy(1 / 1.6)}
               aria-label="Alejar"
-              className="grid h-9 w-9 place-items-center text-ink-2 transition-colors hover:bg-bg hover:text-ink"
+              className="grid h-10 w-10 place-items-center text-ink-2 transition-colors hover:bg-bg hover:text-ink"
             >
               <Minus size={16} strokeWidth={1.8} />
             </button>
@@ -707,7 +707,7 @@ export function MapView({
             type="button"
             onClick={recenter}
             aria-label="Volver a encuadrar"
-            className="grid h-9 w-9 place-items-center rounded-xl border border-line bg-surface text-ink-2 shadow-soft transition-colors hover:text-ink"
+            className="grid h-11 w-11 place-items-center rounded-xl lg:h-9 lg:w-9 border border-line bg-surface text-ink-2 shadow-soft transition-colors hover:text-ink"
           >
             <LocateFixed size={16} strokeWidth={1.8} />
           </button>

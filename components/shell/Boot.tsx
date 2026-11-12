@@ -47,7 +47,7 @@ export function Toaster() {
   }, [toast]);
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 bottom-[calc(var(--tabbar-h)+env(safe-area-inset-bottom)+16px)] z-[60] flex justify-center px-4 lg:bottom-8"
+      className="pointer-events-none fixed inset-x-0 top-[max(14px,env(safe-area-inset-top))] z-[60] flex justify-center px-4 lg:bottom-8 lg:top-auto"
       role="status"
       aria-live="polite"
     >
@@ -55,9 +55,9 @@ export function Toaster() {
         {toast && (
           <motion.div
             key={toast.id}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
+            exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             className="rounded-full bg-ink px-4 py-2.5 text-[13px] font-medium text-surface shadow-float"
           >

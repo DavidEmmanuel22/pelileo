@@ -34,6 +34,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
       </head>
       <body>
+        <a href="#contenido" className="skip-link rounded-full bg-ink px-4 py-2.5 text-[14px] font-semibold text-surface">
+          Saltar al contenido
+        </a>
         <BootScreen />
         {children}
         <Toaster />

@@ -77,7 +77,7 @@ export function Dashboard() {
         </div>
       </header>
 
-      <main className="mx-auto grid max-w-[1360px] grid-cols-1 gap-4 px-4 py-5 sm:px-6 lg:grid-cols-12 lg:gap-5 lg:px-8 lg:py-8">
+      <main id="contenido" className="mx-auto grid max-w-[1360px] grid-cols-1 gap-4 px-4 py-5 sm:px-6 lg:grid-cols-12 lg:gap-5 lg:px-8 lg:py-8">
         {/* KPIs */}
         <section aria-label="Indicadores clave" className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:col-span-12 lg:grid-cols-6 lg:gap-4">
           {M.kpis.map((k) => (

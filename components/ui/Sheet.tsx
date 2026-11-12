@@ -148,7 +148,7 @@ export const Sheet = forwardRef<SheetHandle, Props>(function Sheet(
       {/* Asa + encabezado: siempre arrastrables en mobile */}
       <div
         onPointerDown={startDrag}
-        className="shrink-0 touch-none select-none lg:touch-auto lg:select-auto"
+        className="panel-in shrink-0 touch-none select-none lg:touch-auto lg:select-auto"
       >
         <button
           type="button"
@@ -162,12 +162,14 @@ export const Sheet = forwardRef<SheetHandle, Props>(function Sheet(
       </div>
       <div
         ref={scrollRef}
+        id="contenido"
+        tabIndex={-1}
         data-sheet-scroller
         onPointerDown={(e) => {
           if ((e.target as HTMLElement).closest("[data-no-drag]")) return;
           if (!atTop && !desktop) startDrag(e);
         }}
-        className={`thin-scrollbar min-h-0 flex-1 overscroll-contain ${footer ? "pb-[88px] lg:pb-0" : ""} ${
+        className={`panel-in thin-scrollbar min-h-0 flex-1 overscroll-contain focus:outline-none ${footer ? "pb-[88px] lg:pb-0" : ""} ${
           atTop || desktop ? "overflow-y-auto" : "overflow-hidden touch-none lg:touch-auto"
         }`}
       >

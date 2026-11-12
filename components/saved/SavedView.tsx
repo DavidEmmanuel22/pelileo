@@ -21,7 +21,7 @@ export function SavedView() {
   const empty = hydrated && places.length === 0 && savedPlans.length === 0;
 
   return (
-    <main className="min-h-dvh bg-bg pb-[calc(var(--tabbar-h)+env(safe-area-inset-bottom)+24px)] pt-[max(16px,env(safe-area-inset-top))] lg:pb-10 lg:pt-[calc(var(--topbar-h)+40px)]">
+    <main id="contenido" className="min-h-dvh bg-bg pb-[calc(var(--tabbar-h)+env(safe-area-inset-bottom)+24px)] pt-[max(16px,env(safe-area-inset-top))] lg:pb-10 lg:pt-[calc(var(--topbar-h)+40px)]">
       <div className="mx-auto max-w-[760px]">
         <div className="px-5 lg:hidden">
           <Lockup size="sm" />

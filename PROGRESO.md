@@ -37,7 +37,8 @@ Checklist de las fases de `PROMPTS.md`. Si la sesión se corta, retomar en el pr
 - [x] Publicar evento → aparece en `/eventos`
 
 ## Fase 6 — Pulido
-- [ ] Carga, transiciones, skeletons, estados vacíos, foco, microinteracciones, copia en "tú"
+- [x] Carga, transiciones, skeletons, estados vacíos, foco, microinteracciones, copia en "tú"
+- [x] Skip link "Saltar al contenido", toasts arriba en mobile, 404 amable, bordes del mapa desvanecidos
 
 ## Fase 7 — QA final
 - [ ] `npm run build` + Vitest en verde
