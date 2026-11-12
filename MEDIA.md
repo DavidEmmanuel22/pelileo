@@ -1,6 +1,6 @@
 # Fotos y video para la portada
 
-> **Estado (12 nov):** ya están integrados el video del hero, de la cascada, del vuelo y del cierre, las fotos de experiencias y comida, y el escudo. Falta material propio de **hoteles** (`h-hosteria`, `h-ciudad-azul`, `h-telar`, `h-glamping`) y, si es posible, fotos de más resolución (1600 px o más; las recibidas son de 600 px y se ven algo suaves en pantallas grandes).
+> **Estado (12 nov):** integrado todo el material HD de `pelileo multimedia hd`: video del hero (horizontal y vertical), cascada, vuelo y cierre; hospedajes, restaurantes, experiencias, collage de la intro y la galería «Postales del valle» (`public/media/galeria/`, cualquier foto que agregues ahí entra sola).
 
 Suelta los archivos con **estos nombres exactos** y la demo los usa sola (en `npm run dev` basta con recargar; para producción, vuelve a correr `npm run build`). Formatos: `.jpg`, `.jpeg`, `.webp` o `.png`. Mientras un archivo no exista, se ve la foto provisional.
 

@@ -389,6 +389,33 @@ html[data-booted] .boot {
     transform: scale(1.5);
   }
 }
+.marquee {
+  animation: marquee 70s linear infinite;
+}
+.marquee-reverse {
+  animation-direction: reverse;
+  animation-duration: 85s;
+}
+.marquee-mask:hover .marquee {
+  animation-play-state: paused;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, var(--ink) 6%, var(--ink) 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, var(--ink) 6%, var(--ink) 94%, transparent);
+}
+@keyframes marquee {
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+  .marquee-mask {
+    overflow-x: auto;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .kenburns,
   .caret,

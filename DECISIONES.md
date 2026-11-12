@@ -48,3 +48,16 @@ El usuario sintió la primera versión pobre y poco demostrativa: una herramient
     - **Escudo** de Pelileo, con el fondo blanco vuelto transparente: va en el pie de la portada y en el encabezado del panel del GAD.
     - **No usé** los lagos alpinos (1, 4, 5, 6), los picos rocosos (3) ni la bicicleta (19), porque no representan a Pelileo y podrían confundir en una presentación al municipio.
     - **Los hoteles siguen con fotos referenciales.**
+39. **Material HD** (`pelileo multimedia hd`, 12 nov): 24 fotos de 1800 px y 4 videos de 1986×1042. El usuario pidió no buscar la foto exacta de cada lugar, sino que la demo se vea espectacular, así que asigné lo mejor de cada tipo.
+    - **Hospedajes**:
+      - hacienda → Hostería Valle de Pachanlica
+      - patio colonial → Hotel Ciudad Azul
+      - suite → Glamping Nueve Estrellas
+      - telar → Casa del Telar
+    - **Restaurantes**:
+      - interior cálido → Huerta y Leña
+      - platos típicos → Volquetero, Fogón y Tiesto
+    - **Paisajes**: lagos → Las Caras; cerro verde → Teligote.
+    - **Videos**: recodificados a 1920 px. El hero tiene además una versión vertical (recorte 9:16) para celulares.
+    - **Optimización**: las fotos van a 1400–1600 px con calidad 80.
+40. **Más contenido visual**: collage con parallax en la intro (la llama frente al volcán y el cerro) y una galería en movimiento, «Postales del valle», con 20 fotos en dos filas que avanzan en sentidos opuestos. Se pausa con el mouse encima y queda quieta con `prefers-reduced-motion`.

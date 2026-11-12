@@ -5,7 +5,7 @@ import type { HomeMedia } from "@/lib/media";
 import { GaiaDemo } from "./GaiaDemo";
 import { Hero } from "./Hero";
 import { Valley } from "./Valley";
-import { EventsStrip, Experiences, FinalCta, FlightBand, Food, GaiaBand, Intro, MapTeaser, Stay } from "./Sections";
+import { EventsStrip, Experiences, FinalCta, FlightBand, Food, GaiaBand, Gallery, Intro, MapTeaser, Stay } from "./Sections";
 
 /** Portada: vitrina del destino. Gaia es la llamada principal; el resto muestra lo que hay para vivir. */
 export function HomeView({ media }: { media: HomeMedia }) {
@@ -16,10 +16,11 @@ export function HomeView({ media }: { media: HomeMedia }) {
     <main id="contenido" className="bg-bg">
       <Hero image={media.hero} video={media.heroVideo} videoMobile={media.heroVideoMobile} onAsk={onAsk} />
       <Valley />
-      <Intro />
+      <Intro images={media.intro} />
       <Experiences media={media} />
       <GaiaBand onAsk={onAsk} />
       <Food />
+      <Gallery images={media.gallery} />
       <FlightBand image={media.vuelo} video={media.vueloVideo} />
       <EventsStrip />
       <Stay />

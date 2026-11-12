@@ -65,8 +65,13 @@ function Heading({ children, light = false, className = "" }: { children: React.
 
 const count = (cats: string[]) => PLACES.filter((p) => cats.includes(p.category)).length;
 
-/* ────────────────────────────── Intro con cifras */
-export function Intro() {
+/* ────────────────────────────── Intro con cifras y collage */
+export function Intro({ images }: { images: [string, string] }) {
+  const reduce = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const yA = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [60, -60]);
+  const yB = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [140, -120]);
   const stats = [
     { n: PLACES.length, label: "lugares para visitar" },
     { n: EVENTS.length, label: "eventos este mes" },
@@ -74,27 +79,81 @@ export function Intro() {
     { n: 1, label: "guía con IA que arma tu plan" },
   ];
   return (
-    <section className="bg-bg px-5 pb-20 pt-10 sm:px-8 lg:pb-28 lg:pt-6">
-      <div className="mx-auto max-w-[1240px]">
+    <section ref={ref} className="overflow-hidden bg-bg px-5 pb-20 pt-10 sm:px-8 lg:pb-28 lg:pt-6">
+      <div className="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16">
+        <div>
+          <Reveal>
+            <p className="font-display text-[clamp(28px,3.6vw,50px)] font-normal leading-[1.12] tracking-[-0.02em] text-ink">
+              En Pelileo el jean se cose a mano, los telares de Salasaca cuentan historias y el Tungurahua{" "}
+              <em className="text-clapzy-ink">vigila todo desde arriba</em>. Ven un fin de semana; te quedarás con ganas de volver.
+            </p>
+          </Reveal>
+          <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-8">
+            {stats.map((s, i) => (
+              <Reveal key={s.label} delay={0.08 * i}>
+                <dt className="sr-only">{s.label}</dt>
+                <dd>
+                  <span className="tabular block font-display text-[clamp(44px,5vw,64px)] font-medium leading-none tracking-[-0.03em] text-ink">
+                    {s.n}
+                  </span>
+                  <span className="mt-2 block text-[14.5px] text-ink-2">{s.label}</span>
+                </dd>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+        <div className="relative h-[460px] sm:h-[560px] lg:h-[640px]" aria-hidden="true">
+          <motion.div className="absolute right-0 top-0 h-[78%] w-[74%] overflow-hidden rounded-[26px] shadow-[var(--shadow-float)]" style={{ y: yA }}>
+            <Image src={images[0]} alt="" fill sizes="(max-width: 1024px) 74vw, 380px" className="object-cover" />
+          </motion.div>
+          <motion.div className="absolute bottom-0 left-0 h-[52%] w-[54%] overflow-hidden rounded-[22px] ring-[6px] ring-bg shadow-[var(--shadow-float)]" style={{ y: yB }}>
+            <Image src={images[1]} alt="" fill sizes="(max-width: 1024px) 54vw, 280px" className="object-cover" />
+          </motion.div>
+          <motion.span
+            className="absolute bottom-[18%] right-[6%] rounded-full bg-surface px-4 py-2 text-[13px] font-semibold text-ink shadow-[var(--shadow-soft)]"
+            style={{ y: yB }}
+          >
+            El páramo, a un paso del valle
+          </motion.span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────── Postales del valle (galería en movimiento) */
+export function Gallery({ images }: { images: string[] }) {
+  if (images.length < 6) return null;
+  const half = Math.ceil(images.length / 2);
+  const rows = [images.slice(0, half), images.slice(half)];
+  return (
+    <section className="overflow-hidden bg-night py-24 text-on-photo lg:py-32" aria-labelledby="postales">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <Reveal>
-          <p className="max-w-[1000px] font-display text-[clamp(28px,4.2vw,54px)] font-normal leading-[1.12] tracking-[-0.02em] text-ink">
-            En Pelileo el jean se cose a mano, los telares de Salasaca cuentan historias y el Tungurahua{" "}
-            <em className="text-clapzy-ink">vigila todo desde arriba</em>. Ven un fin de semana; te quedarás con ganas de volver.
-          </p>
+          <Eyebrow light>Postales del valle</Eyebrow>
+          <Heading light className="max-w-[820px]">
+            <span id="postales">Cada rincón,</span> <em className="font-normal text-dawn">una foto para guardar</em>
+          </Heading>
         </Reveal>
-        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-8 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={0.08 * i}>
-              <dt className="sr-only">{s.label}</dt>
-              <dd>
-                <span className="tabular block font-display text-[clamp(44px,5vw,64px)] font-medium leading-none tracking-[-0.03em] text-ink">
-                  {s.n}
-                </span>
-                <span className="mt-2 block text-[14.5px] text-ink-2">{s.label}</span>
-              </dd>
-            </Reveal>
-          ))}
-        </dl>
+      </div>
+      <div className="mt-12 space-y-4">
+        {rows.map((row, r) => (
+          <div key={r} className="marquee-mask">
+            <div className={`marquee flex w-max gap-4 ${r ? "marquee-reverse" : ""}`}>
+              {[...row, ...row].map((src, i) => (
+                <div
+                  key={`${src}-${i}`}
+                  className={`relative shrink-0 overflow-hidden rounded-[20px] ${
+                    i % 3 === 0 ? "h-[220px] w-[300px] sm:h-[280px] sm:w-[400px]" : "h-[220px] w-[200px] sm:h-[280px] sm:w-[260px]"
+                  }`}
+                  aria-hidden={i >= row.length ? true : undefined}
+                >
+                  <Image src={src} alt="" fill sizes="400px" className="object-cover" />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -161,7 +220,7 @@ export function Experiences({ media }: { media: HomeMedia }) {
 
 /* ────────────────────────────── Gaia (franja oscura) */
 const SCENARIO_ART_BY_LABEL: Record<string, string> = {
-  "Fin de semana en familia": "/images/places/e-cosecha.jpg",
+  "Fin de semana en familia": "/media/intro-1.jpg",
   "Aventura en pareja": "/images/places/e-parapente.jpg",
   "Jean y artesanías": "/images/places/tambo-ruta-jean.jpg",
 };

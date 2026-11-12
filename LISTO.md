@@ -55,7 +55,7 @@ Desde la terminal también funciona: `npx vercel` (vista previa) y `npx vercel -
 - **Hero a pantalla completa** con la foto del Tungurahua (o video, si existe `public/media/hero.mp4`), movimiento lento y titular editorial.
 - **Gaia es la llamada principal**: la caja escribe sola «Quiero un plan para divertirme este fin de semana». Al tocar «Armar mi plan», Gaia "piensa" y arma el itinerario parada por parada en un panel con fotos, y en escritorio con la foto grande de cada parada. Desde ahí, «Ver en el mapa y ajustar con Gaia» abre `/gaia` con el mismo plan. Todo simulado.
 - **Valle en parallax**: el Tungurahua y el valle dibujados por capas que pasan de la noche al amanecer mientras bajas, con un parapente coral cruzando.
-- Intro con cifras, mosaico «Qué vivir», franja oscura de Gaia con planes de ejemplo, carrusel «Dónde comer», «Vuela sobre el valle» con parallax de foto, agenda de la semana, «Dónde dormir», adelanto del mapa y cierre con Gaia.
+- Intro con cifras y collage con parallax, mosaico «Qué vivir» (con la cascada en video), galería en movimiento «Postales del valle», franja oscura de Gaia con planes de ejemplo, carrusel «Dónde comer», «Vuela sobre el valle» con parallax de foto, agenda de la semana, «Dónde dormir», adelanto del mapa y cierre con Gaia.
 - Titulares en Fraunces (serif editorial); la interfaz sigue en Plus Jakarta Sans.
 
 **App pública** (mobile first, con escritorio a dos columnas)
@@ -97,7 +97,7 @@ Desde la terminal también funciona: `npx vercel` (vista previa) y `npx vercel -
 
 ## Pendiente / ideas para después
 
-- **Fotos y video reales para la portada**: el hero, el mosaico y las franjas usan fotos provisionales hasta que lleguen las definitivas (lista exacta en `MEDIA.md`).
+- Las fotos y videos HD son material de referencia del cliente (no todos son de Pelileo); para una versión pública conviene usar fotos propias del GAD y de los negocios.
 - Algunas fotos son **referenciales** (tipo de lugar, no el lugar exacto). Conviene reemplazarlas por fotos propias del GAD o de los negocios.
 - Los datos de lugares, eventos y del panel son **simulados**. El siguiente paso sería conectarlos a una fuente real (CMS del municipio o una API).
 - Gaia es un motor de reglas, no un modelo de lenguaje. Frases como "empezar más tarde" todavía reciben una sugerencia genérica en vez de un ajuste. Conectarlo a Claude daría conversación libre real.
