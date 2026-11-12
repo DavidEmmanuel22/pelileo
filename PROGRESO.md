@@ -23,7 +23,7 @@ Checklist de las fases de `PROMPTS.md`. Si la sesión se corta, retomar en el pr
 - [x] Tests Vitest en verde
 
 ## Fase 3 — Fotos
-- [ ] Fotos de lugares y eventos + `credits.json` (o placeholder elegante)
+- [x] Fotos de lugares y eventos + `credits.json` (o placeholder elegante)
 
 ## Fase 4 — Pantallas públicas
 - [ ] Explorar

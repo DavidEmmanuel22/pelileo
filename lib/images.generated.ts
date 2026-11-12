@@ -1,3 +1,3 @@
 // Generado por scripts/fetch-photos.mjs — ids con foto descargada.
-export const PLACE_IMAGE_IDS: string[] = [];
-export const EVENT_IMAGE_IDS: string[] = [];
+export const PLACE_IMAGE_IDS: string[] = ["tambo-ruta-jean","parque-central","feria-pelileo","salasaca-plaza-arte","salasaca-llikakama","niton-mirador","pelileo-grande","huambalo-muebles","ruta-gigantes","teligote","cotalo-cruz","las-caras","r-indigo","r-volquetero","r-fogon","r-trucha","r-tiesto","r-huerta","r-niton-cafe","b-cerveceria","b-costura","h-hosteria","h-ciudad-azul","h-telar","h-glamping","e-parapente","e-tejido","e-jean","e-cabalgata","e-tallado","e-cosecha"];
+export const EVENT_IMAGE_IDS: string[] = ["ev-feria-jean","ev-feria-salasaca","ev-musica-andina","ev-sabores","ev-trail-teligote","ev-parapente-open","ev-pase-nino","ev-cine"];

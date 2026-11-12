@@ -14,3 +14,4 @@
 12. **Grupo por defecto**: si no se menciona, Gaia asume 2 adultos.
 13. **Cena**: casi todos los restaurantes cierran antes de las 19:30, así que la cena va en el hotel (si tiene restaurante), en un bar si no hay niños, o se adelanta a las 18:00 en Café Índigo.
 14. **Presupuesto muy bajo** ("$10 para 6 personas"): Gaia deja solo lugares gratuitos y lo explica, en lugar de pasarse del presupuesto.
+15. **Fotos**: Wikimedia Commons (licencias libres, créditos en `public/images/credits.json`). Donde no hay foto real del lugar, elegí una imagen representativa del tipo de lugar (p. ej. un desayuno, una máquina de coser, parapente) y no una foto falsa de Pelileo. Las redimensioné a 1400 px de lado mayor; `next/image` sirve AVIF/WebP.
