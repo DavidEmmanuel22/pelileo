@@ -64,28 +64,32 @@ export function Lockup({
   size = "md",
   showIcon = true,
   className = "",
+  inverted = false,
 }: {
   size?: "sm" | "md" | "lg";
   showIcon?: boolean;
   className?: string;
+  /** Versión clara para usar sobre fotos. */
+  inverted?: boolean;
 }) {
+  const ink = inverted ? "text-on-photo" : "text-ink";
   const title = size === "lg" ? "text-[34px]" : size === "md" ? "text-[19px]" : "text-[17px]";
   const icon = size === "lg" ? 46 : size === "md" ? 30 : 26;
   const by = size === "lg" ? 13 : 11;
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
-      {showIcon && <VolcanoIcon size={icon} className="text-ink shrink-0" />}
+      {showIcon && <VolcanoIcon size={icon} className={`${ink} shrink-0 transition-colors duration-500`} />}
       <div className="flex flex-col">
-        <span className={`${title} whitespace-nowrap leading-none tracking-[-0.02em] text-ink`}>
+        <span className={`${title} whitespace-nowrap leading-none tracking-[-0.02em] ${ink} transition-colors duration-500`}>
           <span className="font-medium">Vive </span>
           <span className="font-bold">Pelileo</span>
         </span>
         <Tricolor className={size === "lg" ? "mt-2.5 w-full" : "mt-[5px] w-full"} />
         <span
-          className="mt-[5px] flex items-center gap-1 leading-none text-ink-2"
+          className={`mt-[5px] flex items-center gap-1 leading-none ${inverted ? "text-on-photo/80" : "text-ink-2"}`}
           style={{ fontSize: by }}
         >
-          by <ClapzyWordmark height={by - 1} className="translate-y-[0.5px]" />
+          by <ClapzyWordmark height={by - 1} className={`translate-y-[0.5px] ${inverted ? "brightness-0 invert" : ""}`} />
         </span>
       </div>
     </div>

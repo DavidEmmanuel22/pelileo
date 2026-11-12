@@ -15,6 +15,19 @@
   --pel-red: #a9443b;
   --pel-green: #3e6a4f;
 
+  /* Portada: paisaje del valle al pie del Tungurahua */
+  --on-photo: #fffaf2; /* texto sobre fotos */
+  --night: #0f1820; /* noche del volcán */
+  --night-2: #182632;
+  --dusk: #5b4e6e; /* cielo al atardecer */
+  --dawn: #ef9b74; /* luz de amanecer sobre la nieve */
+  --sun: #ffe0b0;
+  --snow: #f3efe8;
+  --ridge-far: #6f7d92;
+  --ridge-mid: #3f5560;
+  --ridge-near: #2b4236;
+  --ridge-front: #1a2b21;
+
   /* Derivados (mezclas de los tokens base) */
   --ink-3: color-mix(in srgb, var(--ink-2) 62%, var(--bg));
   --line-2: color-mix(in srgb, var(--line) 55%, var(--surface));
@@ -73,6 +86,15 @@
   --color-pel-green: var(--pel-green);
   --color-green-soft: var(--green-soft);
   --color-red-soft: var(--red-soft);
+  --color-on-photo: var(--on-photo);
+  --color-night: var(--night);
+  --color-night-2: var(--night-2);
+  --color-dusk: var(--dusk);
+  --color-dawn: var(--dawn);
+  --color-sun: var(--sun);
+  --color-snow: var(--snow);
+
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
 
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 
@@ -263,4 +285,117 @@ html[data-booted] .boot {
 
 @media (prefers-reduced-motion: reduce) {
   .panel-in { animation: none; }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Portada (vitrina del destino)
+   ────────────────────────────────────────────────────────────── */
+.hero-veil {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--night) 55%, transparent) 0%, transparent 26%),
+    linear-gradient(0deg, var(--night) 0%, color-mix(in srgb, var(--night) 70%, transparent) 28%, transparent 62%),
+    radial-gradient(120% 80% at 0% 100%, color-mix(in srgb, var(--night) 45%, transparent), transparent 60%);
+}
+@media (max-width: 1023px) {
+  .hero-veil {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--night) 60%, transparent) 0%, transparent 22%),
+      linear-gradient(0deg, var(--night) 0%, color-mix(in srgb, var(--night) 86%, transparent) 42%, color-mix(in srgb, var(--night) 30%, transparent) 70%, transparent 85%);
+  }
+}
+.kenburns {
+  animation: kenburns 24s var(--ease-in-out) infinite alternate;
+  transform-origin: 60% 40%;
+}
+@keyframes kenburns {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, 1%, 0);
+  }
+}
+.caret {
+  animation: caret 0.9s steps(1) infinite;
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+.cta-glow::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--clapzy) 55%, transparent);
+  animation: cta-glow 2.2s var(--ease-out) infinite;
+  pointer-events: none;
+}
+@keyframes cta-glow {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--clapzy) 55%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 16px color-mix(in srgb, var(--clapzy) 0%, transparent);
+  }
+}
+.scroll-cue {
+  animation: scroll-cue 2s var(--ease-in-out) infinite;
+}
+@keyframes scroll-cue {
+  50% {
+    transform: translateY(6px);
+  }
+}
+.valley-sky {
+  background: linear-gradient(
+    180deg,
+    var(--night-2) 0%,
+    var(--dusk) 38%,
+    var(--dawn) 70%,
+    var(--sun) 100%
+  );
+}
+.gaia-aura {
+  background:
+    radial-gradient(60% 50% at 85% 10%, color-mix(in srgb, var(--clapzy) 22%, transparent), transparent 70%),
+    radial-gradient(50% 60% at 0% 100%, color-mix(in srgb, var(--dusk) 55%, transparent), transparent 70%);
+}
+.map-drift {
+  animation: map-drift 30s var(--ease-in-out) infinite alternate;
+  transform-origin: 50% 50%;
+}
+@keyframes map-drift {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.18) translate3d(-2%, 1%, 0);
+  }
+}
+.pin-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pin-pop 2.4s var(--ease-in-out) infinite;
+}
+@keyframes pin-pop {
+  0%,
+  70%,
+  100% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1.5);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kenburns,
+  .caret,
+  .cta-glow::after,
+  .scroll-cue,
+  .map-drift,
+  .pin-pop {
+    animation: none;
+  }
 }

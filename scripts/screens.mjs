@@ -18,13 +18,13 @@ const WIDTHS = String(args.widths || "390,1440")
   .map(Number);
 const HEIGHT_FOR = (w) => (w < 768 ? 844 : w < 1024 ? 1024 : 900);
 const ROUTES = String(
-  args.routes || "/,/lugar/niton-mirador,/eventos,/gaia,/guardados,/municipio,/dev/mapa",
+  args.routes || "/,/explorar,/lugar/niton-mirador,/eventos,/gaia,/guardados,/municipio,/dev/mapa",
 ).split(",");
 const WAIT = Number(args.wait || 2600);
 
 mkdirSync(OUT, { recursive: true });
 
-const slug = (r) => (r === "/" ? "explorar" : r.replace(/^\//, "").replace(/[/?=&]+/g, "-"));
+const slug = (r) => (r === "/" ? "inicio" : r.replace(/^\//, "").replace(/[/?=&]+/g, "-"));
 
 const browser = await chromium.launch();
 const errors = [];

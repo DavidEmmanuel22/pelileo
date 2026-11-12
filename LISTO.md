@@ -3,7 +3,7 @@
 Demo completa, 100 % simulada (sin cuentas, APIs ni claves). Las 8 fases de `PROMPTS.md` están cerradas, cada una con su commit.
 
 **Estado verificado al cierre**
-- `npm run build`: pasa (40 páginas estáticas).
+- `npm run build`: pasa (41 páginas estáticas).
 - `npm test`: 60 tests en verde (motor de Gaia).
 - `npm run lint`: sin errores ni warnings.
 - Sin errores de consola ni warnings de hidratación en producción, en 360, 390, 768, 1024, 1440 y 1920 px.
@@ -18,7 +18,9 @@ npm install
 npm run dev
 ```
 
-Abre http://localhost:3000. El panel del municipio está en http://localhost:3000/municipio.
+Abre http://localhost:3000 (portada). El mapa está en http://localhost:3000/explorar y el panel del municipio en http://localhost:3000/municipio.
+
+**Fotos y video propios**: suéltalos en `public/media/` con los nombres de [`MEDIA.md`](MEDIA.md). La portada los toma sola.
 
 Versión de producción local:
 
@@ -42,15 +44,23 @@ Desde la terminal también funciona: `npx vercel` (vista previa) y `npx vercel -
 | `npm test` | Tests del motor de Gaia (Vitest) |
 | `npm run screens` | Capturas de cada ruta en 390 y 1440 px (`--base`, `--widths`, `--routes`, `--out`) |
 | `node scripts/demo.mjs` | Recorre el guion de la demo con verificaciones y capturas |
+| `node scripts/home.mjs` | Recorre la portada con scroll, abre el demo de Gaia y saca capturas (`screens/home`) |
 | `node scripts/gaia-fuzz.mjs` | Escribe 30 pedidos variados en Gaia y verifica que siempre responda algo útil |
 
 ---
 
 ## Qué está hecho
 
+**Portada (rediseño del 12 nov)** — vitrina del destino con efecto wow
+- **Hero a pantalla completa** con la foto del Tungurahua (o video, si existe `public/media/hero.mp4`), movimiento lento y titular editorial.
+- **Gaia es la llamada principal**: la caja escribe sola «Quiero un plan para divertirme este fin de semana». Al tocar «Armar mi plan», Gaia "piensa" y arma el itinerario parada por parada en un panel con fotos, y en escritorio con la foto grande de cada parada. Desde ahí, «Ver en el mapa y ajustar con Gaia» abre `/gaia` con el mismo plan. Todo simulado.
+- **Valle en parallax**: el Tungurahua y el valle dibujados por capas que pasan de la noche al amanecer mientras bajas, con un parapente coral cruzando.
+- Intro con cifras, mosaico «Qué vivir», franja oscura de Gaia con planes de ejemplo, carrusel «Dónde comer», «Vuela sobre el valle» con parallax de foto, agenda de la semana, «Dónde dormir», adelanto del mapa y cierre con Gaia.
+- Titulares en Fraunces (serif editorial); la interfaz sigue en Plus Jakarta Sans.
+
 **App pública** (mobile first, con escritorio a dos columnas)
 - **Mapa propio**: ilustración SVG del cantón con curvas de nivel, ríos, vías, el Tungurahua y el límite cantonal. Tiene pan, pellizco y zoom, vuelos de cámara, clustering, pines por categoría, una ruta "costura" animada y un modo mapa de calor. Es un solo mapa persistente para Explorar, Lugar, Eventos y Gaia, así la cámara vuela entre pantallas sin recargar.
-- **Explorar**: intro breve (vuelo del cantón a Pelileo), clima, filtros por categoría, carrusel de Imperdibles sincronizado con el mapa, "Esta semana" y la lista completa.
+- **Explorar** (`/explorar`): intro breve (vuelo del cantón a Pelileo), clima, filtros por categoría, carrusel de Imperdibles sincronizado con el mapa, "Esta semana" y la lista completa.
 - **Detalle de lugar**: foto con crédito, si está abierto o cerrado, "Cómo llegar" (traza la ruta y da minutos y km), Guardar, "Agregar a mi plan", datos prácticos, eventos del lugar y lugares cerca.
 - **Eventos**: agrupados por hoy, este fin de semana, la semana y próximos. Tienen filtros, pines en el mapa y "Agregar a mi plan".
 - **Gaia** (el itinerario vive solo aquí):
@@ -87,6 +97,7 @@ Desde la terminal también funciona: `npx vercel` (vista previa) y `npx vercel -
 
 ## Pendiente / ideas para después
 
+- **Fotos y video reales para la portada**: el hero, el mosaico y las franjas usan fotos provisionales hasta que lleguen las definitivas (lista exacta en `MEDIA.md`).
 - Algunas fotos son **referenciales** (tipo de lugar, no el lugar exacto). Conviene reemplazarlas por fotos propias del GAD o de los negocios.
 - Los datos de lugares, eventos y del panel son **simulados**. El siguiente paso sería conectarlos a una fuente real (CMS del municipio o una API).
 - Gaia es un motor de reglas, no un modelo de lenguaje. Frases como "empezar más tarde" todavía reciben una sugerencia genérica en vez de un ajuste. Conectarlo a Claude daría conversación libre real.
@@ -98,6 +109,14 @@ Desde la terminal también funciona: `npx vercel` (vista previa) y `npx vercel -
 ---
 
 ## Capturas
+
+![Portada en escritorio](screens/00-inicio-escritorio.png)
+*Portada · escritorio: hero con Gaia como llamada principal*
+
+| | |
+|---|---|
+| ![Portada en mobile](screens/00-inicio-movil.png) | ![Gaia arma el plan desde la portada](screens/00-gaia-demo-escritorio.png) |
+| Portada · mobile | Gaia arma el plan desde la portada |
 
 | | |
 |---|---|

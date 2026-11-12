@@ -15,7 +15,7 @@ export function MapStage() {
   const desktop = useIsDesktop();
   const path = usePathname();
   // La intro de cámara solo se ve al entrar por la portada, una vez por carga.
-  const [intro] = useState(() => typeof window !== "undefined" && path === "/" && !introPlayed);
+  const [intro] = useState(() => typeof window !== "undefined" && path === "/explorar" && !introPlayed);
   useEffect(() => {
     introPlayed = true;
   }, []);

@@ -43,7 +43,7 @@ async function run(w) {
     page.getByRole("navigation").getByRole("link", { name, exact: true }).first().click();
 
   // 1. Carga breve, vuelo a Pelileo, imperdibles
-  await page.goto(BASE + "/", { waitUntil: "networkidle" });
+  await page.goto(BASE + "/explorar", { waitUntil: "networkidle" });
   await page.waitForTimeout(3200);
   const cards = page.locator('[aria-label="Imperdibles"] [data-place]');
   check((await cards.count()) >= 6, "1. Imperdibles visibles tras la carga");

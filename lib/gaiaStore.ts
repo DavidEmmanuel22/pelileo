@@ -40,7 +40,7 @@ type GaiaState = {
   remove: (d: number, s: number) => void;
   addFromLink: (placeId: string, eventId?: string) => Promise<void>;
   reset: () => void;
-  loadPlan: (it: GaiaItinerary) => void;
+  loadPlan: (it: GaiaItinerary, intro?: { prompt: string; reply: string }) => void;
 };
 
 const KEY = "vp:gaia";
@@ -269,16 +269,22 @@ export const useGaia = create<GaiaState>((set, get) => {
       });
     },
 
-    loadPlan: (it) => {
+    loadPlan: (it, intro) => {
       runId++;
-      const msg: ChatMsg = { id: mid(), role: "gaia", text: `Aquí tienes tu plan guardado: ${it.title.toLowerCase()}. Puedes seguir ajustándolo.`, kind: "plan" };
+      const msg: ChatMsg = {
+        id: mid(),
+        role: "gaia",
+        text: intro ? intro.reply : `Aquí tienes tu plan guardado: ${it.title.toLowerCase()}. Puedes seguir ajustándolo.`,
+        kind: "plan",
+      };
+      const user: ChatMsg[] = intro ? [{ id: mid(), role: "user", text: intro.prompt }] : [];
       set({
         phase: "ready",
-        messages: [msg],
+        messages: [...user, msg],
         thinking: [],
         streamId: null,
         itinerary: it,
-        prompt: it.title,
+        prompt: intro?.prompt ?? it.title,
         suggestions: DEFAULT_SUGGESTIONS,
         dayIdx: 0,
         focusStop: null,

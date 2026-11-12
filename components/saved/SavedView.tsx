@@ -168,7 +168,7 @@ function EmptyState() {
         Guarda los lugares que te gusten o pídele a Gaia un plan a tu medida. Todo quedará aquí.
       </p>
       <div className="mt-6 flex w-full max-w-[360px] flex-col gap-2.5 sm:flex-row">
-        <Link href="/" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-ink sm:flex-1 text-[14.5px] font-semibold text-surface">
+        <Link href="/explorar" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-ink sm:flex-1 text-[14.5px] font-semibold text-surface">
           Explorar Pelileo
         </Link>
         <Link

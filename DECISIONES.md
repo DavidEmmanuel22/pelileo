@@ -32,3 +32,13 @@
 30. **Paradas encimadas**: en el mapa de Gaia, las paradas que quedarían una encima de otra al zoom actual se separan unos píxeles en pantalla, sin mover la ruta.
 31. **Imperdibles** abre con Cerro Nitón (la mejor foto y el primer paso del guion de la demo). El carrusel tiene `scroll-padding` para que la primera tarjeta no quede pegada al borde.
 32. **Capturas**: las de cada fase y del guion quedan fuera de git (`screens/fase*/`, `screens/demo/`); en el repo solo están las 6 elegidas para `LISTO.md`.
+
+## Rediseño de la portada (pedido del usuario, 12 nov)
+
+El usuario sintió la primera versión pobre y poco demostrativa: una herramienta (mapa + filtros) en vez de una vitrina de destino. Pidió una portada con efecto wow inspirada en travelnevada.com, visittruckeetahoe.com, seemonterey.com y visitcostarica.com, con Gaia como llamada principal en el hero y la página llena de actividades y restaurantes. Sus pedidos tienen prioridad sobre CLAUDE.md y BRIEF.md.
+
+33. **Tipografía display**: CLAUDE.md pedía solo Plus Jakarta Sans. El usuario me dio libertad, así que sumé **Fraunces** (serif cálida, con itálica) solo para titulares grandes de la portada y del demo de Gaia. Jakarta sigue en toda la interfaz.
+34. **Nueva estructura**: `/` es la portada y el mapa pasó a `/explorar` (pestaña nueva "Inicio"). Orden: hero a pantalla completa con Gaia → valle en parallax (noche a amanecer) → intro con cifras → "Qué vivir" (mosaico) → franja de Gaia → Dónde comer → Vuela sobre el valle (foto con parallax) → Agenda → Dónde dormir → Mapa → Cierre con Gaia y pie.
+35. **Gaia en el hero, 100 % simulada**: la caja escribe sola «Quiero un plan para divertirme este fin de semana»; al tocar «Armar mi plan» se abre un panel donde Gaia "piensa" y arma el itinerario parada por parada (con fotos y, en escritorio, la foto grande de la parada activa). Usa el mismo motor determinista que `/gaia`, así que «Ver en el mapa y ajustar con Gaia» lleva el plan a `/gaia` sin perder nada.
+36. **Parallax propio**: el valle y el Tungurahua están dibujados en SVG por capas que se mueven a distintas velocidades con `transform` (framer-motion `useScroll`), con un parapente coral cruzando. No depende de fotos y respeta `prefers-reduced-motion`. Sin librerías de scroll suave.
+37. **Medios intercambiables**: la portada busca los archivos de `public/media/` (ver `MEDIA.md`) y, si no existen, usa fotos que ya tenía la demo. Basta con soltar los archivos y volver a compilar. Si hay `hero.mp4`, el hero pasa a video.

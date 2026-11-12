@@ -72,7 +72,7 @@ export function PlaceView({ id }: { id: string }) {
     <div className="relative px-5 pb-3 pt-1 lg:pt-5">
       <div className="mb-3 hidden lg:block">
         <Link
-          href="/"
+          href="/explorar"
           className="-ml-2 inline-flex h-10 items-center gap-1.5 rounded-full px-2 text-[13.5px] font-medium text-ink-2 transition-colors hover:text-ink"
         >
           <ArrowLeft size={16} aria-hidden="true" /> Explorar
@@ -89,7 +89,7 @@ export function PlaceView({ id }: { id: string }) {
           <h1 className="mt-1 text-[22px] font-bold leading-tight tracking-[-0.02em] text-ink lg:text-[26px]">{place.name}</h1>
         </div>
         <Link
-          href="/"
+          href="/explorar"
           aria-label="Cerrar y volver a Explorar"
           className="-mr-1 grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink transition-colors hover:border-ink-3 lg:hidden"
         >
