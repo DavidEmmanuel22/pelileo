@@ -42,3 +42,4 @@ next-env.d.ts
 
 # capturas intermedias
 /screens/fase*/
+/screens/demo/

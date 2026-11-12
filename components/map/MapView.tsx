@@ -147,7 +147,9 @@ export function MapView({
   const homeRef = useRef(true);
   const uid = useId().replace(/:/g, "");
 
-  padRef.current = padding;
+  useLayoutEffect(() => {
+    padRef.current = padding;
+  });
 
   // ── Aplicar transform (sin re-render de React)
   const apply = useCallback((t: ZoomTransform) => {
@@ -280,7 +282,7 @@ export function MapView({
       fly(transformFor(VIEW_PELILEO, 1.5), 1800);
     }, introDelay + 120);
     return () => clearTimeout(t);
-  }, [intro, introDelay, fly, transformFor]);
+  }, [intro, introDelay, fly, transformFor, setTilted]);
 
   // ── Datos derivados
   const stops = useMemo(() => {
@@ -376,7 +378,7 @@ export function MapView({
     const [x, y] = project(p.lat, p.lng);
     if (route && route.stops.length > 1) return; // la ruta encuadra
     fly(centerOn(x, y, Math.max(1.7, Math.min(tRef.current.k, 2.6))));
-  }, [selectedId, mode, ready, places, route, fly, centerOn]);
+  }, [selectedId, mode, ready, places, route, fly, centerOn, setTilted]);
 
   // ── Cámara: ruta / itinerario
   useEffect(() => {

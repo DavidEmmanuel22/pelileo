@@ -39,9 +39,8 @@ export function PlaceView({ id }: { id: string }) {
   const near = useMemo(() => nearestPlaces(place, 3), [place]);
   const hereEvents = events?.filter((e) => e.ev.placeId === id).slice(0, 2) ?? [];
 
-  // Al cambiar de lugar, se apaga la ruta y el panel vuelve arriba
+  // Al cambiar de lugar (la página remonta este componente con key={id}) el panel vuelve arriba
   useEffect(() => {
-    setRouteOn(false);
     sheetRef.current?.scrollToTop();
   }, [id]);
 

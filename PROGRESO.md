@@ -41,9 +41,11 @@ Checklist de las fases de `PROMPTS.md`. Si la sesión se corta, retomar en el pr
 - [x] Skip link "Saltar al contenido", toasts arriba en mobile, 404 amable, bordes del mapa desvanecidos
 
 ## Fase 7 — QA final
-- [ ] `npm run build` + Vitest en verde
-- [ ] Capturas 360/390/768/1024/1440 revisadas
-- [ ] Guion de la demo con Playwright
-- [ ] 30 entradas aleatorias en Gaia
-- [ ] Pulido extra de Explorar y Gaia
-- [ ] LISTO.md + commit final
+- [x] `npm run build` + Vitest en verde
+- [x] Capturas 360/390/768/1024/1440 revisadas
+- [x] Guion de la demo con Playwright
+- [x] 30 entradas aleatorias en Gaia
+- [x] Pulido extra de Explorar y Gaia
+- [x] LISTO.md + commit final
+
+**Estado final:** build OK · 60 tests en verde · lint limpio · guion de la demo y 30 entradas de Gaia verificados en producción. Ver `LISTO.md`.

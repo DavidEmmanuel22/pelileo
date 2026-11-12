@@ -26,3 +26,9 @@
 24. **Publicar evento**: el evento se guarda en sessionStorage (dura la sesión), usa la foto del lugar elegido y aparece en /eventos con la etiqueta "Nuevo · Municipio". Aprobar/Rechazar negocios es local, con "Deshacer".
 25. **Scroll dentro del sheet**: reemplacé `scrollIntoView` por un scroll calculado del contenedor del sheet, porque `scrollIntoView` también desplazaba el contenedor fijo del mapa y descuadraba la pantalla.
 26. **Pulido (fase 6)**: el panel entra con un fundido corto (desactivado con reduced-motion); hay un enlace "Saltar al contenido" para teclado; los avisos (toasts) salen arriba en mobile para no tapar la barra de pestañas; el 404 lleva de vuelta a Explorar o a Gaia; el terreno del mapa se desvanece hacia los bordes para que la animación de entrada no muestre un recorte.
+27. **Gaia responde preguntas sin tocar el plan**: clima ("¿qué tiempo hará?"), costo ("¿cuánto cuesta todo?"), saludos y gracias, y menús vegetarianos (dice con honestidad que no tiene esos datos). Antes, "¿qué tiempo hará el sábado?" movía el plan al sábado.
+28. **Pedidos por nombre**: "agrega parapente", "quiero ver el volcán" y "llévame a Salasaca" suman ese lugar al plan actual. Si el grupo tiene niños y el lugar no es apto (el vuelo biplaza), Gaia lo explica en vez de sumarlo.
+29. **Más de 3 días**: Gaia arma 3 y lo dice ("Pelileo se disfruta bien en 3 días").
+30. **Paradas encimadas**: en el mapa de Gaia, las paradas que quedarían una encima de otra al zoom actual se separan unos píxeles en pantalla, sin mover la ruta.
+31. **Imperdibles** abre con Cerro Nitón (la mejor foto y el primer paso del guion de la demo). El carrusel tiene `scroll-padding` para que la primera tarjeta no quede pegada al borde.
+32. **Capturas**: las de cada fase y del guion quedan fuera de git (`screens/fase*/`, `screens/demo/`); en el repo solo están las 6 elegidas para `LISTO.md`.
