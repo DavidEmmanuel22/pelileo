@@ -19,8 +19,8 @@ Checklist de las fases de `PROMPTS.md`. Si la sesión se corta, retomar en el pr
 - [x] `/dev/mapa` con los tres modos + capturas revisadas
 
 ## Fase 2 — Motor de Gaia
-- [ ] Escenarios, generador, ajustes, swapStep, removeStep, itineraryTotal, clima, fuera de alcance
-- [ ] Tests Vitest en verde
+- [x] Escenarios, generador, ajustes, swapStep, removeStep, itineraryTotal, clima, fuera de alcance
+- [x] Tests Vitest en verde
 
 ## Fase 3 — Fotos
 - [ ] Fotos de lugares y eventos + `credits.json` (o placeholder elegante)

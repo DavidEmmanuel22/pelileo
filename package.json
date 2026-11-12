@@ -1,12 +1,15 @@
 {
-  "name": "app-tmp",
+  "name": "vive-pelileo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "screens": "node scripts/screens.mjs",
+    "terrain": "node scripts/gen-terrain.mjs"
   },
   "dependencies": {
     "d3-ease": "^3.0.2",
