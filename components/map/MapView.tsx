@@ -33,6 +33,8 @@ export type MapViewProps = {
   originLabel?: string;
   interactive?: boolean;
   controls?: boolean;
+  /** false: la rueda del mouse no hace zoom (no secuestra el scroll de la página); Ctrl/⌘ + rueda sí. */
+  wheelZoom?: boolean;
   className?: string;
   /** Retraso de la intro (ms), p. ej. mientras termina la pantalla de carga. */
   introDelay?: number;
@@ -112,6 +114,7 @@ export function MapView({
   originLabel,
   interactive = true,
   controls = true,
+  wheelZoom = true,
   className = "",
   introDelay = 0,
 }: MapViewProps) {
@@ -218,6 +221,7 @@ export function MapView({
       ])
       .filter((event: Event & { button?: number; ctrlKey?: boolean; type: string }) => {
         if (!interactive) return false;
+        if (!wheelZoom && event.type === "wheel" && !event.ctrlKey && !(event as unknown as WheelEvent).metaKey) return false;
         const target = event.target as HTMLElement | null;
         if (target?.closest?.("[data-map-ui]")) return false;
         return (!event.ctrlKey || event.type === "wheel") && !event.button;

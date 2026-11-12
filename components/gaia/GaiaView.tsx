@@ -8,7 +8,7 @@ import { PLACES, SCENARIOS } from "@/lib/data";
 import { useMapConfig } from "@/lib/mapStore";
 import { useIsDesktop } from "@/lib/hooks";
 import { useGaia, type ChatMsg } from "@/lib/gaiaStore";
-import { Sheet, type SheetHandle } from "@/components/ui/Sheet";
+import { Sheet, scrollIntoSheet, type SheetHandle } from "@/components/ui/Sheet";
 import { Chip } from "@/components/ui/bits";
 import { GaiaMark } from "@/components/brand/Brand";
 import { PlanBlock } from "./PlanBlock";
@@ -49,7 +49,7 @@ export function GaiaView() {
   const onStopSelect = useCallback((order: number) => {
     useGaia.getState().setFocus(order);
     const el = document.getElementById(`step-${order}`);
-    if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 60);
+    if (el) setTimeout(() => scrollIntoSheet(el, "center"), 60);
   }, []);
   const openPlace = useCallback((id: string) => router.push(`/lugar/${id}`), [router]);
   useMapConfig(
@@ -74,7 +74,7 @@ export function GaiaView() {
       const ms = useGaia.getState().messages;
       const last = [...ms].reverse().find((m) => m.role === "gaia" && m.kind === "plan");
       const el = (last && document.getElementById(`msg-${last.id}`)) || planRef.current;
-      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+      scrollIntoSheet(el, "start");
     }, 120);
     return () => clearTimeout(t);
   }, [g.resultTick, desktop]);
@@ -82,7 +82,7 @@ export function GaiaView() {
   // Mientras piensa, mostramos el indicador (abajo)
   useEffect(() => {
     if (phase !== "thinking") return;
-    const t = setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" }), 60);
+    const t = setTimeout(() => scrollIntoSheet(bottomRef.current, "end"), 60);
     return () => clearTimeout(t);
   }, [phase]);
 
@@ -97,7 +97,7 @@ export function GaiaView() {
     if (!desktop) sheetRef.current?.snapTo(2);
     setTimeout(() => {
       inputRef.current?.focus();
-      bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      scrollIntoSheet(bottomRef.current, "end");
     }, 200);
   };
 
@@ -119,7 +119,7 @@ export function GaiaView() {
   const updId = update?.id;
   useEffect(() => {
     if (!updId) return;
-    const t = setTimeout(() => planRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+    const t = setTimeout(() => scrollIntoSheet(planRef.current, "start"), 80);
     return () => clearTimeout(t);
   }, [updId]);
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { Place } from "@/data/types";
-import { CATEGORY_LABEL, EVENT_CATEGORY_LABEL, eventImage, placeImage, priceLevelLabel } from "@/lib/data";
+import { CATEGORY_LABEL, EVENT_CATEGORY_LABEL, eventImage, getPlace, placeImage, priceLevelLabel } from "@/lib/data";
 import type { DatedEvent } from "@/lib/events";
 import { useNow } from "@/lib/hooks";
 import { monthShort, openStatus, WEEKDAY_SHORT, weekdayOf } from "@/lib/time";
@@ -126,7 +126,7 @@ export function EventMini({ d }: { d: DatedEvent }) {
         <span className="mt-0.5 block text-[12.5px] font-medium text-ink">{d.ev.price ? `$${d.ev.price}` : "Gratis"}</span>
       </span>
       <Photo
-        src={eventImage(d.ev)}
+        src={eventImage(d.ev) ?? (d.ev.placeId && getPlace(d.ev.placeId) ? placeImage(getPlace(d.ev.placeId)!) : null)}
         alt=""
         category="evento"
         className="hidden h-14 w-14 shrink-0 rounded-xl sm:block"

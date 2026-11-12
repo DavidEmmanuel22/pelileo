@@ -4,12 +4,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { CalendarX2, MapPin, Sparkles } from "lucide-react";
 import type { EventItem, Place } from "@/data/types";
-import { EVENT_CATEGORY_LABEL, eventImage, getPlace } from "@/lib/data";
+import { EVENT_CATEGORY_LABEL, eventImage, getPlace, placeImage } from "@/lib/data";
 import { GROUP_LABEL, groupOf, useDatedEvents, type DatedEvent, type EventGroup } from "@/lib/events";
 import { useMapConfig } from "@/lib/mapStore";
 import { useIsDesktop } from "@/lib/hooks";
 import { formatLongDate } from "@/lib/time";
-import { Sheet, type SheetHandle } from "@/components/ui/Sheet";
+import { Sheet, scrollIntoSheet, type SheetHandle } from "@/components/ui/Sheet";
 import { Chip, FooterLinks } from "@/components/ui/bits";
 import { Photo } from "@/components/ui/Photo";
 import { DateBlock } from "@/components/places/cards";
@@ -46,7 +46,7 @@ export function EventsView() {
 
   const scrollToCard = useCallback((id: string) => {
     const el = document.getElementById(`card-${id}`);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    scrollIntoSheet(el, "center");
   }, []);
 
   const onPin = useCallback(
@@ -177,7 +177,7 @@ function EventCard({ d, active, onMap }: { d: DatedEvent; active: boolean; onMap
           <p className="mt-1 text-[13.5px] font-semibold text-ink">{ev.price ? `$${ev.price} por persona` : "Gratis"}</p>
         </div>
         <Photo
-          src={eventImage(ev)}
+          src={eventImage(ev) ?? (getPlace(ev.placeId) ? placeImage(getPlace(ev.placeId)!) : null)}
           alt=""
           category="evento"
           className="hidden h-[76px] w-[76px] shrink-0 rounded-xl min-[380px]:block"

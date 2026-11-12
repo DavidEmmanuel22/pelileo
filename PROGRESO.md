@@ -33,8 +33,8 @@ Checklist de las fases de `PROMPTS.md`. Si la sesión se corta, retomar en el pr
 - [x] Guardados
 
 ## Fase 5 — Panel del municipio
-- [ ] KPIs, gráficos, heatmap, demanda insatisfecha, embudo, gestión
-- [ ] Publicar evento → aparece en `/eventos`
+- [x] KPIs, gráficos, heatmap, demanda insatisfecha, embudo, gestión
+- [x] Publicar evento → aparece en `/eventos`
 
 ## Fase 6 — Pulido
 - [ ] Carga, transiciones, skeletons, estados vacíos, foco, microinteracciones, copia en "tú"

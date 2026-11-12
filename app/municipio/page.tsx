@@ -1,3 +1,8 @@
+import type { Metadata } from "next";
+import { Dashboard } from "@/components/municipio/Dashboard";
+
+export const metadata: Metadata = { title: "Panel de Turismo · GAD Pelileo", robots: { index: false } };
+
 export default function Page() {
-  return <div className="p-8 text-ink">Municipio</div>;
+  return <Dashboard />;
 }

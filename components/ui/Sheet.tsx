@@ -162,6 +162,7 @@ export const Sheet = forwardRef<SheetHandle, Props>(function Sheet(
       </div>
       <div
         ref={scrollRef}
+        data-sheet-scroller
         onPointerDown={(e) => {
           if ((e.target as HTMLElement).closest("[data-no-drag]")) return;
           if (!atTop && !desktop) startDrag(e);
@@ -187,3 +188,20 @@ export const Sheet = forwardRef<SheetHandle, Props>(function Sheet(
     </>
   );
 });
+
+/**
+ * Lleva un elemento a la vista desplazando SOLO el scroller del sheet
+ * (scrollIntoView también movería el contenedor fijo del mapa).
+ */
+export function scrollIntoSheet(el: Element | null | undefined, block: "start" | "center" | "end" = "start", offset = 12) {
+  if (!el) return;
+  const sc = el.closest<HTMLElement>("[data-sheet-scroller]");
+  if (!sc) return;
+  const r = el.getBoundingClientRect();
+  const s = sc.getBoundingClientRect();
+  const rel = r.top - s.top + sc.scrollTop;
+  let top = rel - offset;
+  if (block === "center") top = rel - (sc.clientHeight - r.height) / 2;
+  if (block === "end") top = rel + r.height - sc.clientHeight + offset;
+  sc.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+}
