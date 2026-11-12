@@ -12,6 +12,7 @@ import { EVENTS, PLACES, eventImage, placeImage, priceLabel } from "@/lib/data";
 import { useDatedEvents } from "@/lib/events";
 import { formatShortDate, monthShort } from "@/lib/time";
 import type { HomeMedia } from "@/lib/media";
+import { AutoVideo } from "./AutoVideo";
 import { GaiaBox, HERO_CHIPS } from "./Hero";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -101,12 +102,12 @@ export function Intro() {
 
 /* ────────────────────────────── Qué vivir (mosaico) */
 export function Experiences({ media }: { media: HomeMedia }) {
-  const tiles = [
+  const tiles: { key: string; title: string; sub: string; n: number; img: string; video?: string | null; cls: string }[] = [
     { key: "aventura", title: "Aventura", sub: "Parapente en el Nitón, cabalgatas y senderos", n: count(["aventura", "experiencia"]), img: media.exp.aventura, cls: "col-span-2 row-span-2 h-[420px] lg:h-auto" },
     { key: "cultura", title: "Cultura Salasaka", sub: "Telares, tejidos y la Plaza del Arte", n: count(["cultura"]), img: media.exp.cultura, cls: "h-[260px] lg:h-auto" },
     { key: "jean", title: "Ciudad del Jean", sub: "Talleres y almacenes de jean en El Tambo", n: count(["compras"]), img: media.exp.jean, cls: "h-[260px] lg:h-auto" },
     { key: "sabores", title: "Sabores", sub: "Fritada, trucha, empanadas de tiesto", n: count(["comer", "beber"]), img: media.exp.sabores, cls: "h-[260px] lg:h-auto" },
-    { key: "naturaleza", title: "Naturaleza", sub: "Cascadas, miradores y aguas de Cotaló", n: count(["naturaleza"]), img: media.exp.naturaleza, cls: "h-[260px] lg:h-auto" },
+    { key: "naturaleza", title: "Naturaleza", sub: "Cascadas, miradores y aguas de Cotaló", n: count(["naturaleza"]), img: media.exp.naturaleza, video: media.naturalezaVideo, cls: "h-[260px] lg:h-auto" },
   ];
   return (
     <section className="bg-bg px-5 pb-24 sm:px-8 lg:pb-32" aria-labelledby="que-vivir">
@@ -135,6 +136,7 @@ export function Experiences({ media }: { media: HomeMedia }) {
                   sizes={i === 0 ? "(max-width: 1024px) 100vw, 620px" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 310px"}
                   className="object-cover transition-transform duration-[1.2s] ease-[var(--ease-out)] group-hover:scale-[1.06]"
                 />
+                {t.video && <AutoVideo src={t.video} poster={t.img} className="transition-transform duration-[1.2s] group-hover:scale-[1.06]" />}
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,color-mix(in_srgb,var(--night)_85%,transparent))]" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 text-on-photo lg:p-6">
                   <div>
@@ -212,7 +214,7 @@ export function GaiaBand({ onAsk }: { onAsk: (p: string) => void }) {
 }
 
 /* ────────────────────────────── Vuelo (foto a sangre con parallax) */
-export function FlightBand({ image }: { image: string }) {
+export function FlightBand({ image, video }: { image: string; video: string | null }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -220,7 +222,8 @@ export function FlightBand({ image }: { image: string }) {
   return (
     <section ref={ref} className="relative h-[86svh] min-h-[560px] overflow-hidden bg-night text-on-photo" aria-labelledby="vuelo">
       <motion.div className="absolute inset-[-16%_0] will-change-transform" style={{ y }}>
-        <Image src={image} alt="Parapente sobre el valle de Pelileo" fill sizes="100vw" className="object-cover" />
+        <Image src={image} alt="Montañas al amanecer sobre el valle" fill sizes="100vw" className="object-cover" />
+        {video && <AutoVideo src={video} poster={image} />}
       </motion.div>
       <div className="absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--night)_78%,transparent)_0%,transparent_70%)]" />
       <div className="relative mx-auto flex h-full max-w-[1240px] flex-col justify-end px-5 pb-16 sm:px-8 lg:justify-center lg:pb-0">
@@ -472,10 +475,13 @@ export function MapTeaser() {
 }
 
 /* ────────────────────────────── Cierre */
-export function FinalCta({ image, onAsk }: { image: string; onAsk: (p: string) => void }) {
+export function FinalCta({ image, video, onAsk }: { image: string; video: string | null; onAsk: (p: string) => void }) {
   return (
     <section className="relative overflow-hidden bg-night px-5 pb-[calc(var(--tabbar-h)+64px)] pt-28 text-on-photo sm:px-8 lg:pb-24 lg:pt-36" aria-labelledby="cierre">
-      <Image src={image} alt="" fill sizes="100vw" className="object-cover opacity-45" />
+      <div className="absolute inset-0 opacity-45">
+        <Image src={image} alt="" fill sizes="100vw" className="object-cover" />
+        {video && <AutoVideo src={video} poster={image} />}
+      </div>
       <div className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--night)_40%,transparent),var(--night))]" />
       <div className="relative mx-auto max-w-[900px] text-center">
         <Reveal>
@@ -501,7 +507,13 @@ export function FinalCta({ image, onAsk }: { image: string; onAsk: (p: string) =
           <Link href="/gaia" className="hover:text-on-photo">Gaia</Link>
           <Link href="/municipio" className="hover:text-on-photo">Panel del municipio</Link>
         </nav>
-        <p>GAD Municipal de San Pedro de Pelileo · Demo de Clapzy</p>
+        <p className="flex items-center gap-3">
+          <Image src="/brand/escudo-pelileo.png" alt="Escudo de San Pedro de Pelileo" width={34} height={45} className="h-[45px] w-auto" />
+          <span>
+            GAD Municipal de San Pedro de Pelileo
+            <span className="block text-on-photo/50">Demo de Clapzy</span>
+          </span>
+        </p>
       </footer>
     </section>
   );

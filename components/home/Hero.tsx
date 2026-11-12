@@ -6,6 +6,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { ArrowDown, ArrowUp, Sparkles } from "lucide-react";
 import { GaiaMark, Lockup } from "@/components/brand/Brand";
 import { bootDelay } from "@/components/shell/Boot";
+import { AutoVideo } from "./AutoVideo";
 
 export const HERO_PROMPT = "Quiero un plan para divertirme este fin de semana";
 export const HERO_CHIPS = [
@@ -43,21 +44,8 @@ export function Hero({
       <motion.div className="absolute inset-0 will-change-transform" style={{ y: bgY, scale: bgScale }}>
         <div className="kenburns absolute inset-0">
           <Image src={image} alt="El volcán Tungurahua visto desde el valle de Pelileo" fill priority sizes="100vw" className="object-cover" />
-          {video && (
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster={image}
-              aria-hidden="true"
-            >
-              {videoMobile && <source src={videoMobile} type="video/mp4" media="(max-width: 767px)" />}
-              <source src={video} type="video/mp4" />
-            </video>
-          )}
+          {video && <AutoVideo src={videoMobile ?? video} poster={image} className="hidden max-md:block" />}
+          {video && <AutoVideo src={video} poster={image} className="max-md:hidden" />}
         </div>
       </motion.div>
       {/* Velos para que el texto se lea sobre cualquier foto */}

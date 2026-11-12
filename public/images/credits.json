@@ -17,15 +17,6 @@
     "author": "DIOHER_PAVAL",
     "license": "CC BY 3.0"
   },
-  "feria-pelileo": {
-    "id": "feria-pelileo",
-    "kind": "places",
-    "query": "Ecuador market fruit",
-    "title": "File:Indigener Markt, Saquisilí, Ecuador 2.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:Indigener_Markt,_Saquisil%C3%AD,_Ecuador_2.jpg",
-    "author": "Fährtenleser",
-    "license": "CC BY-SA 4.0"
-  },
   "salasaca-plaza-arte": {
     "id": "salasaca-plaza-arte",
     "kind": "places",
@@ -89,15 +80,6 @@
     "author": "Leimanbhradain",
     "license": "CC BY-SA 4.0"
   },
-  "teligote": {
-    "id": "teligote",
-    "kind": "places",
-    "query": "Andean forest Ecuador",
-    "title": "File:Andean cloudforest - Mindo.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:Andean_cloudforest_-_Mindo.jpg",
-    "author": "nearsjasmine",
-    "license": "CC BY-SA 2.0"
-  },
   "cotalo-cruz": {
     "id": "cotalo-cruz",
     "kind": "places",
@@ -125,24 +107,6 @@
     "author": "Abdulrohmatt",
     "license": "CC BY-SA 4.0"
   },
-  "r-volquetero": {
-    "id": "r-volquetero",
-    "kind": "places",
-    "query": "fritada Ecuador",
-    "title": "File:CUENCA - CIUDAD - GENTE - GASTRONOMÍA (18136357868).jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:CUENCA_-_CIUDAD_-_GENTE_-_GASTRONOM%C3%8DA_(18136357868).jpg",
-    "author": "Agencia de Noticias ANDES",
-    "license": "CC BY-SA 2.0"
-  },
-  "r-fogon": {
-    "id": "r-fogon",
-    "kind": "places",
-    "query": "cuy asado",
-    "title": "File:Cuy asado cuenca.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:Cuy_asado_cuenca.jpg",
-    "author": "Cjmo2000",
-    "license": "CC BY-SA 4.0"
-  },
   "r-trucha": {
     "id": "r-trucha",
     "kind": "places",
@@ -151,15 +115,6 @@
     "source": "https://commons.wikimedia.org/wiki/File:140531_Forellen_auf_dem_Grill.jpg",
     "author": "Ansgar Koreng",
     "license": "CC BY-SA 3.0 de"
-  },
-  "r-tiesto": {
-    "id": "r-tiesto",
-    "kind": "places",
-    "query": "empanadas",
-    "title": "File:Empanada - Stu Spivack.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:Empanada_-_Stu_Spivack.jpg",
-    "author": "stu_spivack",
-    "license": "CC BY-SA 2.0"
   },
   "r-huerta": {
     "id": "r-huerta",
@@ -242,24 +197,6 @@
     "author": "Hajosmit",
     "license": "CC BY-SA 4.0"
   },
-  "e-tejido": {
-    "id": "e-tejido",
-    "kind": "places",
-    "query": "backstrap loom weaving",
-    "title": "File:GuatemalaWeavings79.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:GuatemalaWeavings79.jpg",
-    "author": "Infrogmation",
-    "license": "CC BY-SA 3.0"
-  },
-  "e-jean": {
-    "id": "e-jean",
-    "kind": "places",
-    "query": "sewing machine",
-    "title": "File:Vesta sewing machine IMGP0718.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:Vesta_sewing_machine_IMGP0718.jpg",
-    "author": "Nikodem Nijaki",
-    "license": "CC BY-SA 3.0"
-  },
   "e-cabalgata": {
     "id": "e-cabalgata",
     "kind": "places",
@@ -277,15 +214,6 @@
     "source": "https://commons.wikimedia.org/wiki/File:Wood_carving_at_a_confessional_04.jpg",
     "author": "Kritzolina",
     "license": "CC BY-SA 4.0"
-  },
-  "e-cosecha": {
-    "id": "e-cosecha",
-    "kind": "places",
-    "query": "strawberry picking",
-    "title": "File:Strawberry Picking at Holt - geograph.org.uk - 4052050.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:Strawberry_Picking_at_Holt_-_geograph.org.uk_-_4052050.jpg",
-    "author": "Jeff Buck",
-    "license": "CC BY-SA 2.0"
   },
   "ev-feria-jean": {
     "id": "ev-feria-jean",
@@ -313,15 +241,6 @@
     "source": "https://commons.wikimedia.org/wiki/File:KB_Street_Food_Festival_2024_03.jpg",
     "author": "Pangalau",
     "license": "CC BY-SA 4.0"
-  },
-  "ev-trail-teligote": {
-    "id": "ev-trail-teligote",
-    "kind": "events",
-    "query": "trail running mountain",
-    "title": "File:Mountain running 2.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:Mountain_running_2.jpg",
-    "author": "bugflickr from Australia",
-    "license": "CC BY-SA 2.0"
   },
   "ev-parapente-open": {
     "id": "ev-parapente-open",

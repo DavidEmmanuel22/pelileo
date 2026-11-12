@@ -21,10 +21,15 @@ function pick(names: string[], fallback: string): string {
   return fallback;
 }
 
+const video = (name: string) => (exists(`/media/${name}.mp4`) ? `/media/${name}.mp4` : null);
+
 export type HomeMedia = {
   hero: string;
   heroVideo: string | null;
   heroVideoMobile: string | null;
+  naturalezaVideo: string | null;
+  vueloVideo: string | null;
+  cierreVideo: string | null;
   exp: Record<"aventura" | "cultura" | "jean" | "sabores" | "naturaleza" | "muebles", string>;
   vuelo: string;
   cierre: string;
@@ -34,8 +39,11 @@ export function homeMedia(): HomeMedia {
   const P = (id: string) => `/images/places/${id}.jpg`;
   return {
     hero: pick(["hero"], P("cotalo-cruz")),
-    heroVideo: exists("/media/hero.mp4") ? "/media/hero.mp4" : null,
-    heroVideoMobile: exists("/media/hero-vertical.mp4") ? "/media/hero-vertical.mp4" : null,
+    heroVideo: video("hero"),
+    heroVideoMobile: video("hero-vertical"),
+    naturalezaVideo: video("exp-naturaleza"),
+    vueloVideo: video("vuelo"),
+    cierreVideo: video("cierre"),
     exp: {
       aventura: pick(["exp-aventura"], P("e-parapente")),
       cultura: pick(["exp-cultura"], P("e-tejido")),

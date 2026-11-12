@@ -20,11 +20,11 @@ export function HomeView({ media }: { media: HomeMedia }) {
       <Experiences media={media} />
       <GaiaBand onAsk={onAsk} />
       <Food />
-      <FlightBand image={media.vuelo} />
+      <FlightBand image={media.vuelo} video={media.vueloVideo} />
       <EventsStrip />
       <Stay />
       <MapTeaser />
-      <FinalCta image={media.cierre} onAsk={onAsk} />
+      <FinalCta image={media.cierre} video={media.cierreVideo} onAsk={onAsk} />
       <GaiaDemo prompt={ask} onClose={onClose} />
     </main>
   );

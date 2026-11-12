@@ -1,12 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Check, Lightbulb, X } from "lucide-react";
 import { getPlace, MUNICIPIO, PLACES } from "@/lib/data";
 import { useApp } from "@/lib/store";
 import { useIsDesktop } from "@/lib/hooks";
-import { ClapzyWordmark, Tricolor, VolcanoIcon } from "@/components/brand/Brand";
+import { ClapzyWordmark, Tricolor } from "@/components/brand/Brand";
 import { MapView } from "@/components/map/MapView";
 import { WeeklyChart } from "./WeeklyChart";
 import { PublishForm } from "./PublishForm";
@@ -37,7 +38,7 @@ export function Dashboard() {
           </div>
           <div className="mt-4 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="flex items-start gap-3.5">
-              <VolcanoIcon size={44} className="mt-0.5 shrink-0 text-ink" />
+              <Image src="/brand/escudo-pelileo.png" alt="Escudo de San Pedro de Pelileo" width={40} height={53} className="mt-0.5 h-[53px] w-auto shrink-0" />
               <div className="min-w-0">
                 <h1 className="text-[22px] font-bold leading-tight tracking-[-0.02em] text-ink sm:text-[26px]">
                   Panel de Turismo · GAD Pelileo
