@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────
+   Tokens de Vive Pelileo · by Clapzy (BRIEF.md §3)
+   Toda la UI usa estas variables. Nada de colores sueltos.
+   ────────────────────────────────────────────────────────────── */
+:root {
+  /* Base Clapzy */
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --ink: #151515;
+  --ink-2: #5c5c5c;
+  --line: #e7e5e0;
+  --clapzy: #f45c55; /* muestreado del logo */
+  --pel-red: #a9443b;
+  --pel-green: #3e6a4f;
+
+  /* Derivados (mezclas de los tokens base) */
+  --ink-3: color-mix(in srgb, var(--ink-2) 62%, var(--bg));
+  --line-2: color-mix(in srgb, var(--line) 55%, var(--surface));
+  --bg-2: color-mix(in srgb, var(--line) 35%, var(--bg));
+  --clapzy-soft: color-mix(in srgb, var(--clapzy) 10%, var(--surface));
+  --clapzy-ink: color-mix(in srgb, var(--clapzy) 82%, var(--ink));
+  --green-soft: color-mix(in srgb, var(--pel-green) 10%, var(--surface));
+  --red-soft: color-mix(in srgb, var(--pel-red) 9%, var(--surface));
+
+  /* Mapa ilustrado */
+  --map-paper: color-mix(in srgb, var(--line) 30%, var(--bg));
+  --map-land: color-mix(in srgb, var(--line) 12%, var(--bg));
+  --map-contour: color-mix(in srgb, var(--ink-2) 22%, var(--bg));
+  --map-contour-strong: color-mix(in srgb, var(--ink-2) 34%, var(--bg));
+  --map-water: color-mix(in srgb, var(--pel-green) 16%, color-mix(in srgb, var(--ink-2) 18%, var(--bg)));
+  --map-water-edge: color-mix(in srgb, var(--pel-green) 22%, color-mix(in srgb, var(--ink-2) 30%, var(--bg)));
+  --map-road: var(--surface);
+  --map-road-casing: color-mix(in srgb, var(--ink-2) 24%, var(--bg));
+  --map-hill: color-mix(in srgb, var(--pel-green) 9%, var(--bg));
+  --map-urban: color-mix(in srgb, var(--ink-2) 10%, var(--bg));
+  --map-label: color-mix(in srgb, var(--ink-2) 70%, var(--bg));
+
+  /* Formas */
+  --radius-card: 14px;
+  --radius-sheet: 24px;
+  --shadow-soft: 0 1px 2px color-mix(in srgb, var(--ink) 4%, transparent),
+    0 8px 24px -6px color-mix(in srgb, var(--ink) 10%, transparent);
+  --shadow-float: 0 2px 6px color-mix(in srgb, var(--ink) 6%, transparent),
+    0 18px 48px -12px color-mix(in srgb, var(--ink) 22%, transparent);
+  --shadow-pin: 0 1px 2px color-mix(in srgb, var(--ink) 18%, transparent),
+    0 4px 10px -2px color-mix(in srgb, var(--ink) 18%, transparent);
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Layout */
+  --topbar-h: 64px;
+  --tabbar-h: 64px;
+  --panel-w: 420px;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-clapzy: var(--clapzy);
+  --color-clapzy-soft: var(--clapzy-soft);
+  --color-clapzy-ink: var(--clapzy-ink);
+  --color-pel-red: var(--pel-red);
+  --color-pel-green: var(--pel-green);
+  --color-green-soft: var(--green-soft);
+  --color-red-soft: var(--red-soft);
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: var(--radius-card);
+  --radius-sheet: var(--radius-sheet);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-float: var(--shadow-float);
+
+  --ease-out: var(--ease-out);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" on;
+  overscroll-behavior-y: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.smallcaps {
+  font-variant: all-small-caps;
+  letter-spacing: 0.14em;
+}
+
+/* Línea tricolor de la bandera de Pelileo (rojo · blanco · verde) */
+.tricolor {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--pel-red) 0 33.33%,
+    var(--surface) 33.33% 66.66%,
+    var(--pel-green) 66.66% 100%
+  );
+  box-shadow: inset 0 0 0 0.5px color-mix(in srgb, var(--ink) 10%, transparent);
+  border-radius: 2px;
+}
+
+/* ── Pantalla de carga: solo la primera vez por sesión ── */
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  animation: boot-out 320ms var(--ease-out) 1050ms forwards;
+}
+html[data-booted] .boot {
+  display: none;
+}
+.boot .tricolor {
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: tricolor-draw 760ms var(--ease-out) 180ms forwards;
+}
+.boot .boot-lockup {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: boot-in 420ms var(--ease-out) 40ms forwards;
+}
+@keyframes tricolor-draw {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes boot-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes boot-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-2) 0%, var(--line-2) 50%, var(--bg-2) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Indicador "pensando" de Gaia */
+@keyframes gaia-pulse {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.gaia-pulse {
+  animation: gaia-pulse 1.1s var(--ease-in-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+  }
+}
