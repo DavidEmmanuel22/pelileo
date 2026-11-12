@@ -300,6 +300,36 @@ export function MapView({
     return [...groups.values()];
   }, [route]);
 
+  /** Separación en pantalla (px) para paradas que quedarían encimadas al zoom actual. */
+  const stopNudge = useMemo(() => {
+    const k = Math.pow(2, bucket);
+    const MIN = 30;
+    const off = stops.map(() => [0, 0] as [number, number]);
+    for (let pass = 0; pass < 6; pass++) {
+      let moved = false;
+      for (let i = 0; i < stops.length; i++)
+        for (let j = i + 1; j < stops.length; j++) {
+          let dx = stops[j].x * k + off[j][0] - (stops[i].x * k + off[i][0]);
+          let dy = stops[j].y * k + off[j][1] - (stops[i].y * k + off[i][1]);
+          let d = Math.hypot(dx, dy);
+          if (d >= MIN) continue;
+          if (d < 0.5) {
+            dx = 1;
+            dy = -0.4;
+            d = Math.hypot(dx, dy);
+          }
+          const push = (MIN - d) / 2;
+          off[i][0] -= (dx / d) * push;
+          off[i][1] -= (dy / d) * push;
+          off[j][0] += (dx / d) * push;
+          off[j][1] += (dy / d) * push;
+          moved = true;
+        }
+      if (!moved) break;
+    }
+    return off;
+  }, [stops, bucket]);
+
   const routeKey = useMemo(
     () => (route ? route.stops.map((s) => `${s.placeId}:${s.order}`).join(",") : ""),
     [route],
@@ -625,8 +655,9 @@ export function MapView({
 
             {/* Paradas: itinerario */}
             {isItinerary &&
-              stops.map((s) => {
+              stops.map((s, si) => {
                 const focused = focusStop != null && s.orders.includes(focusStop);
+                const [nx, ny] = stopNudge[si] ?? [0, 0];
                 return (
                   <button
                     key={s.placeId}
@@ -636,7 +667,7 @@ export function MapView({
                     onClick={() => onStopSelect?.(s.orders[0])}
                     className="pointer-events-auto absolute left-0 top-0"
                     style={{
-                      transform: `translate3d(calc(var(--tx) * 1px + ${s.x.toFixed(1)}px * var(--k)), calc(var(--ty) * 1px + ${s.y.toFixed(1)}px * var(--k)), 0)`,
+                      transform: `translate3d(calc(var(--tx) * 1px + ${s.x.toFixed(1)}px * var(--k) + ${nx.toFixed(1)}px), calc(var(--ty) * 1px + ${s.y.toFixed(1)}px * var(--k) + ${ny.toFixed(1)}px), 0)`,
                       zIndex: focused ? 5 : 2,
                     }}
                   >

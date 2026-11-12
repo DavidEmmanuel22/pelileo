@@ -51,6 +51,7 @@ export function parseRequest(input: string): ParsedRequest {
   // ── Días
   let days = 1;
   let daysExplicit = false;
+  let daysAsked: number | undefined;
   if (hasAny(t, ["medio dia", "media jornada", "half day", "half a day", "medio-dia", "unas horas", "pocas horas", "una tarde", "una manana"])) {
     days = 0.5;
     daysExplicit = true;
@@ -62,6 +63,7 @@ export function parseRequest(input: string): ParsedRequest {
     if (m) {
       let n = toNum(m[1]);
       if (/noche|night/.test(m[2])) n += 1;
+      if (n > 3) daysAsked = n;
       days = Math.max(1, Math.min(3, n || 1));
       daysExplicit = true;
     } else if (hasAny(t, ["un dia", "day trip", "todo el dia", "full day", "hoy", "manana", "today", "tomorrow"])) {
@@ -153,6 +155,7 @@ export function parseRequest(input: string): ParsedRequest {
   return {
     days,
     daysExplicit,
+    daysAsked,
     adults,
     kids,
     groupType,

@@ -40,6 +40,8 @@ export type Slot =
 export type ParsedRequest = {
   days: number; // 0.5, 1, 2, 3
   daysExplicit: boolean;
+  /** Días pedidos antes del tope de 3 (para explicarlo). */
+  daysAsked?: number;
   adults: number;
   kids: number;
   groupType: GroupType;

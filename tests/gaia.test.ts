@@ -312,3 +312,60 @@ describe("Agregar a mi plan (addPlace)", () => {
     expect(ids).toContain("e-tejido");
   });
 });
+
+describe("Gaia · preguntas y pedidos puntuales", () => {
+  const base = async () => (await planWithGaia(SCENARIOS[0].chip)).itinerary as GaiaItinerary;
+  const ids = (it: GaiaItinerary) => it.days.flatMap((d) => d.steps.map((s) => s.placeId));
+
+  it("una pregunta de clima no mueve el plan", async () => {
+    const b = await base();
+    const r = await planWithGaia("¿qué tiempo hará el sábado?", b);
+    expect(r.itinerary).toBe(b);
+    expect(r.reply).toMatch(/Sábado: \d+°/);
+  });
+
+  it("«cuánto cuesta todo» responde el total sin cambiar nada", async () => {
+    const b = await base();
+    const r = await planWithGaia("cuánto cuesta todo", b);
+    expect(r.itinerary).toBe(b);
+    expect(r.reply).toContain(`$${itineraryTotal(b)}`);
+  });
+
+  it("«agrega parapente» suma el vuelo biplaza (pareja)", async () => {
+    const b = (await planWithGaia("Somos una pareja, 2 días tranquilos con $300")).itinerary as GaiaItinerary;
+    const r = await planWithGaia("agrega parapente", b);
+    expect(ids(r.itinerary as GaiaItinerary)).toContain("e-parapente");
+  });
+
+  it("con niños, explica que el parapente no es apto en vez de sumarlo", async () => {
+    const b = await base();
+    const r = await planWithGaia("agrega parapente", b);
+    expect(r.itinerary).toBe(b);
+    expect(r.reply).toMatch(/no es apto para niños/);
+  });
+
+  it("«cambia el hotel» cambia el hospedaje", async () => {
+    const b = await base();
+    const before = ids(b).filter((id) => getPlace(id)?.category === "dormir");
+    const r = await planWithGaia("cambia el hotel", b);
+    const after = ids(r.itinerary as GaiaItinerary).filter((id) => getPlace(id)?.category === "dormir");
+    expect(after[0]).not.toBe(before[0]);
+    expect(r.reply).toMatch(/duermes en/);
+  });
+
+  it("«quita lo opcional» no deja frases rotas", async () => {
+    const b = await base();
+    const r = await planWithGaia("quita lo opcional", b);
+    expect(r.reply).not.toMatch(/nada de lo/);
+    expect((r.itinerary as GaiaItinerary).days.flatMap((d) => d.steps).some((s) => s.optional)).toBe(false);
+  });
+
+  it("saludos y gracias responden amable sin tocar el plan", async () => {
+    const b = await base();
+    for (const t of ["hola", "gracias"]) {
+      const r = await planWithGaia(t, b);
+      expect(r.itinerary).toBe(b);
+      expect(r.reply.length).toBeGreaterThan(20);
+    }
+  });
+});

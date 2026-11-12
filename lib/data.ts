@@ -16,7 +16,13 @@ export function getPlace(id: string | null | undefined): Place | undefined {
   return byId.get(id);
 }
 
-export const FEATURED = PLACES.filter((p) => p.featured);
+/** Imperdibles: abre con el Nitón (la foto más fuerte y el primer paso del guion de la demo). */
+const FEATURED_LEAD = ["niton-mirador", "salasaca-plaza-arte", "tambo-ruta-jean"];
+export const FEATURED = PLACES.filter((p) => p.featured).sort((a, b) => {
+  const ia = FEATURED_LEAD.indexOf(a.id),
+    ib = FEATURED_LEAD.indexOf(b.id);
+  return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+});
 
 /** Chips de categoría de Explorar (BRIEF §4.1). */
 export type ExploreFilter =

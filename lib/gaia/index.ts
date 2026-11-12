@@ -1,15 +1,17 @@
 import type { Itinerary, Tag, Weekday } from "@/data/types";
-import { SCENARIOS } from "@/lib/data";
-import { cloneItinerary, defaultMeta, itineraryTotal } from "./core";
+import { PLACES, SCENARIOS, getPlace } from "@/lib/data";
+import { WEEKDAY_LABEL } from "@/lib/time";
+import { cloneItinerary, defaultMeta, itineraryTotal, people } from "./core";
 import { generateItinerary } from "./generate";
-import { addNight, changeDay, makeCheaper, moreOf, withoutTerm } from "./ops";
+import { addNight, addPlace, changeDay, makeCheaper, moreOf, removeStep, swapStepWithInfo, withoutTerm } from "./ops";
 import { parseRequest } from "./parse";
-import { hasAny, hasWord, normalize } from "./text";
+import { cap, hasAny, hasWord, normalize } from "./text";
 import type { GaiaItinerary, GaiaResult, ParsedRequest } from "./types";
 
 export { itineraryTotal } from "./core";
 export { addPlace, removeStep, swapStep, swapStepWithInfo } from "./ops";
 export { weatherFor, CONDITION_LABEL } from "./weather";
+import { CONDITION_LABEL as COND } from "./weather";
 export type { GaiaItinerary, GaiaResult } from "./types";
 
 const SCENARIO_TAGS: Record<string, Tag[]> = {
@@ -119,11 +121,10 @@ function generatedReply(req: ParsedRequest, it: GaiaItinerary, tight: boolean, v
   const total = itineraryTotal(it);
   const interests = req.tags.map((t) => TAG_LABEL[t]).filter(Boolean) as string[];
   const parts: string[] = [];
+  const focus = interests.length ? `, con foco en ${joinEs(interests)}` : "";
   if (vague) parts.push("No me diste muchos detalles, así que armé un plan clásico para conocer lo mejor de Pelileo.");
-  else
-    parts.push(
-      `Armé ${daysLabel(req.days)} para ${whoLabel(req)}${interests.length ? `, con foco en ${joinEs(interests)}` : ""}.`,
-    );
+  else if (req.daysAsked) parts.push(`Pelileo se disfruta bien en 3 días, así que armé 3 para ${whoLabel(req)}${focus}.`);
+  else parts.push(`Armé ${daysLabel(req.days)} para ${whoLabel(req)}${focus}.`);
   const stops = it.days.reduce((a, d) => a + d.steps.length, 0);
   parts.push(`Son ${stops} paradas con traslados cortos y todo abierto a esa hora.`);
   if (tight)
@@ -159,10 +160,180 @@ const WEEKDAY_WORDS: [string[], Weekday][] = [
   [["domingo"], "dom"],
 ];
 
-function tryAdjust(t: string, ctx: GaiaItinerary): { reply: string; itinerary: GaiaItinerary; thinking: string[] } | null {
+// ───────────────────────────── Preguntas y pedidos puntuales sobre el plan actual
+type Adj = { reply: string; itinerary: GaiaItinerary; thinking: string[] };
+
+function totalLine(it: GaiaItinerary) {
+  const t = itineraryTotal(it);
+  return t <= it.budget ? `Ahora gastas $${t} de $${it.budget}.` : `El plan queda en $${t}.`;
+}
+const dayName = (wd: Weekday) => WEEKDAY_LABEL[wd].toLowerCase();
+
+const PLACE_ALIASES: [string[], string][] = [
+  [["parapente", "volar", "vuelo"], "e-parapente"],
+  [["volcan", "tungurahua"], "niton-mirador"],
+  [["cabalgata", "caballo", "caballos"], "e-cabalgata"],
+  [["termal", "termales", "termas", "cascada", "cascadas"], "las-caras"],
+  [["salasaca", "salasaka"], "salasaca-plaza-arte"],
+  [["muebles", "huambalo"], "huambalo-muebles"],
+  [["gigantes"], "ruta-gigantes"],
+];
+const GENERIC = new Set(["pelileo", "plaza", "mercado", "parque", "taller", "complejo", "hotel", "valle", "central", "cerro"]);
+const ADD_VERBS = ["agrega", "agregar", "agregame", "suma", "sumar", "sumale", "incluye", "incluir", "anade", "anadir", "pon", "ponme", "quiero ver", "quiero ir", "quiero conocer", "quiero hacer", "llevame", "vamos a", "visitar", "conocer", "ir a"];
+
+/** Lugar que el texto nombra (por alias o por una palabra distintiva de su nombre). */
+function namedPlace(t: string): string | null {
+  for (const [words, id] of PLACE_ALIASES) if (hasAny(t, words)) return id;
+  let best: { id: string; n: number } | null = null;
+  for (const p of PLACES) {
+    const tokens = normalize(p.name)
+      .split(/[^a-z]+/)
+      .filter((w) => w.length >= 5 && !GENERIC.has(w));
+    const n = tokens.filter((w) => hasWord(t, w)).length;
+    if (n && (!best || n > best.n)) best = { id: p.id, n };
+  }
+  return best?.id ?? null;
+}
+
+function infoReply(t: string, ctx: GaiaItinerary): Adj | null {
+  const short = t.split(" ").length <= 4;
+  if (short && hasAny(t, ["hola", "buenas", "buenos dias", "buenas tardes", "hey", "que tal"])) {
+    return {
+      itinerary: ctx,
+      thinking: ["Leyendo tu mensaje"],
+      reply: "¡Hola! Tu plan sigue aquí. Si quieres cambiar algo, pídemelo con tus palabras: «más barato», «cambia el hotel» o «agrega parapente».",
+    };
+  }
+  if (short && hasAny(t, ["gracias", "genial", "perfecto", "excelente", "buenisimo", "me encanta", "chevere", "listo"])) {
+    return {
+      itinerary: ctx,
+      thinking: ["Leyendo tu mensaje"],
+      reply: "¡Con gusto! Toca «Guardar plan» para tenerlo a mano o «Compartir» para enviarlo a quien viaja contigo. Que disfrutes Pelileo.",
+    };
+  }
+  if (hasAny(t, ["clima", "que tiempo", "el tiempo", "tiempo hara", "llueve", "lluvia", "llover", "temperatura", "frio", "calor"])) {
+    const days = ctx.days.map((d) => `${cap(dayName(d.weekday))}: ${d.weather.tempC}°, ${COND[d.weather.condition].toLowerCase()}`);
+    const tip = ctx.days.find((d) => d.weather.tip)?.weather.tip;
+    return {
+      itinerary: ctx,
+      thinking: ["Mirando el pronóstico de tus días"],
+      reply: `${days.join(". ")}.${tip ? ` ${tip}` : ""} No cambié nada del plan.`,
+    };
+  }
+  if (hasAny(t, ["cuanto cuesta", "cuanto sale", "cuanto gasto", "cuanto gastamos", "cuanto es", "costo total", "precio total", "total"])) {
+    const total = itineraryTotal(ctx);
+    const per =
+      ctx.days.length > 1
+        ? ` (${ctx.days.map((d) => `${dayName(d.weekday)} $${d.steps.reduce((a, s) => a + s.cost, 0)}`).join(", ")})`
+        : "";
+    const n = people(ctx.group);
+    const left = ctx.budget - total;
+    return {
+      itinerary: ctx,
+      thinking: ["Sumando cada parada"],
+      reply: `Todo el plan cuesta $${total} para ${n} ${n === 1 ? "persona" : "personas"}${per}. ${
+        left >= 0 ? `Te sobran $${left} de tu presupuesto.` : `Te pasas por $${-left}; si quieres, pídeme «más barato».`
+      }`,
+    };
+  }
+  if (hasAny(t, ["vegetariano", "vegetariana", "vegano", "vegana", "sin carne"])) {
+    return {
+      itinerary: ctx,
+      thinking: ["Revisando las comidas del plan"],
+      reply:
+        "Todavía no tengo el menú de cada restaurante, así que no puedo asegurarte opciones vegetarianas. Te recomiendo preguntar al llegar; si prefieres evitar un plato típico, pídeme «sin cuy» o «sin trucha».",
+    };
+  }
+  return null;
+}
+
+function hotelChange(t: string, ctx: GaiaItinerary): Adj | null {
+  if (!hasAny(t, ["hotel", "hospedaje", "hostal", "hosteria", "donde dormir", "alojamiento", "glamping"])) return null;
+  if (!hasAny(t, ["cambia", "cambiar", "otro", "otra", "diferente", "mejor", "no me gusta"])) return null;
+  for (let d = 0; d < ctx.days.length; d++) {
+    const s = ctx.days[d].steps.findIndex((st) => getPlace(st.placeId)?.category === "dormir");
+    if (s < 0) continue;
+    const r = swapStepWithInfo(ctx, d, s);
+    if (!r.changed || !r.to) {
+      return { itinerary: ctx, thinking: ["Buscando otro hospedaje"], reply: "No encontré otro hospedaje que encaje con tus horarios, así que dejé el mismo." };
+    }
+    return {
+      itinerary: r.itinerary,
+      thinking: ["Buscando otro hospedaje cerca de tu ruta", "Comparando precios", "Recalculando el presupuesto"],
+      reply: `Listo, ahora duermes en ${r.to.name}${r.from ? ` en lugar de ${r.from.name}` : ""}. ${totalLine(r.itinerary)}`,
+    };
+  }
+  return {
+    itinerary: ctx,
+    thinking: ["Revisando tu plan"],
+    reply: "Tu plan es de un solo día, así que no incluye hospedaje. Si quieres quedarte, pídeme un plan de 2 días.",
+  };
+}
+
+function removeOptional(ctx: GaiaItinerary): Adj {
+  let cur = ctx;
+  const gone: string[] = [];
+  for (let d = cur.days.length - 1; d >= 0; d--)
+    for (let s = cur.days[d].steps.length - 1; s >= 0; s--)
+      if (cur.days[d].steps[s].optional) {
+        gone.unshift(cur.days[d].steps[s].title);
+        cur = removeStep(cur, d, s);
+      }
+  if (!gone.length)
+    return { itinerary: ctx, thinking: ["Revisando tu plan"], reply: "Tu plan no tiene paradas opcionales; todo lo que ves es parte del recorrido." };
+  return {
+    itinerary: cur,
+    thinking: ["Quitando lo opcional", "Recalculando traslados"],
+    reply: `Listo, quité ${gone.length === 1 ? "la parada opcional" : `${gone.length} paradas opcionales`}: ${joinEs(gone.map((g) => `«${g}»`))}. ${totalLine(cur)}`,
+  };
+}
+
+function addNamed(t: string, ctx: GaiaItinerary): Adj | null {
+  const verb = hasAny(t, ADD_VERBS);
+  const id = namedPlace(t);
+  if (!id || !(verb || hasWord(t, "parapente"))) return null;
+  const place = getPlace(id)!;
+  const kidSafe = place.tags.includes("familia") || place.tags.includes("ninos") || ["comer", "dormir"].includes(place.category);
+  if (ctx.group.kids > 0 && !kidSafe) {
+    const inPlan = ids(ctx).includes("niton-mirador") && id === "e-parapente";
+    return {
+      itinerary: ctx,
+      thinking: [`Revisando ${place.name}`],
+      reply: `${place.name} no es apto para niños, así que no lo sumé.${inPlan ? " Desde el Cerro Nitón, que ya está en tu plan, pueden ver los vuelos de cerca." : ""}`,
+    };
+  }
+  const r = addPlace(ctx, id);
+  if (!r.changed) {
+    return {
+      itinerary: ctx,
+      thinking: [`Buscando un hueco para ${place.name}`],
+      reply: `No encontré un hueco para ${place.name} sin desarmar el plan. Si quieres, pídeme un plan nuevo que lo incluya, por ejemplo «1 día con ${place.name}».`,
+    };
+  }
+  return { itinerary: r.itinerary, thinking: [`Buscando un hueco para ${place.name}`, "Verificando horarios", "Actualizando el plan"], reply: r.reply };
+}
+
+function ids(it: GaiaItinerary) {
+  return it.days.flatMap((d) => d.steps.map((s) => s.placeId));
+}
+
+const STOPWORDS = new Set(["lo", "la", "el", "los", "las", "un", "una", "algo", "todo", "nada", "mas", "tanto", "tan", "me", "te", "se"]);
+
+function tryAdjust(t: string, ctx: GaiaItinerary): Adj | null {
+  const info = infoReply(t, ctx);
+  if (info) return info;
+  if (hasAny(t, ["opcional", "opcionales"]) && hasAny(t, ["quita", "quitar", "sin", "elimina", "saca"])) return removeOptional(ctx);
+  if (hasAny(t, ["caminar", "caminata", "caminatas", "subir"]) && hasAny(t, ["no me gusta", "no quiero", "sin", "poco", "menos", "no podemos", "no puedo"])) {
+    const r = moreOf(ctx, "relax");
+    return { ...r, thinking: ["Buscando paradas con menos caminata", "Verificando horarios", "Actualizando el plan"] };
+  }
+  const hotel = hotelChange(t, ctx);
+  if (hotel) return hotel;
+  const named = addNamed(t, ctx);
+  if (named) return named;
   // sin X
   const sin = t.match(/\b(?:sin|nada de|no quiero|no queremos|quita|quitar|elimina|without)\s+(?:el |la |los |las |lo de )?([a-z]+)/);
-  if (sin && !["mas", "tanto", "tan"].includes(sin[1])) {
+  if (sin && !STOPWORDS.has(sin[1])) {
     const r = withoutTerm(ctx, sin[1]);
     return { ...r, thinking: [`Buscando paradas con ${sin[1]}`, "Probando alternativas compatibles", "Recalculando tiempos y presupuesto"] };
   }

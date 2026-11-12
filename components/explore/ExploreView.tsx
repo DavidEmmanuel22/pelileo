@@ -141,7 +141,7 @@ export function ExploreView() {
           ref={carouselRef}
           onScroll={onCarouselScroll}
           data-no-drag
-          className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-5 pb-2 lg:grid lg:snap-none lg:grid-cols-2 lg:overflow-visible"
+          className="no-scrollbar flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto scroll-smooth px-5 pb-2 lg:grid lg:snap-none lg:grid-cols-2 lg:overflow-visible"
           aria-label="Imperdibles"
         >
           {FEATURED.map((p, i) => (
