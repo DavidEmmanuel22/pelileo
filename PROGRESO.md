@@ -11,12 +11,12 @@ Checklist de las fases de `PROMPTS.md`. Si la sesión se corta, retomar en el pr
 - [x] git init + .gitignore + commit
 
 ## Fase 1 — Mapa ilustrado
-- [ ] Ilustración SVG del cantón (curvas de nivel, río Patate, vías, cerros, volcán, parroquias)
-- [ ] Proyección lat/lng → SVG, pan y zoom, vuelos de cámara
-- [ ] Pines HTML accesibles + clustering
-- [ ] Ruta-costura animada (modo itinerario)
-- [ ] Modo heatmap
-- [ ] `/dev/mapa` con los tres modos + capturas revisadas
+- [x] Ilustración SVG del cantón (curvas de nivel, río Patate, vías, cerros, volcán, parroquias)
+- [x] Proyección lat/lng → SVG, pan y zoom, vuelos de cámara
+- [x] Pines HTML accesibles + clustering
+- [x] Ruta-costura animada (modo itinerario)
+- [x] Modo heatmap
+- [x] `/dev/mapa` con los tres modos + capturas revisadas
 
 ## Fase 2 — Motor de Gaia
 - [ ] Escenarios, generador, ajustes, swapStep, removeStep, itineraryTotal, clima, fuera de alcance
