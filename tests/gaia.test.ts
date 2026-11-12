@@ -279,3 +279,36 @@ describe("Cambiar, quitar y ajustar", () => {
     }
   });
 });
+
+describe("Agregar a mi plan (addPlace)", () => {
+  it("suma un lugar compatible a un plan existente sin repetir ni salirse de horario", async () => {
+    const { addPlace } = await import("@/lib/gaia");
+    const base = (await planWithGaia(SCENARIOS[0].chip)).itinerary!;
+    let added = 0;
+    for (const p of PLACES) {
+      const r = addPlace(base, p.id);
+      if (!r.changed) continue;
+      added++;
+      const ids = r.itinerary.days.flatMap((d) => d.steps.map((s) => s.placeId));
+      expect(ids).toContain(p.id);
+      for (const d of r.itinerary.days)
+        for (const s of d.steps) {
+          const pl = getPlace(s.placeId)!;
+          if (pl.category === "dormir") continue;
+          expect(pl.hours.days).toContain(d.weekday);
+        }
+    }
+    expect(added).toBeGreaterThan(10);
+  });
+  it("avisa si el lugar ya está en el plan", async () => {
+    const { addPlace } = await import("@/lib/gaia");
+    const base = (await planWithGaia(SCENARIOS[0].chip)).itinerary!;
+    const id = base.days[0].steps[0].placeId;
+    expect(addPlace(base, id).reply).toMatch(/ya está/);
+  });
+  it("si no encaja, planWithGaia con forced arma un plan que lo incluye", async () => {
+    const r = await planWithGaia("1 día en pareja", undefined, ["e-tejido"]);
+    const ids = r.itinerary!.days.flatMap((d) => d.steps.map((s) => s.placeId));
+    expect(ids).toContain("e-tejido");
+  });
+});

@@ -26,11 +26,11 @@ Checklist de las fases de `PROMPTS.md`. Si la sesión se corta, retomar en el pr
 - [x] Fotos de lugares y eventos + `credits.json` (o placeholder elegante)
 
 ## Fase 4 — Pantallas públicas
-- [ ] Explorar
-- [ ] Detalle de lugar
-- [ ] Eventos
-- [ ] Gaia
-- [ ] Guardados
+- [x] Explorar
+- [x] Detalle de lugar
+- [x] Eventos
+- [x] Gaia
+- [x] Guardados
 
 ## Fase 5 — Panel del municipio
 - [ ] KPIs, gráficos, heatmap, demanda insatisfecha, embudo, gestión

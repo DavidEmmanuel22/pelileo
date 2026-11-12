@@ -8,7 +8,7 @@ import { hasAny, hasWord, normalize } from "./text";
 import type { GaiaItinerary, GaiaResult, ParsedRequest } from "./types";
 
 export { itineraryTotal } from "./core";
-export { removeStep, swapStep, swapStepWithInfo } from "./ops";
+export { addPlace, removeStep, swapStep, swapStepWithInfo } from "./ops";
 export { weatherFor, CONDITION_LABEL } from "./weather";
 export type { GaiaItinerary, GaiaResult } from "./types";
 

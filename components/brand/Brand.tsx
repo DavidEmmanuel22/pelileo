@@ -53,7 +53,7 @@ export function ClapzyWordmark({ height = 12, className = "" }: { height?: numbe
       width={width}
       height={height}
       className={className}
-      style={{ height, width: "auto" }}
+      style={{ height, width }}
       priority
     />
   );
@@ -76,7 +76,7 @@ export function Lockup({
     <div className={`flex items-center gap-2.5 ${className}`}>
       {showIcon && <VolcanoIcon size={icon} className="text-ink shrink-0" />}
       <div className="flex flex-col">
-        <span className={`${title} leading-none tracking-[-0.02em] text-ink`}>
+        <span className={`${title} whitespace-nowrap leading-none tracking-[-0.02em] text-ink`}>
           <span className="font-medium">Vive </span>
           <span className="font-bold">Pelileo</span>
         </span>

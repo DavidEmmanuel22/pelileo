@@ -131,8 +131,17 @@ export function MapView({
   const introDoneRef = useRef(!intro);
   const [bucket, setBucket] = useState(0);
   const [ready, setReady] = useState(false);
-  const [tilted, setTilted] = useState(intro);
+  const tiltedRef = useRef(false);
+  const setTilted = useCallback((on: boolean, instant = false) => {
+    const el = tiltRef.current;
+    if (!el || tiltedRef.current === on) return;
+    tiltedRef.current = on;
+    el.style.transition = instant ? "none" : "transform 1700ms cubic-bezier(0.65,0,0.35,1)";
+    el.style.transform = on ? "rotateX(20deg) scale(1.12)" : "none";
+  }, []);
   const bucketRef = useRef(0);
+  /** true mientras la cámara está en la vista general y nadie la movió a mano */
+  const homeRef = useRef(true);
   const uid = useId().replace(/:/g, "");
 
   padRef.current = padding;
@@ -214,7 +223,10 @@ export function MapView({
         return (!event.ctrlKey || event.type === "wheel") && !event.button;
       })
       .on("start", (e) => {
-        if (e.sourceEvent) setTilted(false);
+        if (e.sourceEvent) {
+          setTilted(false);
+          homeRef.current = false;
+        }
       })
       .on("zoom", (e) => apply(e.transform));
     zoomRef.current = z;
@@ -242,6 +254,7 @@ export function MapView({
     ro.observe(el);
 
     // Vista inicial
+    if (intro) setTilted(true, true);
     const initial = intro ? transformFor(VIEW_CANTON, 0.9) : transformFor(VIEW_PELILEO, 1.5);
     sel.call(z.transform, initial);
     setReady(true);
@@ -324,6 +337,7 @@ export function MapView({
     const p = getPlace(selectedId) ?? places.find((x) => x.id === selectedId);
     if (!p) return;
     if (!introDoneRef.current) introDoneRef.current = true;
+    homeRef.current = false;
     setTilted(false);
     const [x, y] = project(p.lat, p.lng);
     if (route && route.stops.length > 1) return; // la ruta encuadra
@@ -335,6 +349,7 @@ export function MapView({
     if (!ready || !route || route.stops.length === 0) return;
     if (focusStop != null) return;
     introDoneRef.current = true;
+    homeRef.current = false;
     setTilted(false);
     const pts = stops.map((s) => [s.x, s.y] as [number, number]);
     const b = boundsOf(pts, 160);
@@ -356,6 +371,7 @@ export function MapView({
   // ── Cámara: heatmap
   useEffect(() => {
     if (!ready || mode !== "heatmap" || !heatmap?.length) return;
+    homeRef.current = false;
     const b = boundsOf(heatmap.map((h) => project(h.lat, h.lng)), 200);
     fly(transformFor({ x0: b.x0 - 120, y0: b.y0 - 120, x1: b.x1 + 120, y1: b.y1 + 120 }, 2), 1400);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -371,6 +387,10 @@ export function MapView({
       return;
     }
     if (!introDoneRef.current) return;
+    if (mode === "explore" && !selectedId && homeRef.current) {
+      fly(transformFor(VIEW_PELILEO, 1.5), 600);
+      return;
+    }
     if (mode === "explore" && selectedId && !(route && route.stops.length > 1)) {
       const p = getPlace(selectedId) ?? places.find((x) => x.id === selectedId);
       if (p) {
@@ -401,7 +421,10 @@ export function MapView({
     if (route && stops.length) {
       const b = boundsOf(stops.map((s) => [s.x, s.y] as [number, number]), 160);
       fly(transformFor(b), 1000);
-    } else fly(transformFor(VIEW_PELILEO, 1.5), 1000);
+    } else {
+      homeRef.current = true;
+      fly(transformFor(VIEW_PELILEO, 1.5), 1000);
+    }
   };
 
   const showLabels = mode !== "heatmap" || true;
@@ -415,11 +438,7 @@ export function MapView({
       <div
         ref={tiltRef}
         className="absolute inset-0"
-        style={{
-          transformOrigin: "50% 60%",
-          transform: tilted ? "rotateX(20deg) scale(1.12)" : "none",
-          transition: "transform 1700ms cubic-bezier(0.65,0,0.35,1)",
-        }}
+        style={{ transformOrigin: "50% 60%" }}
       >
         <div
           ref={rootRef}
@@ -592,7 +611,7 @@ export function MapView({
                     <span className="h-[7px] w-[7px] rounded-full bg-surface" />
                   </span>
                   {originLabel && (
-                    <span className="absolute left-3 top-[-26px] whitespace-nowrap rounded-full bg-ink px-2 py-1 text-[11px] font-medium text-surface">
+                    <span className="absolute left-0 top-[14px] -translate-x-1/2 whitespace-nowrap rounded-full bg-ink px-2.5 py-1 text-[11.5px] font-semibold text-surface shadow-[var(--shadow-pin)]">
                       {originLabel}
                     </span>
                   )}

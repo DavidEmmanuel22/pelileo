@@ -102,3 +102,26 @@ export function priceLevelLabel(p: Place): string {
   if (p.priceLevel === 0) return "Gratis";
   return "$".repeat(p.priceLevel);
 }
+
+export const TAG_LABEL: Record<Place["tags"][number], string> = {
+  familia: "En familia",
+  pareja: "En pareja",
+  amigos: "Con amigos",
+  solo: "Para ir solo",
+  ninos: "Apto para niños",
+  aventura: "Aventura",
+  gastronomia: "Gastronomía",
+  cultura: "Cultura",
+  compras: "Compras",
+  naturaleza: "Naturaleza",
+  foto: "Buenas fotos",
+  relax: "Relax",
+};
+
+/** Lugares más cercanos (excluye el propio). */
+export function nearestPlaces(p: Place, n = 3): Place[] {
+  const d = (q: Place) => (q.lat - p.lat) ** 2 + ((q.lng - p.lng) * Math.cos((p.lat * Math.PI) / 180)) ** 2;
+  return PLACES.filter((q) => q.id !== p.id)
+    .sort((a, b) => d(a) - d(b))
+    .slice(0, n);
+}

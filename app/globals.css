@@ -20,7 +20,7 @@
   --line-2: color-mix(in srgb, var(--line) 55%, var(--surface));
   --bg-2: color-mix(in srgb, var(--line) 35%, var(--bg));
   --clapzy-soft: color-mix(in srgb, var(--clapzy) 10%, var(--surface));
-  --clapzy-ink: color-mix(in srgb, var(--clapzy) 82%, var(--ink));
+  --clapzy-ink: color-mix(in srgb, var(--clapzy) 64%, var(--ink));
   --green-soft: color-mix(in srgb, var(--pel-green) 10%, var(--surface));
   --red-soft: color-mix(in srgb, var(--pel-red) 9%, var(--surface));
 
@@ -107,10 +107,11 @@ body {
   background: color-mix(in srgb, var(--ink) 14%, transparent);
 }
 
-:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
-  border-radius: 8px;
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
 }
 
 .no-scrollbar {

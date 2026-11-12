@@ -1,3 +1,5 @@
-export default function Page() {
-  return <div className="p-8 text-ink">Explorar</div>;
+import { ExploreView } from "@/components/explore/ExploreView";
+
+export default function ExplorePage() {
+  return <ExploreView />;
 }

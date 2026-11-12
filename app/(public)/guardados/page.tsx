@@ -1,3 +1,8 @@
+import type { Metadata } from "next";
+import { SavedView } from "@/components/saved/SavedView";
+
+export const metadata: Metadata = { title: "Guardados" };
+
 export default function Page() {
-  return <div className="p-8 text-ink">Guardados</div>;
+  return <SavedView />;
 }

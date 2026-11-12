@@ -407,3 +407,49 @@ export function changeDay(it: GaiaItinerary, target?: Weekday): AdjustOutcome {
     reply: `Listo, moví el plan al ${label}.${fixes.length ? ` Cambié ${fixes.slice(0, 2).join(" y ")} porque no abre ese día.` : " Todo abre ese día, así que no tuve que cambiar paradas."}`,
   };
 }
+
+/**
+ * "Agregar a mi plan" desde un lugar o evento: Gaia busca la parada compatible
+ * (mismo tipo, abierta a esa hora, que alcance a llegar a la siguiente) y la reemplaza.
+ * Si no encaja en ninguna, devuelve changed=false para que la UI arme un plan nuevo que la incluya.
+ */
+export function addPlace(it: GaiaItinerary, placeId: string, preferDay?: Weekday): AdjustOutcome {
+  const place = getPlace(placeId);
+  if (!place) return { itinerary: it, reply: "No encontré ese lugar.", changed: false };
+  if (it.days.some((d) => d.steps.some((s) => s.placeId === placeId))) {
+    return { itinerary: it, reply: `${place.name} ya está en tu plan.`, changed: true };
+  }
+  type Opt = { d: number; s: number; alt: Alt; rank: number };
+  const opts: Opt[] = [];
+  it.days.forEach((day, d) =>
+    day.steps.forEach((step, s) => {
+      const cur = getPlace(step.placeId);
+      if (!cur) return;
+      const slot = inferSlot(step, cur);
+      if (slot === "hotel" && place.category !== "dormir") return;
+      if (cur.category === "dormir" && place.category !== "dormir") return;
+      const alt = alternativesFor(it, d, s, { cats: [place.category], filter: (p) => p.id === placeId })[0];
+      if (!alt) return;
+      let rank = 0;
+      if (cur.category === place.category) rank += 4;
+      if (preferDay && day.weekday === preferDay) rank += 6;
+      if (step.optional) rank += 1;
+      rank -= Math.abs(alt.cost - step.cost) / 20;
+      opts.push({ d, s, alt, rank });
+    }),
+  );
+  if (!opts.length) return { itinerary: it, reply: "", changed: false };
+  opts.sort((a, b) => b.rank - a.rank);
+  const best = opts[0];
+  const from = getPlace(it.days[best.d].steps[best.s].placeId);
+  const out = applyAlt(it, best.d, best.s, best.alt);
+  out.meta = out.meta ?? defaultMeta("scenario");
+  out.meta.forced = [...new Set([...(out.meta.forced ?? []), placeId])];
+  const day = out.days[best.d];
+  const when = `${out.days.length > 1 ? `el ${WEEKDAY_LABEL[day.weekday].toLowerCase()} ` : ""}a las ${fromMin(best.alt.start)}`;
+  return {
+    itinerary: out,
+    reply: `Listo, sumé ${place.name} ${when}${from && from.id !== place.id ? `, en lugar de ${from.name}` : ""}. ${totalLine(out)}`,
+    changed: true,
+  };
+}
