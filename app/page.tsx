@@ -11,6 +11,13 @@ import { Reservas } from "@/components/scenes/S07Reservas";
 import { Datos } from "@/components/scenes/S08Datos";
 import { Contenido } from "@/components/scenes/S09Contenido";
 import { AntesDespues } from "@/components/scenes/S10AntesDespues";
+import { Respaldo } from "@/components/scenes/S11Respaldo";
+import { respaldo } from "@/content/site";
+import { existsSync } from "node:fs";
+import path from "node:path";
+
+// Los logos reales se usan apenas existan en public/logos con el nombre esperado
+const logosOk = Object.fromEntries(respaldo.logos.map((l) => [l.archivo, existsSync(path.join(process.cwd(), "public", "logos", l.archivo))]));
 
 export default function Page() {
   return (
@@ -32,7 +39,8 @@ export default function Page() {
         <Datos />
         <Contenido />
         <AntesDespues />
-        <section id="respaldo" data-scene="11" className="relative h-[100vh] bg-night-2" />
+        <Respaldo logosOk={logosOk} />
+        <section id="entregables" data-scene="12" className="relative h-[100vh] bg-cream" />
       </main>
       <Progress />
       <MobilePill />
