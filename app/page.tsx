@@ -13,6 +13,7 @@ import { Contenido } from "@/components/scenes/S09Contenido";
 import { AntesDespues } from "@/components/scenes/S10AntesDespues";
 import { Respaldo } from "@/components/scenes/S11Respaldo";
 import { Entregables } from "@/components/scenes/S12Entregables";
+import { Preguntas } from "@/components/scenes/S13Preguntas";
 import { respaldo } from "@/content/site";
 import { existsSync } from "node:fs";
 import path from "node:path";
@@ -42,7 +43,10 @@ export default function Page() {
         <AntesDespues />
         <Respaldo logosOk={logosOk} />
         <Entregables />
-        <section id="preguntas" data-scene="13" className="relative h-[100vh] bg-cream" />
+        <Preguntas />
+        <section id="cierre" data-scene="14" className="relative h-[100vh] bg-night">
+          <div id="agendar" />
+        </section>
       </main>
       <Progress />
       <MobilePill />

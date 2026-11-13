@@ -23,5 +23,5 @@
 - [x] 10 Antes y después
 - [x] 11 Respaldo
 - [x] 12 Todo lo que recibe
-- [ ] 13 Preguntas
+- [x] 13 Preguntas
 - [ ] 14 Cierre

@@ -1545,3 +1545,68 @@ html.no-preload .preloader {
     animation: none;
   }
 }
+
+/* ── Escena 13 · Preguntas ───────────────────────────── */
+.faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s 0.55s;
+}
+.faq-a.is-on {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+}
+.faq-a p {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.4s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.faq-a.is-on p {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.1s;
+}
+.faq-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(27, 19, 14, 0.06);
+  transition: background-color 0.35s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.faq-icon > span {
+  position: absolute;
+  width: 16px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s;
+}
+.faq-icon > span:last-child {
+  transform: rotate(90deg);
+}
+.faq-icon.is-on {
+  background: var(--coral);
+  transform: rotate(180deg);
+}
+.faq-icon.is-on > span {
+  background: #fff;
+}
+.faq-icon.is-on > span:last-child {
+  transform: rotate(0deg);
+}
+button:hover > .faq-icon:not(.is-on) {
+  background: rgba(27, 19, 14, 0.12);
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-a,
+  .faq-a p,
+  .faq-icon,
+  .faq-icon > span {
+    transition: none;
+  }
+}
