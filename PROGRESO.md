@@ -17,7 +17,7 @@
 - [x] 04 Tres ganadores
 - [x] 05 7 días
 - [x] 06 Gaia
-- [ ] 07 Reservas
+- [x] 07 Reservas
 - [ ] 08 Datos
 - [ ] 09 Contenido
 - [ ] 10 Antes y después

@@ -10,3 +10,6 @@
 
 ## 8. Gaia: tres escenarios reales de la demo
 Los tres chips del brief se mapean a escenarios con lugares y precios de la demo de Pelileo (`content/gaia.ts`), para que lo que se ve en la landing coincida con lo que el municipio verá al abrir "Pruébala en la demo" (`/gaia`). El chat es simulado pero completo: escribe el mensaje, muestra los tres pasos de razonamiento, propone tres lugares con foto y arma el itinerario con presupuesto y mapa. No se fija con scroll: el usuario puede interactuar con calma.
+
+## 9. Reservas: pantallas construidas en HTML, no capturas
+Para que el "morph" sea real (la foto del riel vuela y se vuelve la portada del lugar; el botón Reservar viaja y se convierte en el check verde), las tres pantallas se construyen en HTML con unidades `em` que escalan con el ancho. Copian el lenguaje visual de la demo (crema, botones negros y coral, tarjetas redondeadas). En escritorio van en fila; en celular y tableta se apilan en el mismo marco y se funden una en otra. Fondo crema que entra como una hoja sobre Gaia, para cambiar de ritmo después de cuatro escenas oscuras.

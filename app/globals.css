@@ -613,3 +613,196 @@ html.no-preload .preloader {
     padding: 0 var(--gutter);
   }
 }
+
+/* ── Escena 7 · Reservas ─────────────────────────────── */
+.rs-stage {
+  --sw: max(160px, min(300px, 64vw, calc((100svh - 410px) / 1.89)));
+  --gap: 0px;
+  position: relative;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(76px, 10svh, 128px);
+  overflow: hidden;
+}
+.rs-title [data-line] {
+  display: block;
+  text-wrap: balance;
+}
+.rs-title {
+  font-size: clamp(30px, 4.4vw, 68px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.rs-screens {
+  position: relative;
+  margin-top: clamp(20px, 3.6svh, 40px);
+  width: var(--sw);
+  height: calc(var(--sw) * 1.89);
+}
+.rs-screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: calc(var(--sw) / 32 * 2.6);
+  background: #fbf8f4;
+  color: var(--ink);
+  font-size: calc(var(--sw) / 32);
+  line-height: 1.3;
+  box-shadow: 0 40px 80px -36px rgba(60, 30, 10, 0.45), 0 0 0 1px rgba(27, 19, 14, 0.06);
+}
+.rs-tap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3.4em;
+  height: 3.4em;
+  margin: -1.7em 0 0 -1.7em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 0.25em rgba(244, 92, 85, 0.65);
+  pointer-events: none;
+}
+.rs-foot {
+  position: relative;
+  margin-top: clamp(16px, 3svh, 32px);
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+.rs-foot > * {
+  grid-area: 1 / 1;
+}
+.rs-labels {
+  display: flex;
+  gap: 8px;
+}
+.rs-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 7px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(27, 19, 14, 0.45);
+  transition: color 0.4s, background-color 0.4s;
+}
+.rs-label-n {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(27, 19, 14, 0.08);
+  transition: inherit;
+}
+.rs-label.is-on {
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 8px 24px -12px rgba(60, 30, 10, 0.35);
+}
+.rs-label.is-on .rs-label-n {
+  background: var(--coral);
+  color: #fff;
+}
+.rs-bajada {
+  max-width: 46ch;
+  padding: 0 var(--gutter);
+  text-align: center;
+}
+.rs-flyer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.rs-flyer2 {
+  overflow: visible;
+}
+.rs-toast {
+  position: absolute;
+  z-index: 5;
+  top: 16px;
+  left: 50%;
+  translate: -50% 0;
+  width: min(420px, calc(100vw - 32px));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px 12px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: 0 24px 50px -20px rgba(60, 30, 10, 0.45), 0 0 0 1px rgba(27, 19, 14, 0.06);
+}
+@media (min-width: 1024px) {
+  .rs-stage {
+    --sw: max(200px, min(300px, 19vw, calc((100svh - 370px) / 1.89)));
+    --gap: clamp(28px, 4vw, 72px);
+  }
+  .rs-screens {
+    display: flex;
+    gap: var(--gap);
+    width: auto;
+  }
+  .rs-screen {
+    position: relative;
+    inset: auto;
+    width: var(--sw);
+    height: calc(var(--sw) * 1.89);
+    flex: none;
+  }
+  .rs-screen:nth-child(2) {
+    margin-top: -18px;
+  }
+  .rs-labels {
+    display: grid;
+    grid-template-columns: repeat(3, var(--sw));
+    column-gap: var(--gap);
+    justify-items: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rs-stage {
+    height: auto;
+    padding-bottom: 12svh;
+  }
+  .rs-screens {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .rs-screen {
+    position: relative;
+    inset: auto;
+    width: var(--sw);
+    height: calc(var(--sw) * 1.89);
+  }
+  .rs-toast {
+    position: relative;
+    top: auto;
+    left: auto;
+    translate: none;
+    order: -1;
+    margin-bottom: 24px;
+  }
+  .rs-labels {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 1024px) {
+  .rs-screens {
+    flex-direction: row;
+  }
+}
