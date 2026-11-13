@@ -20,7 +20,7 @@
 - [x] 07 Reservas
 - [x] 08 Datos
 - [x] 09 Contenido
-- [ ] 10 Antes y después
+- [x] 10 Antes y después
 - [ ] 11 Respaldo
 - [ ] 12 Todo lo que recibe
 - [ ] 13 Preguntas
