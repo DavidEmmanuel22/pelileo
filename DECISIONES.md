@@ -22,3 +22,7 @@ El "antes" (folletos, una foto impresa, una publicación vieja, un mapa genéric
 
 ## 12. Cierre: el Ecuador de la escena 2, ahora encendido
 El paisaje vuelve con todos los pueblos prendidos, un brillo cálido sobre el valle y el cóndor cruzando: cierra el arco que abrió la escena 2 (de noche y apagado). La única línea nueva que no viene del brief es la leyenda "Cada valle encendido. Cada negocio en vitrina.", que conecta ese paisaje con el titular. El titular lleva el video del volcán dentro de las letras. En vez de `background-clip: text` (que no admite video), se usa un bloque noche con el texto en blanco y `mix-blend-mode: darken` sobre el video: el resultado es el mismo y funciona en todos los navegadores. El formulario valida en el cliente, enfoca el primer error, abre WhatsApp en el mismo clic (para que no lo bloquee el navegador) y muestra el estado de éxito. El enlace al calendario solo aparece si `NEXT_PUBLIC_CALENDAR_URL` tiene valor.
+
+## 13. Pulido
+- Vuelta 1: recorrido completo de 360 a 1920 px y con movimiento reducido. El visual de Mapeo pasó de cuadrícula a curvas de nivel; se corrigieron desbordes a 360 px (Gaia, capacitación) y el margen de los logos.
+- Vuelta 2: los enlaces internos (#agendar y los de la navegación) bajan con desplazamiento suave y pasan el foco al destino. Se generó la imagen para compartir (`public/og.jpg`) y se agregó `NEXT_PUBLIC_SITE_URL`.

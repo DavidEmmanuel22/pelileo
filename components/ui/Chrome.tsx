@@ -17,7 +17,7 @@ declare global {
 export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ duration: 1.15, easing: (t) => 1 - Math.pow(1 - t, 3.2), anchors: { offset: 0 } });
+    const lenis = new Lenis({ duration: 1.15, easing: (t) => 1 - Math.pow(1 - t, 3.2) });
     window.__lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
     const raf = (time: number) => lenis.raf(time * 1000);
@@ -29,14 +29,36 @@ export function SmoothScroll() {
       delete window.__lenis;
     };
   }, []);
+
+  // Enlaces internos (#agendar, #gaia…): desplazamiento suave y foco en el destino
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.('a[href^="#"]');
+      const id = a?.getAttribute("href")?.slice(1);
+      if (!id || !document.getElementById(id)) return;
+      e.preventDefault();
+      scrollToId(id);
+      history.replaceState(null, "", `#${id}`);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
   return null;
 }
 
 export function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
-  if (window.__lenis) window.__lenis.scrollTo(el, { duration: 1.6 });
-  else el.scrollIntoView({ behavior: "smooth" });
+  // Lleva el foco al destino (sin saltar) para que el teclado y los lectores de pantalla sigan ahí
+  const focus = () => {
+    if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
+    el.focus({ preventScroll: true });
+  };
+  if (window.__lenis) window.__lenis.scrollTo(el, { duration: 1.6, onComplete: focus });
+  else {
+    el.scrollIntoView({ behavior: "smooth" });
+    focus();
+  }
 }
 
 /* ── Navegación superior ─────────────────────────────────────────── */

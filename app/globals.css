@@ -1749,3 +1749,8 @@ button:hover > .faq-icon:not(.is-on) {
     padding: 16px 16px 30px;
   }
 }
+
+/* Destinos de enlaces internos: reciben foco sin mostrar un marco */
+[tabindex="-1"]:focus {
+  outline: none;
+}
