@@ -1,0 +1,100 @@
+{
+  "_nota": "Datos simulados para la vista del municipio. Todo es inventado pero coherente entre sí.",
+  "header": {
+    "title": "Panel de Turismo · GAD Municipal de San Pedro de Pelileo",
+    "period": "Últimos 30 días",
+    "updatedAgoMin": 4
+  },
+  "kpis": [
+    { "id": "visitantes", "label": "Visitantes únicos", "value": 14390, "delta": 0.18, "format": "number" },
+    { "id": "itinerarios", "label": "Itinerarios creados con Gaia", "value": 4490, "delta": 0.41, "format": "number" },
+    { "id": "gasto", "label": "Gasto estimado declarado", "value": 612400, "delta": 0.22, "format": "usd" },
+    { "id": "estancia", "label": "Estancia promedio", "value": 1.6, "delta": 0.09, "format": "days" },
+    { "id": "presupuesto", "label": "Presupuesto promedio por grupo", "value": 142, "delta": 0.06, "format": "usd" },
+    { "id": "clics", "label": "Contactos a negocios locales", "value": 9214, "delta": 0.27, "format": "number" }
+  ],
+  "visitorsWeekly": {
+    "_nota": "Últimas 12 semanas. La última semana es la actual.",
+    "labels": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12"],
+    "visitantes": [2410, 2580, 2490, 2760, 2910, 2850, 3120, 3040, 3390, 3510, 3620, 3870],
+    "itinerarios": [520, 610, 640, 720, 790, 830, 910, 980, 1040, 1090, 1150, 1210]
+  },
+  "byWeekday": {
+    "labels": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+    "values": [6, 11, 7, 8, 14, 31, 23]
+  },
+  "gaiaIntents": [
+    { "label": "Plan familiar", "share": 0.31 },
+    { "label": "Compras de jean", "share": 0.22 },
+    { "label": "Aventura / parapente", "share": 0.19 },
+    { "label": "Gastronomía típica", "share": 0.17 },
+    { "label": "Cultura Salasaka", "share": 0.11 }
+  ],
+  "origin": [
+    { "label": "Ambato", "share": 0.34 },
+    { "label": "Quito", "share": 0.27 },
+    { "label": "Guayaquil", "share": 0.11 },
+    { "label": "Extranjeros", "share": 0.11 },
+    { "label": "Riobamba", "share": 0.08 },
+    { "label": "Otros", "share": 0.09 }
+  ],
+  "topPlaces": [
+    { "placeId": "tambo-ruta-jean", "views": 6120, "addedToItinerary": 2210 },
+    { "placeId": "niton-mirador", "views": 5480, "addedToItinerary": 1980 },
+    { "placeId": "salasaca-plaza-arte", "views": 4310, "addedToItinerary": 1640 },
+    { "placeId": "las-caras", "views": 2890, "addedToItinerary": 970 },
+    { "placeId": "huambalo-muebles", "views": 2340, "addedToItinerary": 720 },
+    { "placeId": "pelileo-grande", "views": 1980, "addedToItinerary": 610 }
+  ],
+  "unmetDemand": {
+    "_nota": "Búsquedas a Gaia sin buena respuesta en el cantón. Es el insight más valioso para el municipio.",
+    "items": [
+      { "query": "spa / termas con hospedaje", "searches": 612, "insight": "Hay demanda de relax con alojamiento: oportunidad para emprendimientos en Cotaló." },
+      { "query": "glamping", "searches": 488, "insight": "Solo hay 1 oferta registrada y su ocupación supera el 90% los fines de semana." },
+      { "query": "comida vegetariana", "searches": 341, "insight": "Ningún restaurante registrado tiene menú vegetariano destacado." },
+      { "query": "tour nocturno / qué hacer de noche", "searches": 297, "insight": "La oferta nocturna se concentra en 2 bares y solo de jueves a sábado." },
+      { "query": "transporte al Nitón", "searches": 254, "insight": "Los visitantes sin auto no encuentran cómo subir: oportunidad para una ruta de camionetas." }
+    ]
+  },
+  "funnel": [
+    { "label": "Vieron un lugar", "value": 38200 },
+    { "label": "Tocaron \"Cómo llegar\"", "value": 12940 },
+    { "label": "Llamaron o escribieron", "value": 5310 },
+    { "label": "Reservaron (estimado)", "value": 2120 }
+  ],
+  "heatmap": {
+    "_nota": "Intensidad de interés por zona (0-1), para dibujar sobre el mapa.",
+    "points": [
+      { "placeId": "tambo-ruta-jean", "weight": 1.0 },
+      { "placeId": "niton-mirador", "weight": 0.9 },
+      { "placeId": "salasaca-plaza-arte", "weight": 0.75 },
+      { "placeId": "parque-central", "weight": 0.6 },
+      { "placeId": "las-caras", "weight": 0.5 },
+      { "placeId": "huambalo-muebles", "weight": 0.42 },
+      { "placeId": "pelileo-grande", "weight": 0.38 },
+      { "placeId": "teligote", "weight": 0.25 },
+      { "placeId": "cotalo-cruz", "weight": 0.2 }
+    ]
+  },
+  "businesses": {
+    "registered": 64,
+    "pendingVerification": 12,
+    "byCategory": [
+      { "label": "Restaurantes", "value": 23 },
+      { "label": "Hospedaje", "value": 11 },
+      { "label": "Experiencias", "value": 9 },
+      { "label": "Bares", "value": 6 },
+      { "label": "Tiendas de jean", "value": 15 }
+    ],
+    "pending": [
+      { "name": "Hostal Mirador del Valle", "category": "Hospedaje", "parish": "Pelileo Grande", "submitted": "hace 2 días" },
+      { "name": "Picantería La Matriz", "category": "Restaurante", "parish": "Pelileo Matriz", "submitted": "hace 3 días" },
+      { "name": "Tejidos Sumak Away", "category": "Artesanía", "parish": "Salasaca", "submitted": "hace 5 días" },
+      { "name": "Aventura Cotaló", "category": "Experiencias", "parish": "Cotaló", "submitted": "hace 6 días" }
+    ]
+  },
+  "eventForm": {
+    "_nota": "Formulario simulado: al publicar, el evento aparece en la pestaña Eventos de la app pública (estado en memoria).",
+    "fields": ["Título", "Lugar", "Fecha", "Hora inicio", "Hora fin", "Categoría", "Precio", "Descripción corta", "Imagen"]
+  }
+}

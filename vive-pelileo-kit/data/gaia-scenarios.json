@@ -1,0 +1,117 @@
+[
+  {
+    "id": "familia-2d",
+    "chip": "Plan familiar · 2 días · $250",
+    "prompt": "Vamos en familia, 2 adultos y 2 niños de 7 y 10 años. Queremos un plan de 2 días en Pelileo con un presupuesto de $250.",
+    "keywords": ["familia", "niños", "ninos", "hijos", "2 días", "dos días", "fin de semana"],
+    "thinking": [
+      "Revisando 31 lugares de Pelileo",
+      "Filtrando opciones aptas para niños",
+      "Ajustando todo a tu presupuesto de $250",
+      "Verificando horarios del sábado y domingo",
+      "Mirando el clima del fin de semana"
+    ],
+    "itinerary": {
+      "id": "it-familia-2d",
+      "title": "Fin de semana en familia",
+      "summary": "Armé un fin de semana tranquilo, con poco tiempo en el auto y actividades que los niños van a disfrutar: tejer en Salasaca, cosechar frutas y ver los parapentes en el Nitón. Todo entra en tu presupuesto y te sobra un poco.",
+      "group": { "type": "familia", "adults": 2, "kids": 2 },
+      "budget": 250,
+      "days": [
+        {
+          "label": "Sábado",
+          "weekday": "sab",
+          "weather": { "tempC": 18, "condition": "parcial", "tip": "Lleva una chompa para la tarde." },
+          "steps": [
+            { "time": "09:00", "placeId": "r-indigo", "title": "Desayuno en Café Índigo", "durationMin": 50, "cost": 18, "note": "Queda junto a El Tambo, así empiezan sin moverse." },
+            { "time": "10:00", "placeId": "tambo-ruta-jean", "title": "Ruta del Jean en El Tambo", "durationMin": 120, "cost": 0, "note": "El sábado hay feria y precios de fábrica. Las compras no están incluidas en el presupuesto.", "travelFromPrevMin": 3, "travelMode": "a pie" },
+            { "time": "12:30", "placeId": "r-volquetero", "title": "Almuerzo: volquetero en Doña Rosa", "durationMin": 60, "cost": 28, "note": "El plato típico de Pelileo, con porciones que alcanzan para compartir con los niños.", "travelFromPrevMin": 8, "travelMode": "auto" },
+            { "time": "14:30", "placeId": "e-tejido", "title": "Taller de tejido en telar · Salasaca", "durationMin": 60, "cost": 20, "note": "Apto desde 6 años: cada niño se lleva su primera pieza tejida.", "travelFromPrevMin": 12, "travelMode": "auto" },
+            { "time": "15:45", "placeId": "salasaca-plaza-arte", "title": "Paseo por la Plaza del Arte", "durationMin": 60, "cost": 0, "note": "Está a pocos pasos del taller y el sábado hay tejedores trabajando en vivo.", "travelFromPrevMin": 3, "travelMode": "a pie" },
+            { "time": "17:30", "placeId": "h-hosteria", "title": "Check-in en Hostería Valle de Pachanlica", "durationMin": 60, "cost": 70, "note": "Habitación familiar con piscina temperada. Desayuno incluido.", "travelFromPrevMin": 10, "travelMode": "auto" },
+            { "time": "19:30", "placeId": "h-hosteria", "title": "Cena en la hostería", "durationMin": 75, "cost": 32, "note": "Así no tienen que manejar de noche con los niños cansados." }
+          ]
+        },
+        {
+          "label": "Domingo",
+          "weekday": "dom",
+          "weather": { "tempC": 19, "condition": "soleado", "tip": "Buen día para ver el Tungurahua despejado temprano." },
+          "steps": [
+            { "time": "08:00", "placeId": "h-hosteria", "title": "Desayuno incluido", "durationMin": 60, "cost": 0, "note": "Ya está pagado con la habitación." },
+            { "time": "09:30", "placeId": "niton-mirador", "title": "Mirador del Cerro Nitón", "durationMin": 90, "cost": 0, "note": "Entre 10:00 y 12:00 hay más parapentes en el aire. A los niños les encanta verlos despegar.", "travelFromPrevMin": 20, "travelMode": "auto" },
+            { "time": "11:30", "placeId": "pelileo-grande", "title": "Pelileo Grande con guía local", "durationMin": 60, "cost": 10, "note": "Una forma corta y clara de contarles a los niños la historia del terremoto de 1949.", "travelFromPrevMin": 15, "travelMode": "auto" },
+            { "time": "13:00", "placeId": "r-fogon", "title": "Almuerzo en Fogón del Tungurahua", "durationMin": 75, "cost": 42, "note": "Cuy asado para los adultos y trucha o pollo para los niños, con terraza.", "travelFromPrevMin": 5, "travelMode": "auto" },
+            { "time": "15:00", "placeId": "e-cosecha", "title": "Cosecha de frutas en Huerta y Leña", "durationMin": 75, "cost": 26, "note": "Para cerrar al aire libre: se llevan su canasta de fruta para el camino de regreso.", "travelFromPrevMin": 12, "travelMode": "auto" }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "pareja-aventura",
+    "chip": "Aventura en pareja · 1 día · $120",
+    "prompt": "Somos una pareja, nos gusta la aventura y la naturaleza. Tenemos un día en Pelileo y $120.",
+    "keywords": ["pareja", "aventura", "parapente", "adrenalina", "novia", "novio", "esposa", "esposo", "naturaleza"],
+    "thinking": [
+      "Revisando 31 lugares de Pelileo",
+      "Buscando la mejor hora de viento en el Nitón",
+      "Ajustando todo a tu presupuesto de $120",
+      "Verificando horarios de apertura",
+      "Mirando el clima de mañana"
+    ],
+    "itinerary": {
+      "id": "it-pareja-aventura",
+      "title": "Un día de aventura para dos",
+      "summary": "Pusieron aventura y naturaleza, así que el día gira alrededor del parapente en el Nitón en su mejor horario. Después hay bosque, agua termal y un cóctel con aguardiente local para cerrar.",
+      "group": { "type": "pareja", "adults": 2, "kids": 0 },
+      "budget": 120,
+      "days": [
+        {
+          "label": "Sábado",
+          "weekday": "sab",
+          "weather": { "tempC": 18, "condition": "parcial", "tip": "Viento suave por la mañana: buenas condiciones para volar." },
+          "steps": [
+            { "time": "08:30", "placeId": "r-niton-cafe", "title": "Desayuno en Mirador Nitón Café", "durationMin": 45, "cost": 12, "note": "Ya están en la subida al cerro, sin perder tiempo." },
+            { "time": "10:00", "placeId": "e-parapente", "title": "Vuelo biplaza en el Nitón", "durationMin": 90, "cost": 70, "note": "De 10:00 a 12:00 es cuando mejor está el viento. Incluye video del vuelo.", "travelFromPrevMin": 5, "travelMode": "auto" },
+            { "time": "12:00", "placeId": "teligote", "title": "Caminata corta en Cerro Teligote", "durationMin": 90, "cost": 0, "note": "Bosque primario a 15 minutos, gratis, para bajar la adrenalina.", "travelFromPrevMin": 15, "travelMode": "auto" },
+            { "time": "14:00", "placeId": "r-trucha", "title": "Almuerzo en Truchas del Valle Hermoso", "durationMin": 60, "cost": 14, "note": "Trucha fresca, rica y económica, para guardar presupuesto para la tarde.", "travelFromPrevMin": 20, "travelMode": "auto" },
+            { "time": "15:30", "placeId": "las-caras", "title": "Complejo Las Caras · Cotaló", "durationMin": 120, "cost": 10, "note": "Rostros tallados en roca, cascadas y agua termal en las faldas del volcán.", "travelFromPrevMin": 25, "travelMode": "auto" },
+            { "time": "19:00", "placeId": "b-costura", "title": "Cócteles en La Costura", "durationMin": 90, "cost": 12, "note": "Coctelería pequeña con aguardiente de Pelileo, buen lugar para cerrar el día.", "travelFromPrevMin": 30, "travelMode": "auto" }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "compras-medio-dia",
+    "chip": "Jean y artesanías · medio día · $80",
+    "prompt": "Voy solo, quiero comprar jean y artesanías. Tengo medio día y unos $80.",
+    "keywords": ["compras", "jean", "jeans", "artesanía", "artesanias", "comprar", "solo", "sola", "medio día"],
+    "thinking": [
+      "Revisando 31 lugares de Pelileo",
+      "Ordenando la ruta para no repetir caminos",
+      "Repartiendo tus $80 entre compras y comida",
+      "Verificando horarios de las ferias"
+    ],
+    "itinerary": {
+      "id": "it-compras",
+      "title": "Medio día de compras",
+      "summary": "Una ruta corta de este a oeste: primero el jean en El Tambo y después artesanía Salasaka, con un café y un almuerzo ligero en medio. Separé $60 para compras.",
+      "group": { "type": "solo", "adults": 1, "kids": 0 },
+      "budget": 80,
+      "days": [
+        {
+          "label": "Sábado",
+          "weekday": "sab",
+          "weather": { "tempC": 18, "condition": "parcial" },
+          "steps": [
+            { "time": "10:00", "placeId": "tambo-ruta-jean", "title": "Ruta del Jean · El Tambo", "durationMin": 105, "cost": 35, "note": "Calculé $35 para un buen jean de fábrica. El sábado hay feria." },
+            { "time": "11:50", "placeId": "r-indigo", "title": "Pausa en Café Índigo", "durationMin": 30, "cost": 5, "note": "Queda en el camino, entre El Tambo y Salasaca.", "travelFromPrevMin": 3, "travelMode": "a pie" },
+            { "time": "12:30", "placeId": "salasaca-plaza-arte", "title": "Plaza del Arte · Salasaca", "durationMin": 60, "cost": 25, "note": "Con $25 alcanza para un tapiz pequeño o una faja tejida a mano.", "travelFromPrevMin": 10, "travelMode": "auto" },
+            { "time": "13:40", "placeId": "r-tiesto", "title": "Empanadas de tiesto", "durationMin": 35, "cost": 6, "note": "Almuerzo ligero junto a la plaza antes de seguir tu viaje.", "travelFromPrevMin": 2, "travelMode": "a pie" }
+          ]
+        }
+      ]
+    }
+  }
+]

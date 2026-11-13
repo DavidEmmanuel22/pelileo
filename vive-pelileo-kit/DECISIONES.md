@@ -1,0 +1,63 @@
+# Decisiones tomadas sin supervisión
+
+1. **Skill frontend-design**: no está disponible en esta sesión. Apliqué directamente los criterios del brief (sobrio, premium, mucho aire, tokens estrictos).
+2. **Next.js 16.4 + cacheComponents**: el scaffold trae `cacheComponents` y `partialPrefetching` activados, que mantienen páginas ocultas con `<Activity>`. Los desactivé: la app es casi toda cliente, con un mapa persistente en un layout compartido, y así el comportamiento es predecible.
+3. **Coral de Clapzy**: muestreado del logo → `#F45C55` (el brief sugería `#F2615A`).
+4. **@types/node 24**: Vitest 5 pide @types/node ≥ 22; subí de 20 a 24.
+5. **Mapa**: d3-zoom (pan, pellizco, rueda y vuelos con `interpolateZoom`) en lugar de react-zoom-pan-pinch, porque permite vuelos de cámara suaves y control total del transform. Las curvas de nivel se generan una sola vez con `scripts/gen-terrain.mjs` (marching squares sobre un relieve sintético con Nitón, Teligote y Tungurahua) y quedan como SVG estático: cero cálculo en el celular.
+6. **Pines y etiquetas** son HTML sobre el SVG, posicionados con variables CSS (`--tx`, `--ty`, `--k`) que se actualizan sin re-render de React; la ruta-costura se recalcula en coordenadas de pantalla para que el punteado no se deforme con el zoom.
+7. **Tokens del mapa**: los colores del mapa (`--map-*`) son mezclas `color-mix()` de los tokens del brief; no hay colores sueltos.
+8. **Mapa persistente**: Explorar, Lugar, Eventos y Gaia comparten un layout con un solo mapa, así la cámara vuela entre pantallas sin recargar.
+9. **Amigable para todas las personas** (pedido del usuario durante la noche): objetivos táctiles de 44 px en acciones principales y navegación (40 px como mínimo en controles secundarios como chips del mapa y zoom), textos cortos y claros en "tú", contraste AA en texto (el gris `--ink-2` solo para texto secundario), foco de teclado visible, `aria-label` en pines e íconos, respeto por `prefers-reduced-motion`, y Gaia siempre responde algo útil (nunca queda en blanco).
+10. **El itinerario vive solo en Gaia** (aclaración del usuario): no hay sección de itinerario independiente. "Agregar a mi plan" en lugares y eventos lleva a Gaia: si ya hay un plan, Gaia suma esa parada; si no, Gaia arma un plan que la incluya. Guardados muestra lugares guardados y planes armados por Gaia.
+11. **Escenarios vs. generador**: un escenario guionizado se usa solo si el texto no pide algo distinto (otro presupuesto, otros días u otro grupo); si no, el generador arma un plan propio. Así "familia, 2 días, $400" no devuelve el plan de $250.
+12. **Grupo por defecto**: si no se menciona, Gaia asume 2 adultos.
+13. **Cena**: casi todos los restaurantes cierran antes de las 19:30, así que la cena va en el hotel (si tiene restaurante), en un bar si no hay niños, o se adelanta a las 18:00 en Café Índigo.
+14. **Presupuesto muy bajo** ("$10 para 6 personas"): Gaia deja solo lugares gratuitos y lo explica, en lugar de pasarse del presupuesto.
+15. **Fotos**: Wikimedia Commons (licencias libres, créditos en `public/images/credits.json`). Donde no hay foto real del lugar, elegí una imagen representativa del tipo de lugar (p. ej. un desayuno, una máquina de coser, parapente) y no una foto falsa de Pelileo. Las redimensioné a 1400 px de lado mayor; `next/image` sirve AVIF/WebP.
+16. **Detalle de lugar**: vive en el mismo sheet/panel del mapa persistente (no es un modal aparte), así la cámara vuela al lugar sin recargar. "Cómo llegar" traza la costura desde el Parque Central (o desde El Tambo si el lugar es el parque) y muestra minutos y km aproximados.
+17. **"Agregar a mi plan"** (lugares y eventos) abre Gaia con `?add=`: si ya hay plan, Gaia busca la parada compatible (mismo tipo, abierta a esa hora, que alcance a llegar a la siguiente) y la reemplaza; si no encaja o no hay plan, arma uno nuevo que la incluye. Para eventos, prefiere el día del evento.
+18. **Conversación con Gaia**: arriba queda el pedido que originó el plan; el último ajuste aparece como un aviso coral justo encima del resumen (donde se ve el presupuesto actualizado). El historial completo está en "Ver conversación anterior". El plan y la conversación se guardan en sessionStorage para sobrevivir a una recarga.
+19. **Sheet en mobile**: la caja de texto de Gaia queda fija abajo (visible con el sheet a media altura). El mapa encuadra según la posición final del sheet, no la intermedia, para que los pines no queden tapados.
+20. **Compartir plan**: usa Web Share si existe; si no, copia un link `/gaia?q=<pedido>` que vuelve a generar el mismo plan (el motor es determinista).
+21. **Gráficos del panel**: el método de la skill dataviz (una sola escala, nunca doble eje; leyenda + etiqueta directa al final de cada línea; tabla de datos accesible; marcas finas). La paleta de la marca (negro, gris y verde) no pasa el "piso de croma" del validador porque es casi neutra **a propósito** (brief: la ciudad se nota solo en el verde). Lo compenso con leyenda, etiquetas directas y separación de luminosidad (ΔE CVD 29, pasa). Visitantes e itinerarios comparten eje porque son la misma unidad (personas/planes por semana). Las barras simples se hicieron en HTML (más livianas y legibles que Recharts para 5–7 valores).
+22. **Mapa de calor del panel**: misma ilustración del cantón; en desktop se puede arrastrar y usar +/−, pero la rueda del mouse no hace zoom (no secuestra el scroll de la página). En mobile es estático.
+23. **Selector de período**: visual, como pide el brief; al elegir otro período avisa con un toast que la demo muestra 30 días.
+24. **Publicar evento**: el evento se guarda en sessionStorage (dura la sesión), usa la foto del lugar elegido y aparece en /eventos con la etiqueta "Nuevo · Municipio". Aprobar/Rechazar negocios es local, con "Deshacer".
+25. **Scroll dentro del sheet**: reemplacé `scrollIntoView` por un scroll calculado del contenedor del sheet, porque `scrollIntoView` también desplazaba el contenedor fijo del mapa y descuadraba la pantalla.
+26. **Pulido (fase 6)**: el panel entra con un fundido corto (desactivado con reduced-motion); hay un enlace "Saltar al contenido" para teclado; los avisos (toasts) salen arriba en mobile para no tapar la barra de pestañas; el 404 lleva de vuelta a Explorar o a Gaia; el terreno del mapa se desvanece hacia los bordes para que la animación de entrada no muestre un recorte.
+27. **Gaia responde preguntas sin tocar el plan**: clima ("¿qué tiempo hará?"), costo ("¿cuánto cuesta todo?"), saludos y gracias, y menús vegetarianos (dice con honestidad que no tiene esos datos). Antes, "¿qué tiempo hará el sábado?" movía el plan al sábado.
+28. **Pedidos por nombre**: "agrega parapente", "quiero ver el volcán" y "llévame a Salasaca" suman ese lugar al plan actual. Si el grupo tiene niños y el lugar no es apto (el vuelo biplaza), Gaia lo explica en vez de sumarlo.
+29. **Más de 3 días**: Gaia arma 3 y lo dice ("Pelileo se disfruta bien en 3 días").
+30. **Paradas encimadas**: en el mapa de Gaia, las paradas que quedarían una encima de otra al zoom actual se separan unos píxeles en pantalla, sin mover la ruta.
+31. **Imperdibles** abre con Cerro Nitón (la mejor foto y el primer paso del guion de la demo). El carrusel tiene `scroll-padding` para que la primera tarjeta no quede pegada al borde.
+32. **Capturas**: las de cada fase y del guion quedan fuera de git (`screens/fase*/`, `screens/demo/`); en el repo solo están las 6 elegidas para `LISTO.md`.
+
+## Rediseño de la portada (pedido del usuario, 12 nov)
+
+El usuario sintió la primera versión pobre y poco demostrativa: una herramienta (mapa + filtros) en vez de una vitrina de destino. Pidió una portada con efecto wow inspirada en travelnevada.com, visittruckeetahoe.com, seemonterey.com y visitcostarica.com, con Gaia como llamada principal en el hero y la página llena de actividades y restaurantes. Sus pedidos tienen prioridad sobre CLAUDE.md y BRIEF.md.
+
+33. **Tipografía display**: CLAUDE.md pedía solo Plus Jakarta Sans. El usuario me dio libertad, así que sumé **Fraunces** (serif cálida, con itálica) solo para titulares grandes de la portada y del demo de Gaia. Jakarta sigue en toda la interfaz.
+34. **Nueva estructura**: `/` es la portada y el mapa pasó a `/explorar` (pestaña nueva "Inicio"). Orden: hero a pantalla completa con Gaia → valle en parallax (noche a amanecer) → intro con cifras → "Qué vivir" (mosaico) → franja de Gaia → Dónde comer → Vuela sobre el valle (foto con parallax) → Agenda → Dónde dormir → Mapa → Cierre con Gaia y pie.
+35. **Gaia en el hero, 100 % simulada**: la caja escribe sola «Quiero un plan para divertirme este fin de semana»; al tocar «Armar mi plan» se abre un panel donde Gaia "piensa" y arma el itinerario parada por parada (con fotos y, en escritorio, la foto grande de la parada activa). Usa el mismo motor determinista que `/gaia`, así que «Ver en el mapa y ajustar con Gaia» lleva el plan a `/gaia` sin perder nada.
+36. **Parallax propio**: el valle y el Tungurahua están dibujados en SVG por capas que se mueven a distintas velocidades con `transform` (framer-motion `useScroll`), con un parapente coral cruzando. No depende de fotos y respeta `prefers-reduced-motion`. Sin librerías de scroll suave.
+37. **Medios intercambiables**: la portada busca los archivos de `public/media/` (ver `MEDIA.md`) y, si no existen, usa fotos que ya tenía la demo. Basta con soltar los archivos y volver a compilar. Si hay `hero.mp4`, el hero pasa a video.
+38. **Material del cliente** (`pelileo multimedia`, 12 nov): 19 fotos de 600×600 px y 4 videos de 1200×630.
+    - **Videos** (comprimidos a H.264 sin audio, ~4,5 MB en total): el volcán entre nubes va en el hero, en ida y vuelta para un loop sin salto; la cumbre con rayos de sol en «Vuela sobre el valle»; la cascada en el tile Naturaleza; y las hojas a contraluz en el cierre. Solo se reproducen mientras están en pantalla y quedan en su póster con `prefers-reduced-motion`.
+    - **Fotos**: senderista en Aventura; telar en Cultura y en el taller de tejido; jean y tijeras en Ciudad del Jean; plato típico en Sabores y en El Volquetero; asado en el Fogón; choclo con queso en Empanadas de Tiesto; naranjillas en la cosecha de frutas; frutas en la feria; sastre en «Diseña tu jean»; cerro verde en Teligote; y caminantes en el Trail Teligote. Saqué sus créditos de Wikimedia de `credits.json`.
+    - **Escudo** de Pelileo, con el fondo blanco vuelto transparente: va en el pie de la portada y en el encabezado del panel del GAD.
+    - **No usé** los lagos alpinos (1, 4, 5, 6), los picos rocosos (3) ni la bicicleta (19), porque no representan a Pelileo y podrían confundir en una presentación al municipio.
+    - **Los hoteles siguen con fotos referenciales.**
+39. **Material HD** (`pelileo multimedia hd`, 12 nov): 24 fotos de 1800 px y 4 videos de 1986×1042. El usuario pidió no buscar la foto exacta de cada lugar, sino que la demo se vea espectacular, así que asigné lo mejor de cada tipo.
+    - **Hospedajes**:
+      - hacienda → Hostería Valle de Pachanlica
+      - patio colonial → Hotel Ciudad Azul
+      - suite → Glamping Nueve Estrellas
+      - telar → Casa del Telar
+    - **Restaurantes**:
+      - interior cálido → Huerta y Leña
+      - platos típicos → Volquetero, Fogón y Tiesto
+    - **Paisajes**: lagos → Las Caras; cerro verde → Teligote.
+    - **Videos**: recodificados a 1920 px. El hero tiene además una versión vertical (recorte 9:16) para celulares.
+    - **Optimización**: las fotos van a 1400–1600 px con calidad 80.
+40. **Más contenido visual**: collage con parallax en la intro (la llama frente al volcán y el cerro) y una galería en movimiento, «Postales del valle», con 20 fotos en dos filas que avanzan en sentidos opuestos. Se pausa con el mouse encima y queda quieta con `prefers-reduced-motion`.

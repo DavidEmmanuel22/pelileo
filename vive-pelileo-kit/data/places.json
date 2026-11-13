@@ -1,0 +1,1147 @@
+[
+  {
+    "id": "tambo-ruta-jean",
+    "name": "Ruta del Jean · El Tambo",
+    "category": "compras",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.3252,
+    "lng": -78.5532,
+    "parish": "Pelileo Matriz",
+    "short": "La capital del jean del Ecuador: cientos de locales y talleres",
+    "description": "El barrio que le dio a Pelileo el nombre de Ciudad Azul. Recorre talleres y locales de jean a precio de fábrica y conoce cómo se confecciona una prenda de principio a fin.",
+    "tags": [
+      "compras",
+      "familia",
+      "pareja",
+      "amigos",
+      "solo",
+      "foto"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "08:30",
+      "close": "18:30"
+    },
+    "durationMin": 120,
+    "featured": true,
+    "imageQuery": "Pelileo jeans El Tambo"
+  },
+  {
+    "id": "parque-central",
+    "name": "Parque Central de Pelileo",
+    "category": "cultura",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.3301,
+    "lng": -78.546,
+    "parish": "Pelileo Matriz",
+    "short": "El corazón de Pelileo Nuevo, junto a la iglesia matriz",
+    "description": "Punto de encuentro de la ciudad reconstruida después del terremoto de 1949. Ideal para empezar el día, tomar un helado y ver la vida local.",
+    "tags": [
+      "familia",
+      "pareja",
+      "solo",
+      "cultura",
+      "ninos",
+      "foto"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "06:00",
+      "close": "22:00"
+    },
+    "durationMin": 40,
+    "imageQuery": "Pelileo iglesia parque central"
+  },
+  {
+    "id": "feria-pelileo",
+    "name": "Mercado y feria de Pelileo",
+    "category": "compras",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.3312,
+    "lng": -78.5448,
+    "parish": "Pelileo Matriz",
+    "short": "Días de feria: martes y sábado",
+    "description": "Frutas de los valles, granos, comida típica y el movimiento de la feria tradicional. Los sábados es cuando más vida tiene.",
+    "tags": [
+      "gastronomia",
+      "cultura",
+      "familia",
+      "solo",
+      "foto"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "mar",
+        "sab"
+      ],
+      "open": "06:00",
+      "close": "14:00"
+    },
+    "durationMin": 60,
+    "imageQuery": "mercado Tungurahua feria frutas"
+  },
+  {
+    "id": "salasaca-plaza-arte",
+    "name": "Plaza del Arte · Salasaca",
+    "category": "cultura",
+    "real": true,
+    "verifyCoords": false,
+    "lat": -1.3209,
+    "lng": -78.5786,
+    "parish": "Salasaca",
+    "short": "Tapices tejidos a mano por el pueblo Salasaka",
+    "description": "La plaza central de Salasaca reúne tapices, ponchos y artesanías tejidas en telares de tradición ancestral. Una de las experiencias culturales más auténticas de la Sierra centro.",
+    "tags": [
+      "cultura",
+      "compras",
+      "familia",
+      "pareja",
+      "solo",
+      "foto"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "08:00",
+      "close": "17:00"
+    },
+    "durationMin": 75,
+    "featured": true,
+    "imageQuery": "Salasaca tapestry weaving Ecuador"
+  },
+  {
+    "id": "salasaca-llikakama",
+    "name": "Mercado Artesanal Llikakama",
+    "category": "compras",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.3216,
+    "lng": -78.5774,
+    "parish": "Salasaca",
+    "short": "Artesanía Salasaka, mejor los martes y sábados",
+    "description": "Mercado artesanal con tejidos, bisutería y prendas tradicionales. Los días de feria hay más variedad y artesanos trabajando en vivo.",
+    "tags": [
+      "compras",
+      "cultura",
+      "solo",
+      "pareja"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "mar",
+        "sab",
+        "dom"
+      ],
+      "open": "08:00",
+      "close": "16:00"
+    },
+    "durationMin": 45,
+    "imageQuery": "Salasaca artesanias mercado"
+  },
+  {
+    "id": "niton-mirador",
+    "name": "Cerro Nitón",
+    "category": "aventura",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.355,
+    "lng": -78.552,
+    "parish": "Pelileo Matriz",
+    "short": "Parapente con vista al volcán Tungurahua",
+    "description": "Uno de los mejores puntos de parapente de Sudamérica. Aunque no vueles, el mirador regala una vista abierta del valle y del Tungurahua. Mejor viento por la mañana, de 10:00 a 12:00.",
+    "tags": [
+      "aventura",
+      "pareja",
+      "amigos",
+      "familia",
+      "naturaleza",
+      "foto"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "08:00",
+      "close": "17:30"
+    },
+    "durationMin": 90,
+    "featured": true,
+    "imageQuery": "Cerro Niton paragliding Pelileo"
+  },
+  {
+    "id": "pelileo-grande",
+    "name": "Pelileo Grande",
+    "category": "cultura",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.337,
+    "lng": -78.53,
+    "parish": "Pelileo Grande",
+    "short": "Vestigios de la iglesia antigua y la memoria del terremoto de 1949",
+    "description": "El asiento original de Pelileo, a diez minutos del centro. Aquí quedan los vestigios de la primera iglesia de la ciudad, destruida por el terremoto de 1949.",
+    "tags": [
+      "cultura",
+      "familia",
+      "pareja",
+      "solo",
+      "foto"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "08:00",
+      "close": "17:00"
+    },
+    "durationMin": 60,
+    "featured": true,
+    "imageQuery": "Pelileo Grande ruinas iglesia"
+  },
+  {
+    "id": "huambalo-muebles",
+    "name": "Ruta de los Muebles · Huambaló",
+    "category": "compras",
+    "real": true,
+    "verifyCoords": false,
+    "lat": -1.3886,
+    "lng": -78.5316,
+    "parish": "Huambaló",
+    "short": "Talleres de ebanistas y muebles tallados a mano",
+    "description": "Huambaló es tierra de ebanistas: decenas de talleres y locales con muebles de sala, comedor y piezas talladas en madera. Puedes ver a los artesanos trabajando.",
+    "tags": [
+      "compras",
+      "cultura",
+      "familia",
+      "pareja",
+      "foto"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "08:00",
+      "close": "18:00"
+    },
+    "durationMin": 90,
+    "featured": true,
+    "imageQuery": "Huambalo muebles tallados madera"
+  },
+  {
+    "id": "ruta-gigantes",
+    "name": "Ruta de los Gigantes",
+    "category": "cultura",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.381,
+    "lng": -78.535,
+    "parish": "Varias parroquias",
+    "short": "10 esculturas gigantes de madera en las entradas de las parroquias",
+    "description": "Figuras talladas por artesanos pelileños que representan la cultura de cada comunidad. Un recorrido fotográfico ideal en familia, con vistas al Tungurahua en varios puntos.",
+    "tags": [
+      "familia",
+      "ninos",
+      "cultura",
+      "foto",
+      "amigos"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "07:00",
+      "close": "18:00"
+    },
+    "durationMin": 90,
+    "imageQuery": "esculturas gigantes madera Pelileo"
+  },
+  {
+    "id": "teligote",
+    "name": "Cerro Teligote",
+    "category": "naturaleza",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.37,
+    "lng": -78.565,
+    "parish": "Teligote",
+    "short": "200 hectáreas de bosque primario protegido",
+    "description": "Senderos entre bosque andino primario para caminatas de medio día. Lleva abrigo y agua; la neblina de la tarde le da otro paisaje.",
+    "tags": [
+      "naturaleza",
+      "aventura",
+      "pareja",
+      "amigos",
+      "solo"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "07:00",
+      "close": "16:30"
+    },
+    "durationMin": 150,
+    "imageQuery": "bosque andino sendero Tungurahua"
+  },
+  {
+    "id": "cotalo-cruz",
+    "name": "Cruz de Cotaló",
+    "category": "naturaleza",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.428,
+    "lng": -78.509,
+    "parish": "Cotaló",
+    "short": "Mirador panorámico frente al Tungurahua",
+    "description": "Uno de los miradores más abiertos del cantón, en las faldas del volcán. Ideal al atardecer si el cielo está despejado.",
+    "tags": [
+      "naturaleza",
+      "pareja",
+      "familia",
+      "foto"
+    ],
+    "priceLevel": 0,
+    "priceFrom": 0,
+    "priceUnit": "gratis",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "07:00",
+      "close": "18:30"
+    },
+    "durationMin": 45,
+    "imageQuery": "Tungurahua volcano view Cotalo"
+  },
+  {
+    "id": "las-caras",
+    "name": "Complejo Las Caras · Cotaló",
+    "category": "naturaleza",
+    "real": true,
+    "verifyCoords": true,
+    "lat": -1.4345,
+    "lng": -78.5055,
+    "parish": "Cotaló",
+    "short": "Más de 30 rostros tallados en roca, cascadas y agua termal",
+    "description": "Un sendero entre rocas con rostros tallados, caídas de agua y piscinas de agua termal. Entrada: adultos $5, niños $2,50.",
+    "tags": [
+      "naturaleza",
+      "familia",
+      "pareja",
+      "ninos",
+      "relax",
+      "foto"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 5,
+    "priceUnit": "entrada",
+    "hours": {
+      "days": [
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "08:00",
+      "close": "17:00"
+    },
+    "durationMin": 120,
+    "featured": true,
+    "imageQuery": "Las Caras Cotalo rostros roca"
+  },
+  {
+    "id": "r-indigo",
+    "name": "Café Índigo",
+    "category": "comer",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3262,
+    "lng": -78.5515,
+    "parish": "Pelileo Matriz",
+    "short": "Café de especialidad y brunch a pasos de El Tambo",
+    "description": "Café de altura de Tungurahua, pan de la casa y desayunos completos. Buen punto de partida antes de recorrer la Ruta del Jean.",
+    "tags": [
+      "pareja",
+      "familia",
+      "solo",
+      "gastronomia"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 5,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "07:30",
+      "close": "19:00"
+    },
+    "durationMin": 50,
+    "rating": 4.8,
+    "reviews": 312,
+    "imageQuery": "specialty coffee brunch andes"
+  },
+  {
+    "id": "r-volquetero",
+    "name": "El Volquetero de Doña Rosa",
+    "category": "comer",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3295,
+    "lng": -78.5468,
+    "parish": "Pelileo Matriz",
+    "short": "El plato insignia de Pelileo, como en casa",
+    "description": "Volquetero, fritada y jugos naturales. Porciones generosas, mesas largas y ambiente familiar.",
+    "tags": [
+      "familia",
+      "amigos",
+      "gastronomia",
+      "ninos"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 6,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "11:30",
+      "close": "17:00"
+    },
+    "durationMin": 60,
+    "rating": 4.7,
+    "reviews": 528,
+    "featured": true,
+    "imageQuery": "Ecuadorian traditional food fritada"
+  },
+  {
+    "id": "r-fogon",
+    "name": "Fogón del Tungurahua",
+    "category": "comer",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.336,
+    "lng": -78.5335,
+    "parish": "Pelileo Grande",
+    "short": "Cuy asado y hornado con vista al valle",
+    "description": "Cocina serrana a la leña: cuy asado, hornado, tortillas de papa y trucha. Terraza con vista al valle del Patate.",
+    "tags": [
+      "familia",
+      "pareja",
+      "amigos",
+      "gastronomia"
+    ],
+    "priceLevel": 2,
+    "priceFrom": 10,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "11:00",
+      "close": "18:00"
+    },
+    "durationMin": 75,
+    "rating": 4.6,
+    "reviews": 401,
+    "imageQuery": "Andean restaurant wood fire terrace"
+  },
+  {
+    "id": "r-trucha",
+    "name": "Truchas del Valle Hermoso",
+    "category": "comer",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.342,
+    "lng": -78.522,
+    "parish": "Pelileo Grande",
+    "short": "Trucha fresca de criadero, al gusto",
+    "description": "Pesca tu propia trucha o pídela frita, al ajillo o en ceviche. Jardines amplios para que los niños jueguen.",
+    "tags": [
+      "familia",
+      "pareja",
+      "ninos",
+      "gastronomia",
+      "naturaleza"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 7,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "10:00",
+      "close": "17:30"
+    },
+    "durationMin": 60,
+    "rating": 4.5,
+    "reviews": 233,
+    "imageQuery": "grilled trout plate"
+  },
+  {
+    "id": "r-tiesto",
+    "name": "Empanadas de Tiesto Salasaka",
+    "category": "comer",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3212,
+    "lng": -78.577,
+    "parish": "Salasaca",
+    "short": "Empanadas de tiesto, tamales y colada",
+    "description": "Pequeño local junto a la Plaza del Arte. Empanadas hechas al momento en tiesto de barro.",
+    "tags": [
+      "solo",
+      "pareja",
+      "familia",
+      "gastronomia"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 3,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "08:00",
+      "close": "17:00"
+    },
+    "durationMin": 35,
+    "rating": 4.7,
+    "reviews": 189,
+    "imageQuery": "empanadas clay griddle"
+  },
+  {
+    "id": "r-huerta",
+    "name": "Huerta y Leña",
+    "category": "comer",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.348,
+    "lng": -78.54,
+    "parish": "Pelileo Matriz",
+    "short": "Del huerto a la mesa, con cosecha de frutas",
+    "description": "Restaurante de campo con productos de su propia huerta. Los fines de semana ofrece cosecha de frutas para niños y adultos.",
+    "tags": [
+      "familia",
+      "ninos",
+      "pareja",
+      "gastronomia",
+      "naturaleza"
+    ],
+    "priceLevel": 2,
+    "priceFrom": 9,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "10:00",
+      "close": "18:00"
+    },
+    "durationMin": 90,
+    "rating": 4.8,
+    "reviews": 156,
+    "imageQuery": "farm to table restaurant countryside"
+  },
+  {
+    "id": "r-niton-cafe",
+    "name": "Mirador Nitón Café",
+    "category": "comer",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3538,
+    "lng": -78.5508,
+    "parish": "Pelileo Matriz",
+    "short": "Desayunos de montaña antes del vuelo",
+    "description": "Café en la subida al Nitón. Desayunos andinos, chocolate caliente y la mejor vista para ver despegar los parapentes.",
+    "tags": [
+      "aventura",
+      "pareja",
+      "amigos",
+      "familia",
+      "foto"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 6,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "07:00",
+      "close": "17:00"
+    },
+    "durationMin": 45,
+    "rating": 4.6,
+    "reviews": 142,
+    "imageQuery": "mountain cafe breakfast view"
+  },
+  {
+    "id": "b-cerveceria",
+    "name": "Cervecería Cerro Azul",
+    "category": "beber",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3305,
+    "lng": -78.5452,
+    "parish": "Pelileo Matriz",
+    "short": "Cerveza artesanal con cebada de la Sierra",
+    "description": "Seis estilos de la casa, pizza al horno y música en vivo los viernes y sábados.",
+    "tags": [
+      "amigos",
+      "pareja",
+      "solo"
+    ],
+    "priceLevel": 2,
+    "priceFrom": 4,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "jue",
+        "vie",
+        "sab"
+      ],
+      "open": "17:00",
+      "close": "23:30"
+    },
+    "durationMin": 90,
+    "rating": 4.6,
+    "reviews": 207,
+    "imageQuery": "craft brewery bar warm light"
+  },
+  {
+    "id": "b-costura",
+    "name": "La Costura",
+    "category": "beber",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3298,
+    "lng": -78.544,
+    "parish": "Pelileo Matriz",
+    "short": "Coctelería de autor con aguardiente local",
+    "description": "Bar pequeño en una antigua sastrería. Cócteles con aguardiente de Pelileo y frutas de los valles.",
+    "tags": [
+      "pareja",
+      "amigos"
+    ],
+    "priceLevel": 2,
+    "priceFrom": 5,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "jue",
+        "vie",
+        "sab"
+      ],
+      "open": "18:00",
+      "close": "23:59"
+    },
+    "durationMin": 90,
+    "rating": 4.8,
+    "reviews": 98,
+    "imageQuery": "cocktail bar intimate"
+  },
+  {
+    "id": "h-hosteria",
+    "name": "Hostería Valle de Pachanlica",
+    "category": "dormir",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3265,
+    "lng": -78.565,
+    "parish": "Benítez",
+    "short": "Hostería familiar con piscina temperada y restaurante",
+    "description": "Habitaciones familiares, piscina temperada, juegos para niños y restaurante. Desayuno incluido.",
+    "tags": [
+      "familia",
+      "ninos",
+      "relax",
+      "pareja"
+    ],
+    "priceLevel": 2,
+    "priceFrom": 70,
+    "priceUnit": "habitación",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "durationMin": 0,
+    "rating": 4.7,
+    "reviews": 344,
+    "featured": true,
+    "imageQuery": "hacienda hotel pool andes"
+  },
+  {
+    "id": "h-ciudad-azul",
+    "name": "Hotel Ciudad Azul",
+    "category": "dormir",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.329,
+    "lng": -78.5455,
+    "parish": "Pelileo Matriz",
+    "short": "Hotel urbano a una cuadra del parque",
+    "description": "Habitaciones sencillas y cómodas en el centro, con parqueadero. Ideal si vienes de paso hacia Baños.",
+    "tags": [
+      "solo",
+      "pareja",
+      "amigos"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 45,
+    "priceUnit": "habitación",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "durationMin": 0,
+    "rating": 4.4,
+    "reviews": 276,
+    "imageQuery": "boutique hotel room minimal"
+  },
+  {
+    "id": "h-telar",
+    "name": "Casa del Telar · Salasaka",
+    "category": "dormir",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3225,
+    "lng": -78.58,
+    "parish": "Salasaca",
+    "short": "Hospedaje comunitario con familias tejedoras",
+    "description": "Duerme en casa de una familia Salasaka, comparte la cena y aprende a tejer en telar por la mañana.",
+    "tags": [
+      "cultura",
+      "pareja",
+      "solo",
+      "familia"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 38,
+    "priceUnit": "habitación",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "durationMin": 0,
+    "rating": 4.9,
+    "reviews": 87,
+    "imageQuery": "andean community lodge textiles"
+  },
+  {
+    "id": "h-glamping",
+    "name": "Glamping Nueve Estrellas",
+    "category": "dormir",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.36,
+    "lng": -78.548,
+    "parish": "Pelileo Matriz",
+    "short": "Domos con vista al Tungurahua",
+    "description": "Domos con cama queen, fogata y cielo abierto. El nombre viene de las nueve estrellas del escudo de Pelileo, una por cada parroquia.",
+    "tags": [
+      "pareja",
+      "relax",
+      "naturaleza",
+      "foto"
+    ],
+    "priceLevel": 3,
+    "priceFrom": 90,
+    "priceUnit": "habitación",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "durationMin": 0,
+    "rating": 4.9,
+    "reviews": 64,
+    "featured": true,
+    "imageQuery": "glamping dome mountain view"
+  },
+  {
+    "id": "e-parapente",
+    "name": "Vuelo biplaza en el Nitón",
+    "category": "experiencia",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3555,
+    "lng": -78.5525,
+    "parish": "Pelileo Matriz",
+    "short": "15 a 20 minutos de vuelo con piloto certificado · Nitón Vuelos",
+    "description": "Vuelo en parapente biplaza con piloto certificado, equipo completo y video del vuelo. Mejor hora: de 10:00 a 12:00.",
+    "tags": [
+      "aventura",
+      "pareja",
+      "amigos",
+      "solo",
+      "foto"
+    ],
+    "priceLevel": 3,
+    "priceFrom": 35,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "09:00",
+      "close": "16:00"
+    },
+    "durationMin": 90,
+    "rating": 4.9,
+    "reviews": 421,
+    "featured": true,
+    "imageQuery": "tandem paragliding andes"
+  },
+  {
+    "id": "e-tejido",
+    "name": "Taller de tejido en telar",
+    "category": "experiencia",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3205,
+    "lng": -78.5792,
+    "parish": "Salasaca",
+    "short": "Aprende a tejer con una familia Salasaka",
+    "description": "Una hora con artesanos Salasaka: hilado, teñido natural y tu primera pieza en telar. Apto para niños desde 6 años.",
+    "tags": [
+      "cultura",
+      "familia",
+      "ninos",
+      "pareja",
+      "solo"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 5,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "09:00",
+      "close": "16:00"
+    },
+    "durationMin": 60,
+    "rating": 4.9,
+    "reviews": 133,
+    "imageQuery": "backstrap loom weaving hands"
+  },
+  {
+    "id": "e-jean",
+    "name": "Diseña tu jean",
+    "category": "experiencia",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3248,
+    "lng": -78.5538,
+    "parish": "Pelileo Matriz",
+    "short": "Taller en El Tambo: tu prenda, a tu medida",
+    "description": "Elige tela, corte y acabados, y mira cómo un taller de El Tambo confecciona tu jean. Te lo llevas el mismo día.",
+    "tags": [
+      "compras",
+      "pareja",
+      "amigos",
+      "solo",
+      "foto"
+    ],
+    "priceLevel": 2,
+    "priceFrom": 25,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab"
+      ],
+      "open": "09:00",
+      "close": "17:00"
+    },
+    "durationMin": 120,
+    "rating": 4.8,
+    "reviews": 77,
+    "imageQuery": "denim workshop sewing"
+  },
+  {
+    "id": "e-cabalgata",
+    "name": "Cabalgata a Teligote",
+    "category": "experiencia",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3685,
+    "lng": -78.5628,
+    "parish": "Teligote",
+    "short": "2 horas a caballo por senderos de bosque andino",
+    "description": "Cabalgata guiada para principiantes con caballos mansos. Incluye casco y bebida caliente al regreso.",
+    "tags": [
+      "aventura",
+      "naturaleza",
+      "familia",
+      "pareja",
+      "amigos"
+    ],
+    "priceLevel": 2,
+    "priceFrom": 20,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "08:00",
+      "close": "15:00"
+    },
+    "durationMin": 120,
+    "rating": 4.7,
+    "reviews": 58,
+    "imageQuery": "horseback riding andes trail"
+  },
+  {
+    "id": "e-tallado",
+    "name": "Taller de tallado en madera",
+    "category": "experiencia",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3879,
+    "lng": -78.5322,
+    "parish": "Huambaló",
+    "short": "Talla tu propia pieza con un ebanista de Huambaló",
+    "description": "Taller de 90 minutos con un maestro ebanista. Te llevas tu pieza tallada.",
+    "tags": [
+      "cultura",
+      "familia",
+      "pareja",
+      "solo"
+    ],
+    "priceLevel": 2,
+    "priceFrom": 15,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "lun",
+        "mar",
+        "mie",
+        "jue",
+        "vie",
+        "sab"
+      ],
+      "open": "09:00",
+      "close": "16:00"
+    },
+    "durationMin": 90,
+    "rating": 4.8,
+    "reviews": 41,
+    "imageQuery": "wood carving workshop hands"
+  },
+  {
+    "id": "e-cosecha",
+    "name": "Cosecha de frutas en Huerta y Leña",
+    "category": "experiencia",
+    "real": false,
+    "verifyCoords": false,
+    "lat": -1.3484,
+    "lng": -78.5404,
+    "parish": "Pelileo Matriz",
+    "short": "Agroturismo: cosecha y llévate tu canasta",
+    "description": "Recorrido por la huerta con cosecha de frutas de temporada. Adultos $8, niños $5.",
+    "tags": [
+      "familia",
+      "ninos",
+      "naturaleza"
+    ],
+    "priceLevel": 1,
+    "priceFrom": 5,
+    "priceUnit": "persona",
+    "hours": {
+      "days": [
+        "vie",
+        "sab",
+        "dom"
+      ],
+      "open": "10:00",
+      "close": "17:00"
+    },
+    "durationMin": 75,
+    "rating": 4.9,
+    "reviews": 112,
+    "imageQuery": "fruit picking family orchard"
+  }
+]

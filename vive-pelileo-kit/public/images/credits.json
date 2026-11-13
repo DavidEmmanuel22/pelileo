@@ -1,0 +1,272 @@
+{
+  "tambo-ruta-jean": {
+    "id": "tambo-ruta-jean",
+    "kind": "places",
+    "query": "jeans shop",
+    "title": "File:Jeans 2009.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Jeans_2009.jpg",
+    "author": "Mark Hillary",
+    "license": "CC BY 2.0"
+  },
+  "parque-central": {
+    "id": "parque-central",
+    "kind": "places",
+    "query": "Pelileo iglesia",
+    "title": "File:IGLESIA - panoramio (14).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:IGLESIA_-_panoramio_(14).jpg",
+    "author": "DIOHER_PAVAL",
+    "license": "CC BY 3.0"
+  },
+  "salasaca-plaza-arte": {
+    "id": "salasaca-plaza-arte",
+    "kind": "places",
+    "query": "Salasaca",
+    "title": "File:Tiendas artesanales, Salasaca - Pelileo.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tiendas_artesanales,_Salasaca_-_Pelileo.jpg",
+    "author": "David C. S.",
+    "license": "CC BY-SA 4.0"
+  },
+  "salasaca-llikakama": {
+    "id": "salasaca-llikakama",
+    "kind": "places",
+    "query": "Salasaca market",
+    "title": "File:Ecuador Salasacas Market.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Ecuador_Salasacas_Market.JPG",
+    "author": "Desconocido",
+    "license": "CC BY-SA 3.0"
+  },
+  "niton-mirador": {
+    "id": "niton-mirador",
+    "kind": "places",
+    "query": "paragliding mountain valley",
+    "title": "File:Pilots on a paragliding takeoff at Bir-Billing.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Pilots_on_a_paragliding_takeoff_at_Bir-Billing.JPG",
+    "author": "Okorok",
+    "license": "CC BY-SA 3.0"
+  },
+  "ev-feria-salasaca": {
+    "id": "ev-feria-salasaca",
+    "kind": "events",
+    "query": "Salasaca",
+    "title": "File:Tiendas artesanales, Salasaca - Pelileo.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tiendas_artesanales,_Salasaca_-_Pelileo.jpg",
+    "author": "David C. S.",
+    "license": "CC BY-SA 4.0"
+  },
+  "pelileo-grande": {
+    "id": "pelileo-grande",
+    "kind": "places",
+    "query": "church ruins",
+    "title": "File:St Nicholas, Knaptoft 1.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:St_Nicholas,_Knaptoft_1.jpg",
+    "author": "Poliphilo",
+    "license": "CC0"
+  },
+  "huambalo-muebles": {
+    "id": "huambalo-muebles",
+    "kind": "places",
+    "query": "Huambalo",
+    "title": "File:Huambaló Side road on the slope of the Patate Valley seen from E304.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Huambal%C3%B3_Side_road_on_the_slope_of_the_Patate_Valley_seen_from_E304.jpg",
+    "author": "Ymblanter",
+    "license": "CC BY-SA 4.0"
+  },
+  "ruta-gigantes": {
+    "id": "ruta-gigantes",
+    "kind": "places",
+    "query": "wooden sculpture giant",
+    "title": "File:Wooden Sculpture of Cú Chulainn.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Wooden_Sculpture_of_C%C3%BA_Chulainn.jpg",
+    "author": "Leimanbhradain",
+    "license": "CC BY-SA 4.0"
+  },
+  "cotalo-cruz": {
+    "id": "cotalo-cruz",
+    "kind": "places",
+    "query": "Tungurahua volcano",
+    "title": "File:Volcán Tungurahua Riobamba - Ecuador.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Volc%C3%A1n_Tungurahua_Riobamba_-_Ecuador.jpg",
+    "author": "Dabit100 / David Torres Costales",
+    "license": "CC BY-SA 3.0"
+  },
+  "las-caras": {
+    "id": "las-caras",
+    "kind": "places",
+    "query": "cascada Ecuador",
+    "title": "File:Cascada de Peguche Ecuador 839.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Cascada_de_Peguche_Ecuador_839.jpg",
+    "author": "Arabsalam",
+    "license": "CC BY-SA 4.0"
+  },
+  "r-indigo": {
+    "id": "r-indigo",
+    "kind": "places",
+    "query": "latte art coffee cup",
+    "title": "File:Cup of coffee with latte art 2016.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Cup_of_coffee_with_latte_art_2016.jpg",
+    "author": "Abdulrohmatt",
+    "license": "CC BY-SA 4.0"
+  },
+  "r-trucha": {
+    "id": "r-trucha",
+    "kind": "places",
+    "query": "grilled trout",
+    "title": "File:140531 Forellen auf dem Grill.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:140531_Forellen_auf_dem_Grill.jpg",
+    "author": "Ansgar Koreng",
+    "license": "CC BY-SA 3.0 de"
+  },
+  "r-huerta": {
+    "id": "r-huerta",
+    "kind": "places",
+    "query": "vegetable garden",
+    "title": "File:Traditional floating vegetable garden 34.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Traditional_floating_vegetable_garden_34.jpg",
+    "author": "Azimronnie",
+    "license": "CC BY-SA 4.0"
+  },
+  "r-niton-cafe": {
+    "id": "r-niton-cafe",
+    "kind": "places",
+    "query": "breakfast eggs bread coffee table",
+    "title": "File:Greek hotel breakfast.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Greek_hotel_breakfast.jpg",
+    "author": "Khane Rokhl Barazani",
+    "license": "CC BY-SA 4.0"
+  },
+  "b-cerveceria": {
+    "id": "b-cerveceria",
+    "kind": "places",
+    "query": "craft beer glasses",
+    "title": "File:Dargett Craft Beer (1).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Dargett_Craft_Beer_(1).jpg",
+    "author": "Armineaghayan",
+    "license": "CC BY-SA 4.0"
+  },
+  "b-costura": {
+    "id": "b-costura",
+    "kind": "places",
+    "query": "cocktail bar",
+    "title": "File:Bartender at Sylvarum cocktail bar, Alicante.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Bartender_at_Sylvarum_cocktail_bar,_Alicante.jpg",
+    "author": "Kartoman",
+    "license": "CC0"
+  },
+  "h-hosteria": {
+    "id": "h-hosteria",
+    "kind": "places",
+    "query": "hacienda Ecuador",
+    "title": "File:Hacienda Guachalá, Ecuador (9303066725).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hacienda_Guachal%C3%A1,_Ecuador_(9303066725).jpg",
+    "author": "Rinaldo Wurglitsch from Vienna, Austria",
+    "license": "CC BY 2.0"
+  },
+  "h-ciudad-azul": {
+    "id": "h-ciudad-azul",
+    "kind": "places",
+    "query": "hotel bedroom",
+    "title": "File:Midland Hotel, Bradford.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Midland_Hotel,_Bradford.jpg",
+    "author": "Mtaylor848",
+    "license": "CC BY-SA 3.0"
+  },
+  "h-telar": {
+    "id": "h-telar",
+    "kind": "places",
+    "query": "adobe house Ecuador",
+    "title": "File:B4 Ecuador 043 Adobe Houses Cuenca - historical area.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:B4_Ecuador_043_Adobe_Houses_Cuenca_-_historical_area.jpg",
+    "author": "Photography, Scan and postprocessing by Hubertl",
+    "license": "CC BY-SA 4.0"
+  },
+  "h-glamping": {
+    "id": "h-glamping",
+    "kind": "places",
+    "query": "glamping dome",
+    "title": "File:In Glamping (Marineping) dome - 1.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:In_Glamping_(Marineping)_dome_-_1.jpg",
+    "author": "DONANENTHUSIAST",
+    "license": "CC BY-SA 4.0"
+  },
+  "e-parapente": {
+    "id": "e-parapente",
+    "kind": "places",
+    "query": "tandem paragliding",
+    "title": "File:Tandem paragliding in Zell Am See.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tandem_paragliding_in_Zell_Am_See.jpg",
+    "author": "Hajosmit",
+    "license": "CC BY-SA 4.0"
+  },
+  "e-cabalgata": {
+    "id": "e-cabalgata",
+    "kind": "places",
+    "query": "horse riding Andes",
+    "title": "File:Refugio del cóndor - Caballo.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Refugio_del_c%C3%B3ndor_-_Caballo.jpg",
+    "author": "Alexandrabello",
+    "license": "CC BY-SA 4.0"
+  },
+  "e-tallado": {
+    "id": "e-tallado",
+    "kind": "places",
+    "query": "wood carving",
+    "title": "File:Wood carving at a confessional 04.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Wood_carving_at_a_confessional_04.jpg",
+    "author": "Kritzolina",
+    "license": "CC BY-SA 4.0"
+  },
+  "ev-feria-jean": {
+    "id": "ev-feria-jean",
+    "kind": "events",
+    "query": "denim jeans",
+    "title": "File:Broken twill denim Wrangler 13MWZ jeans (2026-01-21).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Broken_twill_denim_Wrangler_13MWZ_jeans_(2026-01-21).jpg",
+    "author": "Olgierd Rudak",
+    "license": "CC BY-SA 4.0"
+  },
+  "ev-musica-andina": {
+    "id": "ev-musica-andina",
+    "kind": "events",
+    "query": "Andean music band",
+    "title": "File:Roadwailer en la Media Torta 01.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Roadwailer_en_la_Media_Torta_01.jpg",
+    "author": "Peter Angritt",
+    "license": "CC BY-SA 4.0"
+  },
+  "ev-sabores": {
+    "id": "ev-sabores",
+    "kind": "events",
+    "query": "street food festival",
+    "title": "File:KB Street Food Festival 2024 03.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:KB_Street_Food_Festival_2024_03.jpg",
+    "author": "Pangalau",
+    "license": "CC BY-SA 4.0"
+  },
+  "ev-parapente-open": {
+    "id": "ev-parapente-open",
+    "kind": "events",
+    "query": "paragliding festival",
+    "title": "File:Paragliding in St-Fulgence 014.JPG",
+    "source": "https://commons.wikimedia.org/wiki/File:Paragliding_in_St-Fulgence_014.JPG",
+    "author": "Simon Villeneuve",
+    "license": "CC BY-SA 3.0"
+  },
+  "ev-pase-nino": {
+    "id": "ev-pase-nino",
+    "kind": "events",
+    "query": "Pase del Niño",
+    "title": "File:Cuenca Pase del Niño.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Cuenca_Pase_del_Ni%C3%B1o.jpg",
+    "author": "Surreal Name Given",
+    "license": "CC BY 2.0"
+  },
+  "ev-cine": {
+    "id": "ev-cine",
+    "kind": "events",
+    "query": "outdoor cinema",
+    "title": "File:Agistri-open-air-cinema-2022.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Agistri-open-air-cinema-2022.jpg",
+    "author": "Kaethe17",
+    "license": "CC BY-SA 4.0"
+  }
+}

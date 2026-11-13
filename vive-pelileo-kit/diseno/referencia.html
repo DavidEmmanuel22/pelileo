@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vive Pelileo · referencia de diseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"PJS Local";src:url("pjs.woff2") format("woff2");font-weight:200 800}
+:root{
+  --bg:#0E0E13; --s1:#17171D; --s2:#202027; --s3:#2A2A32; --line:#2A2A32;
+  --tx:#F4F4F6; --tx2:#A0A0AA; --tx3:#6E6E78;
+  --coral:#F45C55; --coral2:#FF7D6E; --match:#F28B83; --free:#4ADE80;
+  --andino:#45B575;
+  --flag-r:#C9463D; --flag-w:#F4F4F6; --flag-g:#3E8A5A;
+  --r-xl:28px; --r-l:20px; --r-m:16px; --r-s:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#06060A}
+body{font-family:"Plus Jakarta Sans","PJS Local",system-ui,sans-serif;color:var(--tx);-webkit-font-smoothing:antialiased;padding:40px 40px 80px}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+
+/* Lámina */
+.sheet-head{max-width:1400px;margin:0 0 32px}
+.sheet-head h1{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.sheet-head p{color:var(--tx2);font-size:14px;margin-top:6px;max-width:720px;line-height:1.5}
+.frames{display:flex;gap:44px;flex-wrap:wrap;align-items:flex-start}
+.frame-wrap{width:390px}
+.frame-label{font-size:13px;font-weight:700;margin-bottom:4px}
+.frame-note{font-size:12px;color:var(--tx2);line-height:1.45;margin-bottom:14px;min-height:52px}
+.frame{width:390px;height:844px;background:var(--bg);border-radius:36px;overflow:hidden;position:relative;outline:1px solid #1E1E25}
+.scroll{height:100%;overflow-y:auto;scrollbar-width:none;padding-bottom:180px}
+.scroll::-webkit-scrollbar{display:none}
+
+/* Encabezado */
+.top{display:flex;align-items:flex-start;justify-content:space-between;padding:58px 20px 0}
+.lockup .city{font-size:27px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.lockup .city span{font-weight:500;color:var(--tx2)}
+.lockup .by{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:12px;color:var(--tx2);font-weight:500}
+.flag{display:inline-flex;height:3px;width:24px;border-radius:2px;overflow:hidden}
+.flag i{flex:1}
+.flag i:nth-child(1){background:var(--flag-r)}.flag i:nth-child(2){background:var(--flag-w)}.flag i:nth-child(3){background:var(--flag-g)}
+.by img{height:13px;width:auto}
+.by b{color:var(--tx);font-weight:700;letter-spacing:-.01em}
+.top-right{display:flex;gap:8px;align-items:center}
+.weather{height:40px;padding:0 14px;border-radius:999px;background:var(--s1);display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FF9A7B,#F45C55);display:grid;place-items:center;font-weight:800;font-size:15px;box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--coral)}
+
+.hello{padding:22px 20px 0;font-size:15px;color:var(--tx2);line-height:1.45}
+.hello strong{color:var(--tx);font-weight:700}
+
+/* Historias */
+.stories{display:flex;gap:14px;padding:18px 20px 4px;overflow-x:auto;scrollbar-width:none}
+.story{width:68px;flex:none;text-align:center}
+.story .ring{width:68px;height:68px;border-radius:50%;padding:2.5px;background:conic-gradient(from 200deg,var(--coral),#FFB36B,var(--coral2),var(--coral))}
+.story .ring.seen{background:var(--s3)}
+.story .ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2.5px solid var(--bg)}
+.story span{display:block;font-size:11.5px;font-weight:600;margin-top:6px;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.story .live{position:relative}
+.story .live::after{content:"Hoy";position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);background:var(--coral);font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:6px;border:2px solid var(--bg)}
+
+/* Chips categorías */
+.cats{display:flex;gap:10px;padding:18px 20px 0;overflow-x:auto;scrollbar-width:none}
+.cat{flex:none;height:44px;padding:0 16px 0 12px;border-radius:999px;border:1.5px solid var(--s3);display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.cat .e{font-size:18px;line-height:1}
+.cat.on{background:var(--tx);color:#0E0E13;border-color:var(--tx)}
+
+/* Hero */
+.hero{margin:20px 20px 0;height:448px;border-radius:var(--r-xl);overflow:hidden;position:relative}
+.hero>img{width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,19,0) 28%,rgba(14,14,19,.7) 52%,rgba(14,14,19,.97) 78%)}
+.glass{background:rgba(20,20,26,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.hero .tag{position:absolute;top:16px;left:16px;z-index:2;height:32px;padding:0 12px;border-radius:999px;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700}
+.hero .dots{position:absolute;top:16px;right:16px;z-index:2;display:flex;gap:5px}
+.hero .dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.4)}
+.hero .dots i.on{width:18px;background:#fff}
+.hero .body{position:absolute;left:0;right:0;bottom:0;padding:18px;z-index:2}
+.when{color:var(--coral);font-weight:700;font-size:13.5px}
+.hero h2{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-top:6px}
+.hero .sub{font-size:14px;color:#D6D6DC;margin-top:6px}
+.social{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:13px;font-weight:600;color:#E6E6EA}
+.faces{display:flex}
+.faces i{width:26px;height:26px;border-radius:50%;border:2px solid #15151a;margin-left:-8px;display:grid;place-items:center;font-style:normal;font-size:10px;font-weight:800;color:#fff}
+.faces i:first-child{margin-left:0}
+.f1{background:#7C5CFF}.f2{background:#2BB673}.f3{background:#F2994A}.f4{background:#E2557B}
+.match{color:var(--match);font-weight:700;font-size:13.5px}
+.actions{display:flex;align-items:center;gap:10px;margin-top:14px}
+.price{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-right:auto}
+.price small{font-size:13px;color:var(--tx2);font-weight:600}
+.free{color:var(--free);font-weight:800}
+.ic-btn{width:46px;height:46px;border-radius:50%;background:var(--s2);display:grid;place-items:center}
+.hero .ic-btn{background:rgba(255,255,255,.12)}
+.pill-w{height:46px;padding:0 22px;border-radius:999px;background:#fff;color:#0E0E13;font-weight:800;font-size:15px;display:flex;align-items:center}
+.pill-c{height:46px;padding:0 22px;border-radius:999px;background:linear-gradient(180deg,var(--coral2),var(--coral));color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px -6px rgba(244,92,85,.65)}
+
+/* Secciones */
+.sec{display:flex;align-items:baseline;justify-content:space-between;padding:34px 20px 14px}
+.sec h3{font-size:21px;font-weight:800;letter-spacing:-.025em}
+.sec a{font-size:13.5px;color:var(--tx2);font-weight:600;text-decoration:none}
+
+/* Planes de Gaia */
+.plans{display:flex;gap:12px;padding:0 20px;overflow-x:auto;scrollbar-width:none}
+.plan{flex:none;width:236px;border-radius:var(--r-l);background:var(--s1);padding:14px;position:relative;overflow:hidden}
+.plan .pics{display:flex;height:84px;gap:4px;border-radius:12px;overflow:hidden}
+.plan .pics img{flex:1;min-width:0;object-fit:cover}
+.plan h4{font-size:16px;font-weight:800;letter-spacing:-.02em;margin-top:12px;line-height:1.2}
+.plan p{font-size:12.5px;color:var(--tx2);margin-top:4px}
+.plan .row{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.plan .row b{font-size:15px}
+.gaia-mini{height:34px;padding:0 12px 0 6px;border-radius:999px;background:rgba(244,92,85,.14);color:var(--coral2);display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800}
+.gaia-mini img{width:22px;height:22px}
+
+/* Filas tipo evento Clapzy */
+.ev{display:flex;gap:14px;padding:16px 20px;border-bottom:1px solid #1C1C22}
+.ev>img{width:112px;height:112px;border-radius:18px;object-fit:cover;flex:none}
+.ev .info{flex:1;min-width:0}
+.ev h4{font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-top:4px}
+.ev .meta{font-size:13px;color:var(--tx2);margin-top:4px}
+.ev .match{margin-top:4px;display:block;font-size:13px}
+.ev .actions{margin-top:10px;gap:8px}
+.ev .ic-btn{width:40px;height:40px}
+.ev .pill-c,.ev .pill-w{height:40px;padding:0 16px;font-size:14px}
+.ev .price{font-size:16px}
+
+/* Rieles de lugares */
+.rail{display:flex;gap:14px;padding:0 20px;overflow-x:auto;scrollbar-width:none}
+.card{flex:none;width:232px}
+.card .ph{height:290px;border-radius:var(--r-l);overflow:hidden;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover}
+.card .heart{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center}
+.card .badge{position:absolute;left:10px;bottom:10px;height:28px;padding:0 10px;border-radius:999px;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700}
+.dot-open{width:7px;height:7px;border-radius:50%;background:var(--free)}
+.card h4{font-size:16.5px;font-weight:800;letter-spacing:-.02em;margin-top:10px}
+.card p{font-size:13px;color:var(--tx2);margin-top:3px}
+.card .r{display:flex;gap:10px;margin-top:6px;font-size:13px;font-weight:700;align-items:center}
+.card .r .star{color:#FFC75F}
+.card .r .mute{color:var(--tx3);font-weight:600}
+
+/* Teaser de mapa */
+.map-teaser{margin:0 20px;height:210px;border-radius:var(--r-xl);overflow:hidden;position:relative;background:#121218}
+.map-teaser svg{position:absolute;inset:0}
+.map-teaser .cta{position:absolute;left:14px;right:14px;bottom:14px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;font-weight:700;font-size:14.5px}
+.map-teaser .cta span{height:38px;padding:0 14px;border-radius:999px;background:#fff;color:#0E0E13;display:flex;align-items:center;font-size:13.5px;font-weight:800}
+
+/* Barra inferior: Gaia + tabs */
+.dock{position:absolute;left:12px;right:12px;bottom:16px;border-radius:34px;background:rgba(22,22,28,.86);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.07);padding:10px 10px 6px;z-index:20}
+.ask{height:58px;border-radius:29px;background:#26262E;display:flex;align-items:center;gap:10px;padding:0 6px 0 8px}
+.ask img{width:42px;height:42px}
+.ask .ph-t{flex:1;color:#B9B9C2;font-size:15.5px;font-weight:500}
+.ask .send{width:46px;height:46px;border-radius:50%;background:#34343D;display:grid;place-items:center}
+.tabs{display:flex;justify-content:space-around;padding:12px 4px 8px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--tx3)}
+.tab.on{color:var(--coral)}
+
+/* Detalle */
+.d-photo{height:400px;position:relative}
+.d-photo img{width:100%;height:100%;object-fit:cover}
+.d-photo .bar{position:absolute;top:54px;left:16px;right:16px;display:flex;justify-content:space-between}
+.circle{width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.d-photo .count{position:absolute;bottom:44px;right:16px;height:28px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:700;display:flex;align-items:center}
+.d-body{margin-top:-28px;position:relative;background:var(--bg);border-radius:28px 28px 0 0;padding:24px 20px 0}
+.d-body h2{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.d-body .kind{font-size:14px;color:var(--tx2);margin-top:6px}
+.stats{display:flex;margin-top:18px;background:var(--s1);border-radius:var(--r-l);padding:14px 0}
+.stats>div{flex:1;text-align:center;border-right:1px solid var(--s3)}
+.stats>div:last-child{border:0}
+.stats b{display:block;font-size:17px;font-weight:800}
+.stats span{font-size:12px;color:var(--tx2)}
+.stats .open{color:var(--free)}
+.d-text{font-size:15px;line-height:1.6;color:#D2D2D8;margin-top:18px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tags span{height:34px;padding:0 13px;border-radius:999px;background:var(--s1);display:flex;align-items:center;font-size:13px;font-weight:600}
+.gaia-tip{margin-top:20px;border-radius:var(--r-l);padding:16px;background:linear-gradient(135deg,rgba(244,92,85,.18),rgba(244,92,85,.04));border:1px solid rgba(244,92,85,.28);display:flex;gap:12px}
+.gaia-tip img{width:40px;height:40px;flex:none}
+.gaia-tip b{font-size:14px}
+.gaia-tip p{font-size:13.5px;color:#E2E2E7;line-height:1.5;margin-top:3px}
+.gaia-tip button{margin-top:10px;height:38px;padding:0 14px;border-radius:999px;background:var(--coral);font-weight:800;font-size:13.5px;color:#fff}
+.who{display:flex;align-items:center;gap:10px;margin-top:20px;font-size:13.5px;color:var(--tx2)}
+.who b{color:var(--tx)}
+.d-cta{position:absolute;left:0;right:0;bottom:0;padding:14px 20px 30px;background:linear-gradient(180deg,rgba(14,14,19,0),var(--bg) 30%);display:flex;gap:10px;z-index:10}
+.d-cta .ghost{flex:1;height:54px;border-radius:999px;border:1.5px solid var(--s3);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.d-cta .pill-w{flex:1.3;height:54px;justify-content:center}
+
+/* Gaia */
+.g-head{display:flex;align-items:center;gap:12px;padding:56px 16px 14px;border-bottom:1px solid #1C1C22;background:var(--bg);position:relative;z-index:5}
+.g-head img{width:40px;height:40px}
+.g-head .t b{display:block;font-size:17px;font-weight:800}
+.g-head .t span{font-size:12.5px;color:var(--tx2);display:flex;align-items:center;gap:6px}
+.g-head .t span i{width:7px;height:7px;border-radius:50%;background:var(--free)}
+.g-head .new{margin-left:auto}
+.chat{padding:18px 16px 200px;display:flex;flex-direction:column;gap:14px;height:calc(100% - 111px);overflow-y:auto;scrollbar-width:none}
+.chat::-webkit-scrollbar{display:none}
+.chat>*{flex-shrink:0}
+.me{align-self:flex-end;max-width:82%;background:#2A2A33;padding:12px 15px;border-radius:20px 20px 6px 20px;font-size:15px;line-height:1.45}
+.ga{display:flex;gap:10px;align-items:flex-start}
+.ga>img{width:30px;height:30px;flex:none;margin-top:2px}
+.ga .txt{font-size:15px;line-height:1.55;color:#E9E9EE}
+.think{display:flex;flex-direction:column;gap:7px;padding:12px 14px;border-radius:16px;background:var(--s1);font-size:13px;color:var(--tx2)}
+.think div{display:flex;gap:8px;align-items:center}
+.think svg{flex:none}
+.picks{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 0 56px}
+.pick{flex:none;width:168px;border-radius:18px;background:var(--s1);overflow:hidden}
+.pick img{height:104px;width:100%;object-fit:cover}
+.pick div{padding:10px 12px 12px}
+.pick b{font-size:14px;font-weight:800;letter-spacing:-.01em;display:block;line-height:1.25}
+.pick span{font-size:12px;color:var(--tx2);display:block;margin-top:3px}
+.pick em{font-style:normal;font-size:12px;font-weight:700;color:var(--free);display:block;margin-top:6px}
+.quick{display:flex;flex-wrap:wrap;gap:8px;padding-left:40px}
+.quick button{height:40px;padding:0 15px;border-radius:999px;border:1.5px solid var(--s3);font-size:14px;font-weight:700}
+.quick button.main{background:linear-gradient(180deg,var(--coral2),var(--coral));border-color:transparent;box-shadow:0 8px 20px -8px rgba(244,92,85,.7)}
+.g-input{position:absolute;left:12px;right:12px;bottom:18px;z-index:20}
+.g-input .ask{background:#26262E;border:1px solid rgba(255,255,255,.06);height:60px;border-radius:30px}
+.g-input .ask .send{background:var(--coral)}
+
+/* Tarjeta de itinerario */
+.itin{border-radius:24px;background:var(--s1);overflow:hidden}
+.itin .hd{padding:16px 16px 12px}
+.itin .hd b{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.itin .hd p{font-size:13px;color:var(--tx2);margin-top:3px}
+.budget{margin-top:12px}
+.budget .l{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.budget .l span{color:var(--free)}
+.budget .track{height:8px;border-radius:4px;background:var(--s3);margin-top:7px;overflow:hidden}
+.budget .track i{display:block;height:100%;width:98.4%;background:linear-gradient(90deg,#2FBF71,var(--free));border-radius:4px}
+.itin .mini{height:150px;position:relative;background:#121218}
+.days{display:flex;gap:8px;padding:14px 16px 4px}
+.day{height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--s3);display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700}
+.day.on{background:var(--tx);color:#0E0E13;border-color:var(--tx)}
+.day span{font-weight:600;opacity:.65}
+.steps{padding:6px 16px 4px}
+.step{display:flex;gap:12px;align-items:center;padding:10px 0}
+.step .tm{width:42px;font-size:13px;font-weight:800;flex:none}
+.step .th{position:relative;flex:none}
+.step .num{position:absolute;top:-6px;left:-6px;border:2px solid var(--s1);width:22px;height:22px;border-radius:50%;background:var(--andino);color:#fff;font-size:11.5px;font-weight:800;display:grid;place-items:center;flex:none}
+.step img{width:46px;height:46px;border-radius:12px;object-fit:cover;flex:none}
+.step .w{flex:1;min-width:0}
+.step .w b{display:block;font-size:14px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step .w span{font-size:12px;color:var(--tx2);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step .c{font-size:13.5px;font-weight:800}
+.step .c.g{color:var(--free)}
+.hop{display:flex;align-items:center;gap:8px;padding-left:76px;font-size:11.5px;color:var(--tx3);font-weight:600}
+.hop i{width:2px;height:14px;background-image:linear-gradient(var(--tx3) 50%,transparent 50%);background-size:2px 5px}
+.itin .ft{display:flex;gap:8px;padding:12px 16px 16px;border-top:1px solid #24242B;margin-top:6px}
+.itin .ft button{flex:1;height:44px;border-radius:999px;background:var(--s2);font-weight:800;font-size:13.5px;display:flex;align-items:center;justify-content:center;gap:6px}
+.itin .ft button.w{background:#fff;color:#0E0E13}
+
+/* Mapa pestaña */
+.mapfull{position:absolute;inset:0;background:#111117}
+.map-top{position:absolute;top:0;left:0;right:0;padding:56px 16px 0;z-index:5}
+.search{height:52px;border-radius:999px;display:flex;align-items:center;gap:10px;padding:0 8px 0 18px;font-size:15px;color:#B9B9C2;font-weight:500}
+.search .filt{margin-left:auto;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center}
+.map-top .cats{padding:12px 0 0}
+.map-top .cat{background:rgba(20,20,26,.7);backdrop-filter:blur(12px);border-color:rgba(255,255,255,.1)}
+.map-top .cat.on{background:#fff}
+.pin{position:absolute;transform:translate(-50%,-100%);z-index:3}
+.pin .b{width:40px;height:40px;border-radius:50%;background:#1E1E25;border:2px solid #3A3A44;display:grid;place-items:center;font-size:18px;box-shadow:0 6px 16px rgba(0,0,0,.5)}
+.pin.sel .b{width:52px;height:52px;border:3px solid #fff;padding:0;overflow:hidden}
+.pin.sel .b img{width:100%;height:100%;object-fit:cover}
+.pin.sel::after{content:"";position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);border:7px solid transparent;border-top-color:#fff;border-bottom:0}
+.pin.cl .b{background:var(--coral);border-color:rgba(255,255,255,.85);font-size:14px;font-weight:800}
+.map-card{position:absolute;left:16px;right:16px;bottom:200px;z-index:6;border-radius:24px;background:rgba(24,24,30,.94);backdrop-filter:blur(16px);padding:10px;display:flex;gap:12px;border:1px solid rgba(255,255,255,.06)}
+.map-card img{width:92px;height:92px;border-radius:16px;object-fit:cover}
+.map-card .w{flex:1;min-width:0;padding-top:2px}
+.map-card b{font-size:16px;font-weight:800;letter-spacing:-.02em;display:block}
+.map-card span{font-size:12.5px;color:var(--tx2);display:block;margin-top:2px}
+.map-card .r{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:12.5px;font-weight:700}
+.map-card .go{height:34px;padding:0 13px;border-radius:999px;background:#fff;color:#0E0E13;font-weight:800;font-size:12.5px;display:flex;align-items:center;margin-left:auto}
+
+.notes{max-width:1300px;margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.notes div{background:#111117;border-radius:20px;padding:20px;border:1px solid #1E1E25}
+.notes h5{font-size:15px;font-weight:800;margin-bottom:8px}
+.notes p,.notes li{font-size:13.5px;line-height:1.55;color:var(--tx2)}
+.notes ul{padding-left:18px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4Zm0 0v14m6-12v14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M3.5 10h17M8 3v4m8-4v4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.6 12 20 12 20Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+    <symbol id="i-heart-f" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.6 12 20 12 20Z" fill="currentColor"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M5 18c2-6 6-9 13-9m0 0-4-4m4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M20.5 3.5 10 14m10.5-10.5-6.8 17-3.7-6.5-6.5-3.7 17-6.8Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h10m4 0h2M4 17h4m4 0h8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="16" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="10" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.9"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#1F3B2B"/><path d="m8 12.3 2.6 2.6L16.2 9" fill="none" stroke="#4ADE80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.9"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="#FFC75F"/><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M5.6 18.4 7 17m10-10 1.4-1.4" stroke="#FFC75F" stroke-width="1.8" stroke-linecap="round"/></symbol>
+
+    <!-- Mapa ilustrado oscuro, reutilizable -->
+    <symbol id="m-terrain" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice">
+      <rect width="390" height="844" fill="#111117"/>
+      <g fill="none" stroke="#1D1D25" stroke-width="1.2">
+        <path d="M-20 120 C 80 90, 160 150, 250 110 S 380 60, 420 100"/>
+        <path d="M-20 160 C 90 130, 170 190, 260 150 S 380 110, 420 140"/>
+        <path d="M-20 205 C 70 180, 150 240, 245 200 S 385 160, 420 190"/>
+        <path d="M-20 600 C 60 560, 120 640, 210 600 S 330 540, 420 580"/>
+        <path d="M-20 650 C 60 610, 140 690, 230 650 S 340 600, 420 630"/>
+        <path d="M-20 700 C 70 670, 150 740, 240 700 S 350 660, 420 690"/>
+      </g>
+      <g fill="none" stroke="#22222B" stroke-width="1.2">
+        <ellipse cx="120" cy="420" rx="70" ry="48"/><ellipse cx="120" cy="420" rx="48" ry="32"/><ellipse cx="120" cy="420" rx="26" ry="17"/>
+        <ellipse cx="300" cy="300" rx="64" ry="40"/><ellipse cx="300" cy="300" rx="42" ry="26"/><ellipse cx="300" cy="300" rx="20" ry="12"/>
+        <ellipse cx="330" cy="760" rx="120" ry="80"/><ellipse cx="330" cy="760" rx="90" ry="58"/><ellipse cx="330" cy="760" rx="60" ry="38"/><ellipse cx="330" cy="760" rx="32" ry="20"/>
+      </g>
+      <path d="M300 -10 C 320 120, 260 220, 300 340 S 360 520, 330 640 S 360 800, 380 860" fill="none" stroke="#1F2B34" stroke-width="7" stroke-linecap="round"/>
+      <path d="M-10 330 C 80 320, 150 300, 210 330 S 330 380, 400 360" fill="none" stroke="#2B2B34" stroke-width="5" stroke-linecap="round"/>
+      <path d="M190 330 C 200 420, 170 500, 200 600 S 240 720, 230 860" fill="none" stroke="#24242C" stroke-width="3" stroke-linecap="round"/>
+      <path d="M60 180 C 120 220, 150 280, 160 320" fill="none" stroke="#24242C" stroke-width="2.5" stroke-linecap="round"/>
+      <g font-family="Plus Jakarta Sans, PJS Local, sans-serif" font-size="9" font-weight="700" letter-spacing="1.6" fill="#4A4A55">
+        <text x="40" y="250">SALASACA</text><text x="205" y="310">PELILEO</text><text x="70" y="520">TELIGOTE</text><text x="210" y="560">HUAMBALÓ</text><text x="250" y="700">COTALÓ</text>
+      </g>
+      <path d="M300 820 L 350 730 L 362 744 L 372 732 L 420 820Z" fill="#191920"/>
+      <path d="M350 730 L 362 744 L 372 732 L 366 726 L 356 728Z" fill="#2E2E37"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="sheet-head">
+  <h1>Vive Pelileo · referencia de diseño</h1>
+  <p>Base visual de Clapzy (oscuro, Plus Jakarta Sans, coral) con más calidez y engagement. La ciudad se nota en el nombre, la franja tricolor y su contenido. Gaia vive en la barra inferior de toda la app y el itinerario existe solo dentro de su conversación. Cada pantalla tiene scroll.</p>
+</header>
+
+<div class="frames">
+
+<!-- 1. INICIO -->
+<div class="frame-wrap">
+  <div class="frame-label">1 · Inicio</div>
+  <div class="frame-note">Lo primero que se ve son lugares y planes, no un mapa. Historias de lo que pasa hoy, un imperdible grande con prueba social y planes de Gaia listos para tocar.</div>
+  <div class="frame">
+    <div class="scroll">
+      <div class="top">
+        <div class="lockup">
+          <div class="city">Vive Pelileo</div>
+          <div class="by"><span class="flag"><i></i><i></i><i></i></span>by <img src="../public/brand/clapzy-icon.png" alt=""><b>clapzy</b></div>
+        </div>
+        <div class="top-right">
+          <div class="weather"><svg width="18" height="18"><use href="#i-sun"/></svg>18°</div>
+          <div class="avatar">A</div>
+        </div>
+      </div>
+      <p class="hello">Hola, Agustín. Este fin de semana hay <strong>feria del jean y vuelos en el Nitón</strong>.</p>
+
+      <div class="stories">
+        <div class="story"><div class="ring live"><img src="../public/images/events/ev-feria-jean.jpg" alt=""></div><span>Feria del Jean</span></div>
+        <div class="story"><div class="ring"><img src="../public/images/places/e-parapente.jpg" alt=""></div><span>Nitón</span></div>
+        <div class="story"><div class="ring"><img src="../public/images/places/r-fogon.jpg" alt=""></div><span>Cuy asado</span></div>
+        <div class="story"><div class="ring"><img src="../public/images/places/e-tejido.jpg" alt=""></div><span>Salasaca</span></div>
+        <div class="story"><div class="ring seen"><img src="../public/images/places/h-glamping.jpg" alt=""></div><span>Glamping</span></div>
+      </div>
+
+      <div class="cats">
+        <div class="cat on"><span class="e">✨</span>Para ti</div>
+        <div class="cat"><span class="e">🍲</span>Comer</div>
+        <div class="cat"><span class="e">🪂</span>Aventura</div>
+        <div class="cat"><span class="e">🛏️</span>Dormir</div>
+        <div class="cat"><span class="e">👖</span>Jean</div>
+        <div class="cat"><span class="e">🧶</span>Artesanía</div>
+      </div>
+
+      <div class="hero">
+        <img src="../public/images/places/e-parapente.jpg" alt="Vuelo en parapente sobre el valle">
+        <div class="tag glass">🔥 Imperdible de Pelileo</div>
+        <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="body">
+          <div class="when" style="color:#FF8A7E">Todos los días · 10:00 a 12:00</div>
+          <h2>Vuela sobre el valle desde el Cerro Nitón</h2>
+          <div class="sub">Parapente biplaza con vista al Tungurahua</div>
+          <div class="social"><span class="faces"><i class="f1">V</i><i class="f2">D</i><i class="f3">M</i></span>Valeria, Diego y 38 más volaron este mes</div>
+          <div class="actions">
+            <div class="price">$35 <small>/pers</small></div>
+            <button class="ic-btn"><svg width="22" height="22"><use href="#i-heart"/></svg></button>
+            <button class="pill-c">Quiero ir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec"><h3>Planes que armó Gaia</h3><a href="#">Ver todos</a></div>
+      <div class="plans">
+        <div class="plan">
+          <div class="pics"><img src="../public/images/places/e-tejido.jpg" alt=""><img src="../public/images/places/r-volquetero.jpg" alt=""><img src="../public/images/places/h-hosteria.jpg" alt=""></div>
+          <h4>Fin de semana en familia</h4>
+          <p>2 días · 4 personas · 12 paradas</p>
+          <div class="row"><b>$246</b><span class="gaia-mini"><img src="../public/brand/clapzy-icon.png" alt="">Pedirlo</span></div>
+        </div>
+        <div class="plan">
+          <div class="pics"><img src="../public/images/places/e-parapente.jpg" alt=""><img src="../public/images/places/r-trucha.jpg" alt=""><img src="../public/images/places/huambalo-muebles.jpg" alt=""></div>
+          <h4>Aventura en pareja</h4>
+          <p>1 día · 2 personas · 6 paradas</p>
+          <div class="row"><b>$118</b><span class="gaia-mini"><img src="../public/brand/clapzy-icon.png" alt="">Pedirlo</span></div>
+        </div>
+      </div>
+
+      <div class="sec"><h3>Este fin de semana</h3><a href="#">Agenda</a></div>
+      <div class="ev">
+        <img src="../public/images/events/ev-feria-jean.jpg" alt="">
+        <div class="info">
+          <div class="when">sábado 14 nov</div>
+          <h4>Feria del Jean de fin de semana</h4>
+          <div class="meta">09:00 · El Tambo · 1,2 km</div>
+          <span class="match">92% de match contigo</span>
+          <div class="actions"><span class="price free">Gratis</span><button class="ic-btn"><svg width="19" height="19"><use href="#i-heart"/></svg></button><button class="pill-c">Voy</button></div>
+        </div>
+      </div>
+      <div class="ev">
+        <img src="../public/images/events/ev-feria-salasaca.jpg" alt="">
+        <div class="info">
+          <div class="when">sábado 14 nov</div>
+          <h4>Feria artesanal Salasaka</h4>
+          <div class="meta">08:00 · Salasaca · 4 km</div>
+          <span class="match">Juan, Luis y Sara van</span>
+          <div class="actions"><span class="price free">Gratis</span><button class="ic-btn"><svg width="19" height="19"><use href="#i-heart"/></svg></button><button class="pill-c">Voy</button></div>
+        </div>
+      </div>
+    </div>
+    <nav class="dock">
+      <div class="ask"><img src="../public/brand/clapzy-icon.png" alt="Gaia"><span class="ph-t">Plan en familia con $250…</span><span class="send"><svg width="20" height="20"><use href="#i-send"/></svg></span></div>
+      <div class="tabs">
+        <div class="tab on"><svg width="25" height="25"><use href="#i-home"/></svg>Inicio</div>
+        <div class="tab"><svg width="25" height="25"><use href="#i-map"/></svg>Mapa</div>
+        <div class="tab"><svg width="25" height="25"><use href="#i-cal"/></svg>Agenda</div>
+        <div class="tab"><svg width="25" height="25"><use href="#i-heart"/></svg>Guardados</div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- 2. INICIO (más abajo) -->
+<div class="frame-wrap">
+  <div class="frame-label">2 · Inicio, más abajo</div>
+  <div class="frame-note">Rieles de lugares con foto grande, estado "Abierto" y rating. El mapa aparece como una tarjeta que invita a explorarlo, no como portada.</div>
+  <div class="frame">
+    <div class="scroll" style="padding-top:44px">
+      <div class="sec"><h3>Dónde comer</h3><a href="#">Ver 7</a></div>
+      <div class="rail">
+        <div class="card">
+          <div class="ph"><img src="../public/images/places/r-fogon.jpg" alt=""><span class="heart glass"><svg width="19" height="19"><use href="#i-heart"/></svg></span><span class="badge glass"><i class="dot-open"></i>Abierto hasta 18:00</span></div>
+          <h4>Fogón del Tungurahua</h4><p>Cuy asado y hornado a la leña</p>
+          <div class="r"><span class="star">★ 4,6</span><span class="mute">401 reseñas</span><span class="mute">$$</span></div>
+        </div>
+        <div class="card">
+          <div class="ph"><img src="../public/images/places/r-volquetero.jpg" alt=""><span class="heart glass"><svg width="19" height="19"><use href="#i-heart"/></svg></span><span class="badge glass"><i class="dot-open"></i>Abierto</span></div>
+          <h4>El Volquetero de Doña Rosa</h4><p>El plato insignia de Pelileo</p>
+          <div class="r"><span class="star">★ 4,7</span><span class="mute">528 reseñas</span><span class="mute">$</span></div>
+        </div>
+      </div>
+
+      <div class="sec"><h3>Pelileo en el mapa</h3></div>
+      <div class="map-teaser">
+        <svg viewBox="0 0 350 210" preserveAspectRatio="xMidYMid slice"><use href="#m-terrain" x="-20" y="-230" width="390" height="844"/></svg>
+        <div class="pin" style="left:120px;top:72px"><div class="b">🧶</div></div>
+        <div class="pin" style="left:196px;top:96px"><div class="b">🍲</div></div>
+        <div class="pin cl" style="left:226px;top:68px"><div class="b">9</div></div>
+        <div class="pin" style="left:268px;top:118px"><div class="b">🪂</div></div>
+        <div class="cta glass">31 lugares cerca de ti<span>Abrir mapa</span></div>
+      </div>
+
+      <div class="sec"><h3>Dónde dormir</h3><a href="#">Ver 4</a></div>
+      <div class="rail">
+        <div class="card">
+          <div class="ph"><img src="../public/images/places/h-hosteria.jpg" alt=""><span class="heart glass"><svg width="19" height="19"><use href="#i-heart"/></svg></span><span class="badge glass">Desde $70 la noche</span></div>
+          <h4>Hostería Valle de Pachanlica</h4><p>Piscina temperada y desayuno</p>
+          <div class="r"><span class="star">★ 4,7</span><span class="mute">Ideal en familia</span></div>
+        </div>
+        <div class="card">
+          <div class="ph"><img src="../public/images/places/h-glamping.jpg" alt=""><span class="heart glass"><svg width="19" height="19"><use href="#i-heart"/></svg></span><span class="badge glass">Desde $90 la noche</span></div>
+          <h4>Glamping Nueve Estrellas</h4><p>Domos con vista al volcán</p>
+          <div class="r"><span class="star">★ 4,9</span><span class="mute">Para parejas</span></div>
+        </div>
+      </div>
+
+      <div class="sec"><h3>Cultura y artesanía</h3><a href="#">Ver 6</a></div>
+      <div class="rail">
+        <div class="card">
+          <div class="ph"><img src="../public/images/places/salasaca-plaza-arte.jpg" alt=""><span class="heart glass"><svg width="19" height="19"><use href="#i-heart"/></svg></span><span class="badge glass free">Gratis</span></div>
+          <h4>Plaza del Arte · Salasaca</h4><p>Tapices tejidos a mano</p>
+        </div>
+        <div class="card">
+          <div class="ph"><img src="../public/images/places/e-tejido.jpg" alt=""><span class="heart glass"><svg width="19" height="19"><use href="#i-heart"/></svg></span><span class="badge glass">$5 /pers</span></div>
+          <h4>Taller de tejido en telar</h4><p>Aprende con una familia Salasaka</p>
+        </div>
+      </div>
+    </div>
+    <nav class="dock">
+      <div class="ask"><img src="../public/brand/clapzy-icon.png" alt="Gaia"><span class="ph-t">¿Dónde como cuy cerca?</span><span class="send"><svg width="20" height="20"><use href="#i-send"/></svg></span></div>
+      <div class="tabs">
+        <div class="tab on"><svg width="25" height="25"><use href="#i-home"/></svg>Inicio</div>
+        <div class="tab"><svg width="25" height="25"><use href="#i-map"/></svg>Mapa</div>
+        <div class="tab"><svg width="25" height="25"><use href="#i-cal"/></svg>Agenda</div>
+        <div class="tab"><svg width="25" height="25"><use href="#i-heart"/></svg>Guardados</div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- 3. DETALLE -->
+<div class="frame-wrap">
+  <div class="frame-label">3 · Detalle de un lugar</div>
+  <div class="frame-note">Foto a sangre, datos clave en una sola franja y una sugerencia de Gaia que lleva directo a armar un plan con ese lugar.</div>
+  <div class="frame">
+    <div class="scroll" style="padding-bottom:130px">
+      <div class="d-photo">
+        <img src="../public/images/places/r-fogon.jpg" alt="Cuy asado a la leña">
+        <div class="bar"><span class="circle glass"><svg width="22" height="22"><use href="#i-back"/></svg></span><span style="display:flex;gap:8px"><span class="circle glass"><svg width="20" height="20"><use href="#i-share"/></svg></span><span class="circle glass" style="color:var(--coral)"><svg width="20" height="20"><use href="#i-heart-f"/></svg></span></span></div>
+        <span class="count glass">1 / 8</span>
+      </div>
+      <div class="d-body">
+        <div class="when">Restaurante · Pelileo Grande</div>
+        <h2 style="margin-top:6px">Fogón del Tungurahua</h2>
+        <div class="stats">
+          <div><b>★ 4,6</b><span>401 reseñas</span></div>
+          <div><b>$10</b><span>por persona</span></div>
+          <div><b class="open">Abierto</b><span>hasta 18:00</span></div>
+        </div>
+        <p class="d-text">Cocina serrana a la leña con terraza sobre el valle del Patate. Llega antes de la 13:00 los domingos: se llena.</p>
+        <div class="tags"><span>🍖 Cuy asado</span><span>🐖 Hornado</span><span>🥔 Tortillas de papa</span><span>👨‍👩‍👧 Familias</span></div>
+        <div class="who"><span class="faces"><i class="f4">S</i><i class="f1">J</i><i class="f2">C</i><i class="f3">M</i></span><span><b>126 personas</b> lo guardaron este mes</span></div>
+        <div class="gaia-tip">
+          <img src="../public/brand/clapzy-icon.png" alt="">
+          <div>
+            <b>Gaia</b>
+            <p>Queda a 15 min del Cerro Nitón. Si vuelas en la mañana, aquí almuerzas justo a tiempo. ¿Te armo el plan?</p>
+            <button>Armar plan con este lugar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-cta">
+      <button class="ghost"><svg width="20" height="20"><use href="#i-pin"/></svg>Cómo llegar</button>
+      <button class="pill-w">Reservar mesa</button>
+    </div>
+  </div>
+</div>
+
+<!-- 4. GAIA conversación -->
+<div class="frame-wrap">
+  <div class="frame-label">4 · Gaia: conversación</div>
+  <div class="frame-note">Se abre al tocar la barra de Gaia. Primero recomienda lugares y después ofrece el itinerario. El usuario decide si lo quiere.</div>
+  <div class="frame">
+    <div class="g-head">
+      <svg width="24" height="24"><use href="#i-back"/></svg>
+      <img src="../public/brand/clapzy-icon.png" alt="">
+      <div class="t"><b>Gaia</b><span><i></i>Tu guía en Pelileo</span></div>
+      <span class="new circle" style="background:var(--s1)"><svg width="20" height="20"><use href="#i-plus"/></svg></span>
+    </div>
+    <div class="chat">
+      <div class="me">Vamos en familia con dos niños de 7 y 10 años. Tenemos 2 días y $250 😊</div>
+      <div class="think">
+        <div><svg width="18" height="18"><use href="#i-check"/></svg>Revisé 31 lugares aptos para niños</div>
+        <div><svg width="18" height="18"><use href="#i-check"/></svg>Ajusté todo a $250 para 4 personas</div>
+        <div><svg width="18" height="18"><use href="#i-check"/></svg>Sábado 18° parcial, domingo 19° soleado</div>
+      </div>
+      <div class="ga"><img src="../public/brand/clapzy-icon.png" alt=""><div class="txt">¡Qué buen plan! 🙌 Pelileo tiene mucho para niños. Estas tres cosas les van a encantar:</div></div>
+      <div class="picks">
+        <div class="pick"><img src="../public/images/places/e-tejido.jpg" alt=""><div><b>Taller de tejido Salasaka</b><span>Se llevan su primera pieza</span><em>$5 por niño</em></div></div>
+        <div class="pick"><img src="../public/images/places/r-volquetero.jpg" alt=""><div><b>Volquetero de Doña Rosa</b><span>Porciones para compartir</span><em>$28 los cuatro</em></div></div>
+        <div class="pick"><img src="../public/images/places/h-hosteria.jpg" alt=""><div><b>Hostería con piscina</b><span>Desayuno incluido</span><em>$70 la noche</em></div></div>
+      </div>
+      <div class="ga"><img src="../public/brand/clapzy-icon.png" alt=""><div class="txt">¿Quieres que te arme el itinerario hora por hora para el sábado y el domingo?</div></div>
+      <div class="quick"><button class="main">Sí, ármalo</button><button>Solo el sábado</button><button>Más aventura</button></div>
+    </div>
+    <div class="g-input"><div class="ask"><img src="../public/brand/clapzy-icon.png" alt=""><span class="ph-t">Escríbele a Gaia…</span><span class="send"><svg width="20" height="20"><use href="#i-send"/></svg></span></div></div>
+  </div>
+</div>
+
+<!-- 5. GAIA itinerario -->
+<div class="frame-wrap">
+  <div class="frame-label">5 · Gaia: itinerario dentro del chat</div>
+  <div class="frame-note">El itinerario es una tarjeta de la conversación: presupuesto, mapa con la ruta-costura, días y paradas. "Ver completo" la abre a pantalla completa.</div>
+  <div class="frame">
+    <div class="g-head">
+      <svg width="24" height="24"><use href="#i-back"/></svg>
+      <img src="../public/brand/clapzy-icon.png" alt="">
+      <div class="t"><b>Gaia</b><span><i></i>Tu guía en Pelileo</span></div>
+      <span class="new circle" style="background:var(--s1)"><svg width="20" height="20"><use href="#i-plus"/></svg></span>
+    </div>
+    <div class="chat">
+      <div class="me">Sí, ármalo</div>
+      <div class="ga"><img src="../public/brand/clapzy-icon.png" alt=""><div class="txt">Listo 🎉 Casi no van a manejar y te sobran $4.</div></div>
+      <div class="itin">
+        <div class="hd">
+          <b>Fin de semana en familia</b>
+          <p>2 días · 2 adultos y 2 niños</p>
+          <div class="budget"><div class="l">$246 de $250<span>Te sobran $4</span></div><div class="track"><i></i></div></div>
+        </div>
+        <div class="mini">
+          <svg viewBox="0 0 334 150" width="100%" height="150" preserveAspectRatio="xMidYMid slice">
+            <use href="#m-terrain" x="-30" y="-230" width="390" height="844"/>
+            <path d="M 60 40 C 110 30, 130 62, 168 66 S 230 84, 236 108 S 200 132, 150 122" fill="none" stroke="#F4F4F6" stroke-width="2.5" stroke-dasharray="5 6" stroke-linecap="round"/>
+            <g font-family="Plus Jakarta Sans, PJS Local, sans-serif" font-size="11" font-weight="800" text-anchor="middle">
+              <circle cx="60" cy="40" r="11" fill="#45B575" stroke="#111117" stroke-width="2.5"/><text x="60" y="44" fill="#fff">1</text>
+              <circle cx="120" cy="40" r="11" fill="#45B575" stroke="#111117" stroke-width="2.5"/><text x="120" y="44" fill="#fff">2</text>
+              <circle cx="168" cy="66" r="11" fill="#45B575" stroke="#111117" stroke-width="2.5"/><text x="168" y="70" fill="#fff">3</text>
+              <circle cx="236" cy="108" r="11" fill="#45B575" stroke="#111117" stroke-width="2.5"/><text x="236" y="112" fill="#fff">4</text>
+              <circle cx="150" cy="122" r="11" fill="#45B575" stroke="#111117" stroke-width="2.5"/><text x="150" y="126" fill="#fff">5</text>
+            </g>
+          </svg>
+        </div>
+        <div class="days"><span class="day on">Sáb <span>18°</span></span><span class="day">Dom <span>19°</span></span></div>
+        <div class="steps">
+          <div class="step"><span class="tm">09:00</span><span class="th"><img src="../public/images/places/r-indigo.jpg" alt=""><span class="num">1</span></span><span class="w"><b>Desayuno en Café Índigo</b><span>Junto a El Tambo</span></span><span class="c">$18</span></div>
+          <div class="hop"><i></i>3 min a pie</div>
+          <div class="step"><span class="tm">10:00</span><span class="th"><img src="../public/images/events/ev-feria-jean.jpg" alt=""><span class="num">2</span></span><span class="w"><b>Ruta del Jean · El Tambo</b><span>Sábado de feria</span></span><span class="c g">Gratis</span></div>
+          <div class="hop"><i></i>8 min en auto</div>
+          <div class="step"><span class="tm">12:30</span><span class="th"><img src="../public/images/places/r-volquetero.jpg" alt=""><span class="num">3</span></span><span class="w"><b>Volquetero de Doña Rosa</b><span>Para compartir</span></span><span class="c">$28</span></div>
+          <div class="hop"><i></i>12 min en auto</div>
+          <div class="step"><span class="tm">14:30</span><span class="th"><img src="../public/images/places/e-tejido.jpg" alt=""><span class="num">4</span></span><span class="w"><b>Taller de tejido Salasaka</b><span>Desde 6 años</span></span><span class="c">$20</span></div>
+        </div>
+        <div class="ft"><button class="w">Ver completo</button><button><svg width="17" height="17"><use href="#i-heart"/></svg>Guardar</button><button><svg width="17" height="17"><use href="#i-share"/></svg>Enviar</button></div>
+      </div>
+      <div class="quick"><button>Más barato</button><button>Sin cuy</button><button>Algo de noche</button></div>
+    </div>
+    <div class="g-input"><div class="ask"><img src="../public/brand/clapzy-icon.png" alt=""><span class="ph-t">Pídele un cambio a Gaia…</span><span class="send"><svg width="20" height="20"><use href="#i-send"/></svg></span></div></div>
+  </div>
+</div>
+
+<!-- 6. MAPA -->
+<div class="frame-wrap">
+  <div class="frame-label">6 · Pestaña Mapa</div>
+  <div class="frame-note">El mapa ilustrado, en oscuro, vive en su propia pestaña. Los pines son íconos y el seleccionado muestra la foto del lugar. La tarjeta de abajo cambia al tocar otro pin.</div>
+  <div class="frame">
+    <div class="mapfull"><svg width="390" height="844"><use href="#m-terrain"/></svg></div>
+    <div class="map-top">
+      <div class="search glass"><svg width="20" height="20"><use href="#i-search"/></svg>Busca lugares en Pelileo<span class="filt"><svg width="19" height="19"><use href="#i-filter"/></svg></span></div>
+      <div class="cats"><div class="cat on"><span class="e">✨</span>Todo</div><div class="cat"><span class="e">🍲</span>Comer</div><div class="cat"><span class="e">🪂</span>Aventura</div><div class="cat"><span class="e">🛏️</span>Dormir</div></div>
+    </div>
+    <div class="pin" style="left:78px;top:270px"><div class="b">🧶</div></div>
+    <div class="pin" style="left:118px;top:300px"><div class="b">🛏️</div></div>
+    <div class="pin cl" style="left:232px;top:296px"><div class="b">9</div></div>
+    <div class="pin" style="left:262px;top:350px"><div class="b">🍺</div></div>
+    <div class="pin sel" style="left:196px;top:388px"><div class="b"><img src="../public/images/places/r-fogon.jpg" alt=""></div></div>
+    <div class="pin" style="left:150px;top:448px"><div class="b">🪂</div></div>
+    <div class="pin" style="left:96px;top:478px"><div class="b">🌲</div></div>
+    <div class="pin" style="left:232px;top:520px"><div class="b">🪑</div></div>
+    <div class="map-card">
+      <img src="../public/images/places/r-fogon.jpg" alt="">
+      <div class="w"><b>Fogón del Tungurahua</b><span>Cuy asado y hornado · 8 min</span>
+        <div class="r"><span style="color:#FFC75F">★ 4,6</span><span style="color:var(--free)">Abierto</span><span class="go">Ver</span></div>
+      </div>
+    </div>
+    <nav class="dock">
+      <div class="ask"><img src="../public/brand/clapzy-icon.png" alt="Gaia"><span class="ph-t">¿Qué hago cerca de aquí?</span><span class="send"><svg width="20" height="20"><use href="#i-send"/></svg></span></div>
+      <div class="tabs">
+        <div class="tab"><svg width="25" height="25"><use href="#i-home"/></svg>Inicio</div>
+        <div class="tab on"><svg width="25" height="25"><use href="#i-map"/></svg>Mapa</div>
+        <div class="tab"><svg width="25" height="25"><use href="#i-cal"/></svg>Agenda</div>
+        <div class="tab"><svg width="25" height="25"><use href="#i-heart"/></svg>Guardados</div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+</div>
+
+<section class="notes">
+  <div><h5>Engagement</h5><ul><li>Historias de "hoy en Pelileo" con anillo coral.</li><li>Prueba social en todas partes: "38 más volaron", "126 lo guardaron", "% de match contigo".</li><li>Planes de Gaia listos para tocar en el inicio.</li><li>La barra de Gaia cambia de sugerencia cada 4 s según la pantalla.</li><li>Botones con acción clara: "Quiero ir", "Voy", "Armar plan".</li></ul></div>
+  <div><h5>Gaia y el itinerario</h5><ul><li>Gaia vive en la barra inferior de toda la app; al tocarla se abre la conversación.</li><li>Primero recomienda lugares y después pregunta si quieres el itinerario.</li><li>El itinerario es una tarjeta del chat; "Ver completo" la abre a pantalla completa con mapa y la línea de tiempo entera.</li><li>Los ajustes se piden en el mismo chat.</li></ul></div>
+  <div><h5>Marca</h5><ul><li>Base Clapzy: fondo #0E0E13, Plus Jakarta Sans 800 en títulos, coral #F45C55, verde #4ADE80 para "Gratis".</li><li>Ciudad: "Vive Pelileo", franja tricolor junto a "by clapzy" y el verde andino en las paradas del itinerario.</li><li>Fotos grandes y a sangre: el contenido es lo protagónico.</li></ul></div>
+  <div><h5>Escritorio</h5><ul><li>Inicio en grilla: hero grande a la izquierda (7 columnas) y planes de Gaia más la agenda a la derecha (5 columnas). Los rieles se vuelven grillas de 4.</li><li>Gaia se abre como panel lateral derecho de 440 px sin salir de la página.</li><li>La barra de Gaia pasa a ser un campo centrado arriba ("Pregúntale a Gaia…") y la navegación va en la barra superior.</li></ul></div>
+</section>
+</body>
+</html>
