@@ -501,3 +501,111 @@ html.no-preload .preloader {
     display: none;
   }
 }
+
+/* Escena 5 · 7 días */
+.sd-seven {
+  font-size: clamp(120px, 27vw, 520px);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+  padding: 0 0.04em 0.06em;
+}
+.sd-stage {
+  position: relative;
+}
+.sd-intro {
+  min-height: 92svh;
+  padding: 0 var(--gutter);
+}
+.sd-counter,
+.sd-line {
+  display: none;
+}
+.sd-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12svh;
+  padding: 4svh var(--gutter) 6svh;
+}
+.sd-step {
+  display: grid;
+  gap: 28px;
+}
+.sd-vis {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3.5;
+}
+.sd-remate {
+  padding: 16svh var(--gutter) 20svh;
+}
+.sd-node.is-on {
+  color: var(--fg);
+}
+.sd-node.is-on > span:first-child {
+  background: var(--coral);
+  box-shadow: 0 0 0 4px rgba(244, 92, 85, 0.25);
+}
+@media (min-width: 768px) {
+  .sd-step {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 5vw;
+  }
+}
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .sd-stage {
+    height: 100svh;
+    overflow: hidden;
+  }
+  .sd-intro {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+  }
+  .sd-counter {
+    display: block;
+    position: absolute;
+    left: var(--gutter);
+    top: 12svh;
+  }
+  .sd-steps {
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0;
+  }
+  .sd-step {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+  .sd-text {
+    position: absolute;
+    left: var(--gutter);
+    top: 41svh;
+    width: min(40vw, 600px);
+  }
+  .sd-vis {
+    position: absolute;
+    right: var(--gutter);
+    top: 13svh;
+    width: min(46vw, 720px, 92svh);
+    height: min(66svh, 540px);
+    aspect-ratio: auto;
+  }
+  .sd-line {
+    display: block;
+    position: absolute;
+    left: var(--gutter);
+    right: var(--gutter);
+    bottom: 5svh;
+  }
+  .sd-remate {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 0 var(--gutter);
+  }
+}

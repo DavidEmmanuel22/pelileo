@@ -135,6 +135,45 @@ export const sieteDias = {
     { dia: "Después", nombre: "Informe", texto: "Te entregamos las métricas: negocios activados, alcance, visitas e interacciones.", visual: "informe", contador: 7 },
   ],
   remate: ["Tu equipo no suma tareas.", "Lo aprueba y lo comparte."],
+  // Datos ilustrativos de los visuales de cada día (ejemplo)
+  visual: {
+    diagnostico: {
+      titulo: "Radiografía de tu oferta",
+      sub: "Con presencia digital",
+      alerta: "7 de cada 10 negocios no aparecen en internet", // pendiente: dato de ejemplo
+      filas: [
+        { nombre: "Restaurantes", valor: 38 },
+        { nombre: "Hospedajes", valor: 54 },
+        { nombre: "Operadores", valor: 27 },
+        { nombre: "Artesanos", valor: 12 },
+        { nombre: "Atractivos", valor: 41 },
+      ],
+    },
+    mapeo: [
+      { nombre: "Restaurantes", n: 142 },
+      { nombre: "Hospedajes", n: 38 },
+      { nombre: "Operadores", n: 21 },
+      { nombre: "Artesanos", n: 67 },
+      { nombre: "Atractivos", n: 48 },
+    ],
+    perfiles: [
+      { nombre: "Fogón del Tungurahua", tipo: "Restaurante", horario: "Abierto · 12:00 – 21:00", foto: "fritada" },
+      { nombre: "Casa del Telar", tipo: "Hospedaje", horario: "Check-in desde 14:00", foto: "hosteria" },
+      { nombre: "Café Índigo", tipo: "Cafetería", horario: "Abierto · 08:00 – 18:00", foto: "cafe" },
+    ],
+    capacitacion: { campo: "Horario", valor: "Lun a Dom · 08:00 – 18:00", listo: "Perfil actualizado" },
+    contenido: ["Video de la ciudad", "Video demostrativo", "Fotos", "Piezas para redes"],
+    lanzamiento: "Tu ciudad está en vitrina",
+    informe: {
+      titulo: "Informe de campaña",
+      metricas: [
+        { etiqueta: "Negocios activados", valor: 316, pendiente: true },
+        { etiqueta: "Alcance", valor: 248000, pendiente: true },
+        { etiqueta: "Visitas", valor: 31400, pendiente: true },
+        { etiqueta: "Interacciones", valor: 12900, pendiente: true },
+      ],
+    },
+  },
 };
 
 export const gaia = {
