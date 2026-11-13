@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
+ 
 import { useEffect, useRef } from "react";
 import { gsap, MQ } from "@/lib/gsap";
 import { useGsap } from "@/lib/hooks";

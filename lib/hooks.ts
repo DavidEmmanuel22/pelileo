@@ -7,12 +7,14 @@ export const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
 /** Crea un gsap.context ligado a un contenedor y lo revierte al desmontar. */
 export function useGsap(scope: RefObject<HTMLElement | null>, fn: (ctx: gsap.Context) => void, deps: unknown[] = []) {
   const fnRef = useRef(fn);
-  fnRef.current = fn;
+  // la función más reciente se guarda en un efecto (no durante el render); corre antes del efecto principal
+  useIsoLayoutEffect(() => {
+    fnRef.current = fn;
+  });
   useIsoLayoutEffect(() => {
     if (!scope.current) return;
     const ctx = gsap.context((self) => fnRef.current(self), scope.current);
     return () => ctx.revert();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }
 

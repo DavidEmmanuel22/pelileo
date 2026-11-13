@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+ 
 type Props = {
   name: string;
   alt: string;
