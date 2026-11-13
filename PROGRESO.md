@@ -22,6 +22,6 @@
 - [x] 09 Contenido
 - [x] 10 Antes y después
 - [x] 11 Respaldo
-- [ ] 12 Todo lo que recibe
+- [x] 12 Todo lo que recibe
 - [ ] 13 Preguntas
 - [ ] 14 Cierre

@@ -12,6 +12,7 @@ import { Datos } from "@/components/scenes/S08Datos";
 import { Contenido } from "@/components/scenes/S09Contenido";
 import { AntesDespues } from "@/components/scenes/S10AntesDespues";
 import { Respaldo } from "@/components/scenes/S11Respaldo";
+import { Entregables } from "@/components/scenes/S12Entregables";
 import { respaldo } from "@/content/site";
 import { existsSync } from "node:fs";
 import path from "node:path";
@@ -40,7 +41,8 @@ export default function Page() {
         <Contenido />
         <AntesDespues />
         <Respaldo logosOk={logosOk} />
-        <section id="entregables" data-scene="12" className="relative h-[100vh] bg-cream" />
+        <Entregables />
+        <section id="preguntas" data-scene="13" className="relative h-[100vh] bg-cream" />
       </main>
       <Progress />
       <MobilePill />
