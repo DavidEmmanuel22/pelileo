@@ -69,6 +69,9 @@ html.lenis body {
   overflow: hidden;
 }
 
+html {
+  overflow-x: clip;
+}
 body {
   font-family: var(--font-sans);
   background: var(--night);
@@ -529,6 +532,7 @@ html.no-preload .preloader {
 }
 .sd-step {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
 }
 .sd-vis {

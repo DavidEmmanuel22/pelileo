@@ -6,6 +6,7 @@ import { Problema } from "@/components/scenes/S02Problema";
 import { Campana } from "@/components/scenes/S03Campana";
 import { Ganadores } from "@/components/scenes/S04Ganadores";
 import { SieteDias } from "@/components/scenes/S05SieteDias";
+import { Gaia } from "@/components/scenes/S06Gaia";
 
 export default function Page() {
   return (
@@ -22,7 +23,8 @@ export default function Page() {
         <Campana />
         <Ganadores />
         <SieteDias />
-        <section id="gaia" data-scene="6" className="relative h-[100vh] bg-night-2" />
+        <Gaia />
+        <section id="reservas" data-scene="7" className="relative h-[100vh] bg-night-2" />
       </main>
       <Progress />
       <MobilePill />

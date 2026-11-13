@@ -63,6 +63,17 @@ async function photo(slug, src) {
   console.log("foto", slug);
 }
 
+/* ── Fotos de lugares (Gaia y reservas) ── */
+const PLACES = ["r-indigo", "tambo-ruta-jean", "r-volquetero", "e-tejido", "salasaca-plaza-arte", "h-hosteria", "niton-mirador", "pelileo-grande", "r-fogon", "e-cosecha", "r-niton-cafe", "e-parapente", "teligote", "r-trucha", "las-caras", "b-costura", "parque-central", "h-telar"];
+async function places() {
+  mkdirSync(`${OUT}/places`, { recursive: true });
+  for (const id of PLACES) {
+    const out = `${OUT}/places/${id}.webp`;
+    if (!FORCE && existsSync(out)) continue;
+    await sharp(`${KIT}/images/places/${id}.jpg`).rotate().resize({ width: 640, height: 480, fit: "cover" }).webp({ quality: 74 }).toFile(out);
+  }
+}
+
 /* ── Videos ────────────────────────────────────────────── */
 const ff = (args) => execFileSync(ffmpeg, ["-hide_banner", "-loglevel", "error", "-y", ...args], { stdio: "inherit" });
 const enc = (crf) => ["-c:v", "libx264", "-preset", "veryfast", "-crf", String(crf), "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-an"];
@@ -123,6 +134,7 @@ async function brand() {
 
 for (const [slug, src] of Object.entries(PHOTOS)) await photo(slug, src);
 for (const [slug, src, ss, t] of VIDEOS) video(slug, src, ss, t);
+await places();
 await screens();
 await brand();
 console.log("Listo:", path.resolve(OUT));

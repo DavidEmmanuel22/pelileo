@@ -27,9 +27,9 @@ export function Preloader() {
   useEffect(() => {
     const root = ref.current!;
     if (document.documentElement.classList.contains("no-preload")) {
-      setGone(true);
+      const id = requestAnimationFrame(() => setGone(true));
       markReady();
-      return;
+      return () => cancelAnimationFrame(id);
     }
     try {
       sessionStorage.setItem(KEY, "1");

@@ -12,7 +12,7 @@ export function CountUp({ to, prefix = "", suffix = "", duration = 1.8, classNam
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     let started = false;
-    setVal(0);
+    raf = requestAnimationFrame(() => setVal(0));
     const io = new IntersectionObserver(
       ([e]) => {
         if (!e.isIntersecting || started) return;

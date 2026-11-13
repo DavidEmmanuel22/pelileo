@@ -216,12 +216,12 @@ function splitTwo(t: string): string[] {
 }
 
 function Words({ text, accentFrom }: { text: string; accentFrom: number }) {
-  let pos = 0;
+  const words = text.split(" ");
+  const starts = words.map((_, i) => words.slice(0, i).reduce((a, x) => a + x.length + 1, 0));
   return (
     <>
-      {text.split(" ").map((w, i) => {
-        const start = pos;
-        pos += w.length + 1;
+      {words.map((w, i) => {
+        const start = starts[i];
         return (
           <span key={i} className="inline-block overflow-hidden pb-[0.1em] -mb-[0.1em] align-bottom">
             <span data-word className={`inline-block ${start >= accentFrom ? "grad-text" : ""}`}>

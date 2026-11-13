@@ -10,13 +10,13 @@
 - [ ] 6. LISTO.md
 
 ## Escenas
-- [ ] 00 Precarga
-- [ ] 01 Hero
-- [ ] 02 Problema (Ecuador de noche + mapa)
-- [ ] 03 Campaña
-- [ ] 04 Tres ganadores
-- [ ] 05 7 días
-- [ ] 06 Gaia
+- [x] 00 Precarga
+- [x] 01 Hero
+- [x] 02 Problema (Ecuador de noche + mapa)
+- [x] 03 Campaña
+- [x] 04 Tres ganadores
+- [x] 05 7 días
+- [x] 06 Gaia
 - [ ] 07 Reservas
 - [ ] 08 Datos
 - [ ] 09 Contenido

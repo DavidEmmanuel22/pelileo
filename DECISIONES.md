@@ -7,3 +7,6 @@
 5. **Fuente**: Plus Jakarta Sans con `next/font/google` (400–800), autoalojada en el build.
 6. **Fotos**: `scripts/media.mjs` (sharp) genera AVIF y WebP a 1800 px (el material original mide 1800 px, así que no se agranda a 2400) y versiones de 900 px para celular. Videos con `ffmpeg-static` (H.264, `-preset veryfast`, sin audio, 1080p y 720p) y un póster por video.
 7. **Pantallas de la app**: capturadas de la demo a 390×844 @3x con `scripts/demo-shots.mjs` y servidas en WebP a 2x.
+
+## 8. Gaia: tres escenarios reales de la demo
+Los tres chips del brief se mapean a escenarios con lugares y precios de la demo de Pelileo (`content/gaia.ts`), para que lo que se ve en la landing coincida con lo que el municipio verá al abrir "Pruébala en la demo" (`/gaia`). El chat es simulado pero completo: escribe el mensaje, muestra los tres pasos de razonamiento, propone tres lugares con foto y arma el itinerario con presupuesto y mapa. No se fija con scroll: el usuario puede interactuar con calma.
