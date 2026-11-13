@@ -42,13 +42,21 @@ function Mapeo() {
   return (
     <div className={card}>
       <svg viewBox="0 0 100 75" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full">
-        <g stroke="rgba(255,236,214,.09)" strokeWidth=".35" fill="none">
-          {Array.from({ length: 12 }, (_, i) => (
-            <path key={`h${i}`} d={`M -5 ${6 + i * 6.5} Q 50 ${3 + i * 6.5 + (i % 3)} 105 ${8 + i * 6.5}`} />
+        {/* curvas de nivel, como un mapa topográfico */}
+        <g stroke="rgba(255,236,214,.1)" strokeWidth=".3" fill="none">
+          {Array.from({ length: 7 }, (_, i) => (
+            <ellipse key={`a${i}`} cx="30" cy="30" rx={4 + i * 5.5} ry={3 + i * 3.6} transform={`rotate(-12 30 30)`} />
           ))}
-          {Array.from({ length: 16 }, (_, i) => (
-            <path key={`v${i}`} d={`M ${-4 + i * 7} -5 Q ${i * 7 + 2} 40 ${-8 + i * 7} 80`} />
+          {Array.from({ length: 6 }, (_, i) => (
+            <ellipse key={`b${i}`} cx="78" cy="22" rx={3 + i * 4.6} ry={2.4 + i * 3} transform={`rotate(18 78 22)`} />
           ))}
+          {Array.from({ length: 4 }, (_, i) => (
+            <path key={`c${i}`} d={`M -5 ${60 + i * 4} C 25 ${54 + i * 4} 55 ${70 + i * 4} 105 ${58 + i * 4}`} />
+          ))}
+        </g>
+        <g stroke="rgba(255,236,214,.16)" strokeWidth=".6" fill="none" strokeLinecap="round">
+          <path d="M 10 -5 C 18 20 30 34 44 40 S 70 52 74 80" />
+          <path d="M -5 34 C 20 30 40 42 105 30" />
         </g>
         <path d="M -5 50 C 20 44 40 60 60 48 S 90 40 105 46" stroke="rgba(244,92,85,.25)" strokeWidth="2.2" fill="none" />
       </svg>
