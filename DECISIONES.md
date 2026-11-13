@@ -13,3 +13,6 @@ Los tres chips del brief se mapean a escenarios con lugares y precios de la demo
 
 ## 9. Reservas: pantallas construidas en HTML, no capturas
 Para que el "morph" sea real (la foto del riel vuela y se vuelve la portada del lugar; el botón Reservar viaja y se convierte en el check verde), las tres pantallas se construyen en HTML con unidades `em` que escalan con el ancho. Copian el lenguaje visual de la demo (crema, botones negros y coral, tarjetas redondeadas). En escritorio van en fila; en celular y tableta se apilan en el mismo marco y se funden una en otra. Fondo crema que entra como una hoja sobre Gaia, para cambiar de ritmo después de cuatro escenas oscuras.
+
+## 10. Datos: panel oscuro construido en vivo
+El panel del municipio no es la captura de la demo: se construye en HTML/SVG en tonos noche, con el mismo contenido (KPIs, tendencia de 12 semanas, mapa de calor y demanda insatisfecha). En escritorio se diseña a 1200×800 y se escala para caber entero en pantalla; sus piezas aparecen primero como un fantasma tenue y se encienden una por una con el scroll. Los titulares `t-h2` usan `text-wrap: balance` para no dejar una palabra sola.

@@ -626,6 +626,7 @@ html.no-preload .preloader {
   padding-top: clamp(76px, 10svh, 128px);
   overflow: hidden;
 }
+.t-h2 [data-line],
 .rs-title [data-line] {
   display: block;
   text-wrap: balance;
@@ -804,5 +805,149 @@ html.no-preload .preloader {
 @media (prefers-reduced-motion: reduce) and (min-width: 1024px) {
   .rs-screens {
     flex-direction: row;
+  }
+}
+
+/* ── Escena 8 · Datos ────────────────────────────────── */
+.dt-stage {
+  position: relative;
+  padding: 8svh var(--gutter) 14svh;
+}
+.dt-fit {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  perspective: 1600px;
+}
+.dt-dash {
+  display: grid;
+  gap: 14px;
+  transform-style: preserve-3d;
+}
+.dt-card {
+  position: relative;
+  border-radius: 22px;
+  padding: 18px;
+  background: rgba(33, 24, 18, 0.72);
+  box-shadow: 0 0 0 1px var(--line-d), 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.dt-kpis {
+  display: contents;
+}
+.dt-heat-map {
+  height: 220px;
+}
+.dt-frase {
+  display: flex;
+  align-items: flex-end;
+  min-height: 200px;
+  padding: 24px;
+  overflow: hidden;
+  background: var(--grad-coral);
+  box-shadow: 0 40px 80px -30px rgba(244, 92, 85, 0.6);
+}
+.dt-frase::before {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.06), 0 0 0 60px rgba(255, 255, 255, 0.04);
+}
+.dt-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dt-pulse 3.2s ease-in-out infinite;
+}
+@keyframes dt-pulse {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+@media (min-width: 560px) and (max-width: 1023px) {
+  .dt-dash {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dt-head,
+  .dt-trend,
+  .dt-heat,
+  .dt-demand,
+  .dt-frase {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 559px) {
+  .dt-dash {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .dt-kpi {
+    padding: 14px;
+  }
+  .dt-head,
+  .dt-trend,
+  .dt-heat,
+  .dt-demand,
+  .dt-frase {
+    grid-column: 1 / -1;
+  }
+}
+@media (min-width: 1024px) {
+  .dt-stage {
+    height: 100svh;
+    padding: 0;
+  }
+  .dt-fit {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1200px;
+    max-width: none;
+    margin: 0;
+    translate: -50% -50%;
+    scale: var(--k, 1);
+  }
+  .dt-dash {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .dt-head {
+    grid-column: 1 / -1;
+  }
+  .dt-kpi {
+    grid-column: span 3;
+    padding: 20px;
+  }
+  .dt-trend,
+  .dt-demand {
+    grid-column: span 7;
+    padding: 22px;
+  }
+  .dt-heat,
+  .dt-frase {
+    grid-column: span 5;
+    padding: 22px;
+  }
+  .dt-heat-map {
+    height: 236px;
+  }
+  .dt-frase {
+    padding: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 1024px) {
+  .dt-stage {
+    height: 920px;
   }
 }

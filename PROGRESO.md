@@ -18,7 +18,7 @@
 - [x] 05 7 días
 - [x] 06 Gaia
 - [x] 07 Reservas
-- [ ] 08 Datos
+- [x] 08 Datos
 - [ ] 09 Contenido
 - [ ] 10 Antes y después
 - [ ] 11 Respaldo
