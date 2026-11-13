@@ -4,6 +4,7 @@ import { Preloader } from "@/components/scenes/S00Preloader";
 import { Hero } from "@/components/scenes/S01Hero";
 import { Problema } from "@/components/scenes/S02Problema";
 import { Campana } from "@/components/scenes/S03Campana";
+import { Ganadores } from "@/components/scenes/S04Ganadores";
 
 export default function Page() {
   return (
@@ -18,7 +19,8 @@ export default function Page() {
         <Hero />
         <Problema />
         <Campana />
-        <section id="ganadores" data-scene="4" className="relative h-[100vh] bg-cream" />
+        <Ganadores />
+        <section id="siete-dias" data-scene="5" className="relative h-[100vh] bg-night" />
       </main>
       <Progress />
       <MobilePill />
