@@ -19,7 +19,7 @@
 - [x] 06 Gaia
 - [x] 07 Reservas
 - [x] 08 Datos
-- [ ] 09 Contenido
+- [x] 09 Contenido
 - [ ] 10 Antes y después
 - [ ] 11 Respaldo
 - [ ] 12 Todo lo que recibe

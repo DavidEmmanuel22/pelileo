@@ -9,6 +9,7 @@ import { SieteDias } from "@/components/scenes/S05SieteDias";
 import { Gaia } from "@/components/scenes/S06Gaia";
 import { Reservas } from "@/components/scenes/S07Reservas";
 import { Datos } from "@/components/scenes/S08Datos";
+import { Contenido } from "@/components/scenes/S09Contenido";
 
 export default function Page() {
   return (
@@ -28,7 +29,8 @@ export default function Page() {
         <Gaia />
         <Reservas />
         <Datos />
-        <section id="contenido" data-scene="9" className="relative h-[100vh] bg-night-2" />
+        <Contenido />
+        <section id="antes-despues" data-scene="10" className="relative h-[100vh] bg-night" />
       </main>
       <Progress />
       <MobilePill />
