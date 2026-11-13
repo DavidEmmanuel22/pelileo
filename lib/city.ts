@@ -246,9 +246,9 @@ export function drawCity(ctx: CanvasRenderingContext2D, w: number, h: number, dp
   }
   if (st.bloom > 0) {
     const g = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.75);
-    g.addColorStop(0, `rgba(255,190,110,${0.55 * st.bloom})`);
-    g.addColorStop(0.5, `rgba(255,140,90,${0.32 * st.bloom})`);
-    g.addColorStop(1, `rgba(244,92,85,${0.12 * st.bloom})`);
+    g.addColorStop(0, `rgba(255,214,150,${0.95 * st.bloom})`);
+    g.addColorStop(0.45, `rgba(255,170,95,${0.7 * st.bloom})`);
+    g.addColorStop(1, `rgba(244,92,85,${0.45 * st.bloom})`);
     ctx.globalAlpha = 1;
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);

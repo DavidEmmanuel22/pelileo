@@ -3,6 +3,7 @@ import { Refresher } from "@/components/ui/Refresher";
 import { Preloader } from "@/components/scenes/S00Preloader";
 import { Hero } from "@/components/scenes/S01Hero";
 import { Problema } from "@/components/scenes/S02Problema";
+import { Campana } from "@/components/scenes/S03Campana";
 
 export default function Page() {
   return (
@@ -16,7 +17,8 @@ export default function Page() {
       <main>
         <Hero />
         <Problema />
-        <section id="campana" data-scene="3" className="relative h-[100vh] bg-cream" />
+        <Campana />
+        <section id="ganadores" data-scene="4" className="relative h-[100vh] bg-cream" />
       </main>
       <Progress />
       <MobilePill />
