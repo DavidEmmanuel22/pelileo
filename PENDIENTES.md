@@ -17,17 +17,9 @@ Si una variable no existe, la página usa el valor de ejemplo (está en `content
 
 ## 2. Logos de aliados (`public/logos/`)
 
-Deja los archivos con estos nombres exactos. Mientras no existan, la página muestra una silueta elegante con el nombre en gris. Después de agregarlos, vuelve a compilar (`npm run build`) o vuelve a publicar en Vercel: la página los detecta sola.
+Ya están los 9 logos reales de la carpeta `Gremios` (en blanco, recortados y optimizados en `.webp`). La lista y el orden están en `content/site.ts → respaldo.logos`; cada uno lleva su proporción (`a` = ancho/alto) para que todos pesen lo mismo a la vista.
 
-| Archivo | Aliado |
-|---|---|
-| `public/logos/aei.svg` | AEI |
-| `public/logos/camara-1.svg` | Cámara de Comercio 1 |
-| `public/logos/camara-2.svg` | Cámara de Comercio 2 |
-| `public/logos/camara-3.svg` | Cámara de Comercio 3 |
-| `public/logos/aliado-5.svg` | Una más |
-
-Se aceptan SVG (ideal) o PNG con fondo transparente; si usas PNG, cambia la extensión en `content/site.ts → respaldo.logos`. Los logos se pintan en blanco para que se lean sobre el fondo oscuro. Para cambiar los nombres que se ven en las siluetas, edita `respaldo.logos[].nombre`.
+Para agregar otro: deja el archivo en `public/logos/`, súmalo a `respaldo.logos` con su nombre y proporción, y actualiza la cifra de gremios (`respaldo.cifras[2]`). Si un archivo falta, la página muestra una silueta con el nombre.
 
 ## 3. Cifras de ejemplo (`content/site.ts`)
 
@@ -36,8 +28,6 @@ Todas tienen `pendiente: true` o un comentario `// pendiente`. Se ven como cifra
 | Dónde se ve | Ruta en `content/site.ts` | Valor de ejemplo |
 |---|---|---|
 | Escena 2 · contadores de la ciudad | `problema.contadores` | 320 negocios · 48 atractivos · 26 fiestas y eventos al año |
-| Escena 11 · eventos publicados | `respaldo.cifras[1]` | +1.200 |
-| Escena 11 · gremios y cámaras aliadas | `respaldo.cifras[2]` | 12 |
 | Escena 5 y 12 · alerta del diagnóstico | `sieteDias.visual.diagnostico.alerta` | "7 de cada 10 negocios no aparecen en internet" |
 | Escena 5 y 12 · porcentajes del diagnóstico | `sieteDias.visual.diagnostico.filas` | 38 %, 54 %, 27 %, 12 %, 41 % |
 | Escena 5 y 12 · conteo del mapeo | `sieteDias.visual.mapeo` | 142 restaurantes, 38 hospedajes… |
@@ -45,7 +35,7 @@ Todas tienen `pendiente: true` o un comentario `// pendiente`. Se ven como cifra
 | Escena 8 · panel del municipio | `datos.kpis`, `datos.tendencia`, `datos.demanda` | 14.390 visitantes, etc. |
 | Escena 9 · publicación | `contenido.post` | 2.847 me gusta · 186 comentarios |
 
-La cifra "+5.000 establecimientos en Clapzy" viene del brief y no está marcada como pendiente.
+Las cifras de la escena 11 (+5.000 eventos y experiencias, +1.200 establecimientos en Clapzy y 9 gremios y aliados) son las reales que diste y ya no están marcadas como pendientes.
 
 ## 4. Opcional
 

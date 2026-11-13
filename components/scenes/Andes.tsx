@@ -84,14 +84,16 @@ function snowBand(x0: number, x1: number, line: number, seed: number) {
 }
 
 /* ── Luces de pueblos ──────────────────────────────────────────── */
-type Light = { x: number; y: number; r: number; tw: boolean };
+type Light = { x: number; y: number; r: number };
 
 function town(cx: number, spread: number, n: number, ridgeFn: (x: number) => number, depth: number, seed: number): Light[] {
   const r = rng(seed);
   return Array.from({ length: n }, () => {
     const x = cx + (r() + r() + r() - 1.5) * spread;
     const y0 = ridgeFn(x);
-    return { x: r1(x), y: r1(y0 + 6 + r() * depth), r: r1(2.2 + r() * 2.6), tw: r() < 0.22 };
+    const l = { x: r1(x), y: r1(y0 + 6 + r() * depth), r: r1(2.2 + r() * 2.6) };
+    r(); // conserva la secuencia del generador (misma disposición de luces)
+    return l;
   });
 }
 
@@ -104,7 +106,7 @@ function road(points: [number, number][], n: number, seed: number): Light[] {
     const lt = t * (points.length - 1) - seg;
     const [x1, y1] = points[seg];
     const [x2, y2] = points[seg + 1];
-    out.push({ x: r1(x1 + (x2 - x1) * lt + (r() - 0.5) * 4), y: r1(y1 + (y2 - y1) * lt), r: 1.8 + r() * 1.2, tw: false });
+    out.push({ x: r1(x1 + (x2 - x1) * lt + (r() - 0.5) * 4), y: r1(y1 + (y2 - y1) * lt), r: r1(1.8 + r() * 1.2) });
   }
   return out;
 }
@@ -121,21 +123,31 @@ export const TOWNS = {
   valley: [town(800, 120, 64, valleyY, 90, 21), road([[800, 860], [900, 800], [1000, 770], [1120, 742], [1240, 720]], 16, 22), road([[790, 870], [640, 820], [520, 790], [380, 760]], 14, 23)],
 };
 
-function Lights({ list, id, className = "" }: { list: Light[]; id: string; className?: string }) {
+/** Luces fijas (sin animación propia): el SVG se pinta una vez y luego solo se compone. */
+function Lights({ list, id }: { list: Light[]; id: string }) {
   return (
-    <g data-town className={className}>
+    <g>
       {list.map((l, i) => (
-        <circle
-          key={i}
-          cx={l.x}
-          cy={l.y}
-          r={l.r * 2.4}
-          fill={`url(#${id})`}
-          className={l.tw ? "andes-tw" : undefined}
-          style={l.tw ? { animationDelay: `${(i * 0.37) % 3}s` } : undefined}
-        />
+        <circle key={i} cx={l.x} cy={l.y} r={l.r * 2.4} fill={`url(#${id})`} />
       ))}
     </g>
+  );
+}
+
+/**
+ * Capa de pueblos encendidos. Va en su propio <svg> para que la opacidad (que anima el scroll)
+ * se aplique al elemento entero y la resuelva la GPU, sin volver a pintar el paisaje.
+ */
+function TownLayer({ towns, id }: { towns: Light[][]; id: string }) {
+  return (
+    <svg data-town viewBox={VB} preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full [will-change:opacity]">
+      <defs>
+        <LightGrad id={id} />
+      </defs>
+      {towns.map((t, i) => (
+        <Lights key={i} list={t} id={id} />
+      ))}
+    </svg>
   );
 }
 
@@ -143,6 +155,34 @@ const STARS = (() => {
   const r = rng(77);
   return Array.from({ length: 140 }, () => ({ x: r1(r() * 1600), y: r1(r() * 560), r: r1(0.6 + r() * r() * 2.2), tw: r() < 0.3, d: r1(r() * 4) }));
 })();
+/* Las estrellas que titilan van en tres grupos desfasados; cada grupo anima su opacidad
+   como elemento completo (compositor), no estrella por estrella. */
+const STARS_FIXED = STARS.filter((s) => !s.tw);
+const STARS_TW = [0, 1, 2].map((k) => STARS.filter((s, i) => s.tw && i % 3 === k));
+
+/* ── Degradados ────────────────────────────────────────────────────
+   Cada <svg> declara sus propios degradados y recortes: nada se referencia entre SVG distintos,
+   así Chrome no pierde la referencia (y no parpadea) cuando vuelve a pintar una capa escalada. */
+function LightGrad({ id }: { id: string }) {
+  return (
+    <radialGradient id={id}>
+      <stop offset="0" stopColor="#fff3dc" />
+      <stop offset="0.22" stopColor="#ffc871" stopOpacity="0.95" />
+      <stop offset="0.5" stopColor="#ffb547" stopOpacity="0.35" />
+      <stop offset="1" stopColor="#ffb547" stopOpacity="0" />
+    </radialGradient>
+  );
+}
+function SnowGrad({ id }: { id: string }) {
+  return (
+    <linearGradient id={id} gradientUnits="userSpaceOnUse" x1="0" y1="350" x2="0" y2="640">
+      <stop offset="0" stopColor="#f2e6d6" stopOpacity="0.95" />
+      <stop offset="0.45" stopColor="#d9c5b3" stopOpacity="0.78" />
+      <stop offset="0.8" stopColor="#b9a291" stopOpacity="0.25" />
+      <stop offset="1" stopColor="#b9a291" stopOpacity="0" />
+    </linearGradient>
+  );
+}
 
 /* ── Condor ────────────────────────────────────────────────────── */
 export function Condor({ className = "" }: { className?: string }) {
@@ -179,63 +219,51 @@ export function Andes({ full = false }: { full?: boolean }) {
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      <svg width="0" height="0" className="absolute">
-        <defs>
-          <radialGradient id={g("light")}>
-            <stop offset="0" stopColor="#fff3dc" />
-            <stop offset="0.22" stopColor="#ffc871" stopOpacity="0.95" />
-            <stop offset="0.5" stopColor="#ffb547" stopOpacity="0.35" />
-            <stop offset="1" stopColor="#ffb547" stopOpacity="0" />
-          </radialGradient>
-          <radialGradient id={g("moon")}>
-            <stop offset="0" stopColor="#fff4e2" stopOpacity="0.55" />
-            <stop offset="0.35" stopColor="#f3c9a0" stopOpacity="0.14" />
-            <stop offset="1" stopColor="#f3c9a0" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id={g("far")} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0.25" stopColor="#35252e" />
-            <stop offset="0.7" stopColor="#1f161b" />
-          </linearGradient>
-          <linearGradient id={g("snow")} gradientUnits="userSpaceOnUse" x1="0" y1="350" x2="0" y2="640">
-            <stop offset="0" stopColor="#f2e6d6" stopOpacity="0.95" />
-            <stop offset="0.45" stopColor="#d9c5b3" stopOpacity="0.78" />
-            <stop offset="0.8" stopColor="#b9a291" stopOpacity="0.25" />
-            <stop offset="1" stopColor="#b9a291" stopOpacity="0" />
-          </linearGradient>
-          <clipPath id={g("c2")}>
-            <path d={V2} />
-          </clipPath>
-          <clipPath id={g("c3")}>
-            <path d={V3} />
-          </clipPath>
-          <clipPath id={g("c1")}>
-            <path d={V1} />
-          </clipPath>
-          <clipPath id={g("c4")}>
-            <path d={V4} />
-          </clipPath>
-          <clipPath id={g("c5")}>
-            <path d={V5} />
-          </clipPath>
-        </defs>
-      </svg>
-
       {/* Cielo */}
       <div data-layer="sky" className={`${layer} bg-[linear-gradient(180deg,#07050a_0%,#120b12_38%,#2a1618_66%,#4a2420_82%,#1a0f0e_100%)]`}>
         <svg viewBox={VB} preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full">
-          <g fill="#f7ecdf">
-            {STARS.map((s, i) => (
-              <circle key={i} cx={s.x} cy={s.y} r={s.r} className={s.tw ? "andes-star" : undefined} style={s.tw ? { animationDelay: `${s.d}s` } : { opacity: 0.55 }} />
+          <defs>
+            <radialGradient id={g("moon")}>
+              <stop offset="0" stopColor="#fff4e2" stopOpacity="0.55" />
+              <stop offset="0.35" stopColor="#f3c9a0" stopOpacity="0.14" />
+              <stop offset="1" stopColor="#f3c9a0" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <g fill="#f7ecdf" opacity="0.55">
+            {STARS_FIXED.map((s, i) => (
+              <circle key={i} cx={s.x} cy={s.y} r={s.r} />
             ))}
           </g>
           <circle cx="1010" cy="170" r="190" fill={`url(#${g("moon")})`} />
           <circle cx="1010" cy="170" r="30" fill="#f6e8d4" />
           <circle cx="1021" cy="163" r="27" fill="#2a1a1c" opacity="0.12" />
         </svg>
+        {STARS_TW.map((list, k) => (
+          <svg key={k} viewBox={VB} preserveAspectRatio="xMidYMax slice" className={`andes-stars andes-stars-${k} absolute inset-0 h-full w-full`}>
+            <g fill="#f7ecdf">
+              {list.map((s, i) => (
+                <circle key={i} cx={s.x} cy={s.y} r={s.r} />
+              ))}
+            </g>
+          </svg>
+        ))}
       </div>
 
       {/* Volcanes lejanos, nevados */}
-      <svg data-layer="far" viewBox={VB} preserveAspectRatio="xMidYMax slice" className={layer}>
+      <div data-layer="far" className={layer}>
+      <svg viewBox={VB} preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full">
+        <defs>
+          <linearGradient id={g("far")} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0.25" stopColor="#35252e" />
+            <stop offset="0.7" stopColor="#1f161b" />
+          </linearGradient>
+          <SnowGrad id={g("snow")} />
+          {[V1, V2, V3, V4].map((d, i) => (
+            <clipPath key={i} id={g(`c${i + 1}`)}>
+              <path d={d} />
+            </clipPath>
+          ))}
+        </defs>
         <g fill={`url(#${g("far")})`}>
           <path d={V1} />
           <path d={V2} />
@@ -256,11 +284,19 @@ export function Andes({ full = false }: { full?: boolean }) {
           <path d="M 1500 468 L 1530 468 C 1600 560 1700 680 1800 800 L 1510 800 Z" clipPath={`url(#${g("c4")})`} />
         </g>
       </svg>
+      </div>
 
       <div data-layer="mist1" className={`${layer} andes-mist andes-mist-1`} />
 
       {/* Volcanes medios: el que humea y la caldera dentada */}
-      <svg data-layer="mid" viewBox={VB} preserveAspectRatio="xMidYMax slice" className={layer}>
+      <div data-layer="mid" className={layer}>
+      <svg viewBox={VB} preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full">
+        <defs>
+          <SnowGrad id={g("snow2")} />
+          <clipPath id={g("c5")}>
+            <path d={V5} />
+          </clipPath>
+        </defs>
         <g className="andes-plume">
           <path d="M 864 518 C 846 482 892 464 878 424 C 868 394 902 372 894 334 C 888 308 920 286 916 254" fill="none" stroke="#e9d9cb" strokeOpacity="0.06" strokeWidth="40" strokeLinecap="round" />
           <path d="M 864 518 C 850 490 886 474 876 442" fill="none" stroke="#e9d9cb" strokeOpacity="0.09" strokeWidth="16" strokeLinecap="round" />
@@ -268,33 +304,33 @@ export function Andes({ full = false }: { full?: boolean }) {
         <path d={ridge(MID_BASE + 110, 36, 4.2)} fill="#22171c" />
         <path d={V6} fill="#22171c" />
         <path d={V5} fill="#251a1f" />
-        <path d={snowBand(600, 1100, 560, 41)} fill={`url(#${g("snow")})`} opacity="0.55" clipPath={`url(#${g("c5")})`} />
+        <path d={snowBand(600, 1100, 560, 41)} fill={`url(#${g("snow2")})`} opacity="0.55" clipPath={`url(#${g("c5")})`} />
         <path d={`M 870 520 L 886 520 C 960 620 1060 740 1170 840 L 900 840 Z`} fill="#0d0907" opacity="0.32" clipPath={`url(#${g("c5")})`} />
-        {TOWNS.mid.map((t, i) => (
-          <Lights key={i} list={t} id={g("light")} className="andes-dist" />
-        ))}
       </svg>
+      <TownLayer towns={TOWNS.mid} id={g("lm")} />
+      </div>
 
       <div data-layer="mist2" className={`${layer} andes-mist andes-mist-2`} />
 
       {/* Lomas cercanas con pueblos */}
-      <svg data-layer="near" viewBox={VB} preserveAspectRatio="xMidYMax slice" className={layer}>
-        <path d={ridge(NEAR.base, NEAR.amp, NEAR.seed)} fill="#181115" />
-        {TOWNS.near.map((t, i) => (
-          <Lights key={i} list={t} id={g("light")} />
-        ))}
-      </svg>
+      <div data-layer="near" className={layer}>
+        <svg viewBox={VB} preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full">
+          <path d={ridge(NEAR.base, NEAR.amp, NEAR.seed)} fill="#181115" />
+        </svg>
+        <TownLayer towns={TOWNS.near} id={g("ln")} />
+      </div>
 
       {/* Valle con la ciudad principal */}
-      <svg data-layer="valley" viewBox={VB} preserveAspectRatio="xMidYMax slice" className={layer}>
-        <path d={ridge(VALLEY.base, VALLEY.amp, VALLEY.seed)} fill="#110c0d" />
-        {TOWNS.valley.map((t, i) => (
-          <Lights key={i} list={t} id={g("light")} className={i === 0 ? "andes-main" : undefined} />
-        ))}
-      </svg>
+      <div data-layer="valley" className={layer}>
+        <svg viewBox={VB} preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full">
+          <path d={ridge(VALLEY.base, VALLEY.amp, VALLEY.seed)} fill="#110c0d" />
+        </svg>
+        <TownLayer towns={TOWNS.valley} id={g("lv")} />
+      </div>
 
       {/* Primer plano: laderas que enmarcan el valle */}
-      <svg data-layer="front" viewBox={VB} preserveAspectRatio="xMidYMax slice" className={layer}>
+      <div data-layer="front" className={layer}>
+      <svg viewBox={VB} preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full">
         <path d="M -200 1100 L -200 760 C 0 770 200 820 380 900 C 470 940 540 980 600 1100 Z" fill="#080605" />
         <path d="M 1800 1100 L 1800 720 C 1600 740 1380 800 1220 880 C 1120 930 1060 990 1020 1100 Z" fill="#0a0706" />
         <g fill="#0a0706">
@@ -305,6 +341,7 @@ export function Andes({ full = false }: { full?: boolean }) {
           })}
         </g>
       </svg>
+      </div>
 
       {full ? <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_85%,rgba(255,170,90,.28),transparent_70%)]" /> : null}
     </div>

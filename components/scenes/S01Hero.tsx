@@ -78,6 +78,7 @@ export function Hero() {
       gsap.set(q("[data-in]"), { autoAlpha: 0, y: 24 });
       gsap.set(q("[data-scr]"), { autoAlpha: 0, y: 120, rotateZ: 0 });
       gsap.set(q("[data-bg]"), { scale: 1.18 });
+      document.documentElement.classList.add("hero-set"); // desde aquí manda GSAP (ver globals.css)
       const intro = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
       intro
         .to(q("[data-bg]"), { scale: 1.04, duration: 2.4, ease: "power2.out" }, 0)

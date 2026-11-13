@@ -26,3 +26,29 @@ El paisaje vuelve con todos los pueblos prendidos, un brillo cálido sobre el va
 ## 13. Pulido
 - Vuelta 1: recorrido completo de 360 a 1920 px y con movimiento reducido. El visual de Mapeo pasó de cuadrícula a curvas de nivel; se corrigieron desbordes a 360 px (Gaia, capacitación) y el margen de los logos.
 - Vuelta 2: los enlaces internos (#agendar y los de la navegación) bajan con desplazamiento suave y pasan el foco al destino. Se generó la imagen para compartir (`public/og.jpg`) y se agregó `NEXT_PUBLIC_SITE_URL`.
+
+## 14. Ajustes después de la primera revisión (13 nov 2026)
+- **Parpadeos del paisaje (escenas 2 y 14).** En Chrome con GPU había varias causas que se suman:
+  - Las luces de los pueblos y las estrellas titilaban una por una dentro de capas que se escalan hasta 5×, así que la capa entera se volvía a pintar en cada cuadro.
+  - La opacidad de los pueblos se animaba sobre grupos internos del SVG.
+  - Los degradados y recortes se referenciaban desde otro SVG.
+  - El contador de escena usaba `mix-blend-mode: difference` sobre todo el paisaje.
+  - El grano medía cuatro veces la pantalla.
+  - Unas 15 animaciones CSS infinitas de otras escenas (pulsos, ondas, cursores) seguían corriendo fuera de pantalla.
+
+  **Cómo quedó:**
+  - Cada profundidad es un `div` que se mueve entero, y sus luces van en un SVG propio cuya opacidad la resuelve la GPU.
+  - Las estrellas titilan en tres grupos.
+  - Cada SVG declara sus propios degradados.
+  - El contador de escena es una píldora con fondo propio, sin mezcla de color.
+  - El grano mide 116 % de la pantalla.
+  - Las escenas fuera de pantalla pausan sus animaciones CSS (`[data-off]`).
+  - Se quitó `anticipatePin`, que con Lenis daba un saltito al fijar la escena.
+  - El cóndor de la escena 2 vuela más abajo, sin cruzar el texto.
+
+  **Resultado:** durante el paisaje, el pintado bajó de 994 a 415 operaciones y los recálculos de layout de 684 a 108.
+- **Destello del hero al recargar.** Sin precarga, el titular se veía un instante, desaparecía y volvía a entrar. Ahora espera oculto por CSS hasta que GSAP toma el control.
+- **Respaldo con los gremios reales.**
+  - La cinta muestra los 9 logos de la carpeta `Gremios`. Cada uno se escala por su proporción (1/√(ancho/alto)), así que pesan lo mismo a la vista. La cinta va en todos los anchos, porque nueve logos no caben bien en una grilla de cinco, y se detiene al pasar el mouse.
+  - Cifras reales: +5.000 eventos y experiencias, +1.200 establecimientos en Clapzy y 9 gremios y aliados (la cantidad de logos).
+  - La etiqueta dice "gremios y aliados" y no "cámaras", porque entre ellos hay una alcaldía y una empresa.

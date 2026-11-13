@@ -128,7 +128,7 @@ export function Datos() {
       const tls = pieces.map(buildPiece);
       const tl = gsap.timeline({
         defaults: { ease: "none" },
-        scrollTrigger: { trigger: q("[data-stage]")[0], start: "top top", end: "+=260%", scrub: 0.6, pin: true, anticipatePin: 1 },
+        scrollTrigger: { trigger: q("[data-stage]")[0], start: "top top", end: "+=260%", scrub: 0.6, pin: true },
       });
       // el panel llega inclinado mientras la pantalla se acerca, y se arma ya fijado
       gsap.fromTo(q("[data-dash]"), { rotateX: 28, y: 160, scale: 0.84 }, { rotateX: 0, y: 0, scale: 1, ease: "power2.out", scrollTrigger: { trigger: q("[data-stage]")[0], start: "top bottom", end: "top top", scrub: 0.6 } });

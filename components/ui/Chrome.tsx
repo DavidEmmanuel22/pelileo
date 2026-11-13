@@ -155,9 +155,17 @@ export function Progress() {
         },
       }),
     );
+    // Las animaciones CSS infinitas (pulsos, ondas, cursores) se pausan fuera de pantalla:
+    // así no recalculan estilo ni pintan en cada cuadro mientras otra escena se anima.
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.toggleAttribute("data-off", !e.isIntersecting)),
+      { rootMargin: "20% 0px" },
+    );
+    document.querySelectorAll("[data-scene]").forEach((el) => io.observe(el));
     return () => {
       st.kill();
       triggers.forEach((t) => t.kill());
+      io.disconnect();
     };
   }, []);
   const total = escenas.length;
@@ -167,7 +175,7 @@ export function Progress() {
         <div ref={bar} className="h-full origin-left scale-x-0 bg-[image:var(--grad-coral)]" />
       </div>
       <div
-        className={`pointer-events-none fixed bottom-6 right-[var(--gutter)] z-40 hidden items-center gap-3 text-[12px] font-bold tracking-[0.14em] text-fg mix-blend-difference transition-opacity duration-500 md:flex ${scene === 1 ? "opacity-0" : "opacity-100"}`}
+        className={`pointer-events-none fixed bottom-5 right-[var(--gutter)] z-40 hidden items-center gap-3 rounded-full bg-[rgba(13,9,7,.62)] px-4 py-2 text-[12px] font-bold tracking-[0.14em] text-fg shadow-[inset_0_0_0_1px_rgba(255,236,214,.08)] transition-opacity duration-500 md:flex ${scene === 1 ? "opacity-0" : "opacity-100"}`}
         aria-hidden="true"
       >
         <span className="uppercase opacity-60">{escenas[scene - 1]}</span>

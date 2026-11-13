@@ -237,17 +237,22 @@ export const antesDespues = {
 
 export const respaldo = {
   titular: "Trabajamos con quienes mueven la economía local.",
+  // Logos reales en public/logos (blancos, fondo transparente). `a` = ancho/alto, para igualar su peso visual.
   logos: [
-    { nombre: "AEI", archivo: "aei.svg" },
-    { nombre: "Cámara de Comercio 1", archivo: "camara-1.svg" },
-    { nombre: "Cámara de Comercio 2", archivo: "camara-2.svg" },
-    { nombre: "Cámara de Comercio 3", archivo: "camara-3.svg" },
-    { nombre: "Aliado 5", archivo: "aliado-5.svg" },
+    { nombre: "Alcaldía Metropolitana de Quito", archivo: "quito-alcaldia.webp", a: 2.69 },
+    { nombre: "Quito Turismo", archivo: "quito-turismo.webp", a: 1.28 },
+    { nombre: "AEI · Emprende, Reinventa, Innova", archivo: "aei.webp", a: 2.21 },
+    { nombre: "Buró Centro Histórico", archivo: "buro-centro-historico.webp", a: 0.69 },
+    { nombre: "COREC · Confederación de Restaurantes del Ecuador", archivo: "corec.webp", a: 3.29 },
+    { nombre: "AGREPI", archivo: "agrepi.webp", a: 5.2 },
+    { nombre: "Asocerv", archivo: "asocerv.webp", a: 1.03 },
+    { nombre: "Cervecería Nacional", archivo: "cerveceria-nacional.webp", a: 1.13 },
+    { nombre: "Misión Emprende 593", archivo: "mision-emprende.webp", a: 2.71 },
   ],
   cifras: [
-    { valor: 5000, prefijo: "+", etiqueta: "establecimientos en Clapzy" },
-    { valor: 1200, prefijo: "+", etiqueta: "eventos publicados", pendiente: true },
-    { valor: 12, etiqueta: "gremios y cámaras aliadas", pendiente: true },
+    { valor: 5000, prefijo: "+", etiqueta: "eventos y experiencias" },
+    { valor: 1200, prefijo: "+", etiqueta: "establecimientos en Clapzy" },
+    { valor: 9, etiqueta: "gremios y aliados" },
   ] satisfies Cifra[],
 };
 

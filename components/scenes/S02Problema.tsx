@@ -32,7 +32,10 @@ export function Problema() {
     const counters = q("[data-count]") as HTMLElement[];
     const setCounters = () => {
       const p = city.current.lit;
-      counters.forEach((el, i) => (el.textContent = miles(problema.contadores[i].valor * Math.min(1, p * 1.04))));
+      counters.forEach((el, i) => {
+        const t = miles(problema.contadores[i].valor * Math.min(1, p * 1.04));
+        if (el.textContent !== t) el.textContent = t; // solo toca el DOM si el número cambió
+      });
     };
 
     mm.add({ motion: MQ.motion, reduce: MQ.reduce, mobile: MQ.mobile }, (ctx) => {
@@ -75,7 +78,6 @@ export function Problema() {
           end: mobile ? "+=190%" : "+=360%",
           scrub: mobile ? 0.4 : 0.8,
           pin: true,
-          anticipatePin: 1,
           invalidateOnRefresh: true,
         },
         onUpdate: setCounters,
@@ -129,7 +131,7 @@ export function Problema() {
       <div data-stage className="problema-stage relative h-[100svh] overflow-hidden">
         <div data-andes className="absolute inset-0">
           <Andes />
-          <div data-condor className="absolute left-0 top-[30%] w-[84px] md:top-[33%] md:w-[130px]">
+          <div data-condor className="absolute left-0 top-[46%] w-[84px] md:top-[50%] md:w-[130px]">
             <Condor className="w-full" />
           </div>
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-night/70 to-transparent" />

@@ -239,7 +239,7 @@ export function Reservas() {
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
-        scrollTrigger: { trigger: stage, start: "top top", end: row ? "+=320%" : "+=300%", scrub: 0.6, pin: true, anticipatePin: 1, invalidateOnRefresh: true },
+        scrollTrigger: { trigger: stage, start: "top top", end: row ? "+=320%" : "+=300%", scrub: 0.6, pin: true, invalidateOnRefresh: true },
       });
 
       const shift = () => -(cardF.parentElement!.offsetLeft - card0.parentElement!.offsetLeft);

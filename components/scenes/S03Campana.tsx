@@ -72,7 +72,7 @@ export function Campana() {
       gsap
         .timeline({
           defaults: { ease: "none" },
-          scrollTrigger: { trigger: q("[data-stage]")[0], start: "top top", end: mobile ? "+=140%" : "+=220%", scrub: 0.6, pin: true, anticipatePin: 1 },
+          scrollTrigger: { trigger: q("[data-stage]")[0], start: "top top", end: mobile ? "+=140%" : "+=220%", scrub: 0.6, pin: true },
         })
         .to(st, { extra: 1, duration: 3, ease: "power1.in" }, 0)
         .to(st, { bloom: 1, duration: 2.2, ease: "power2.in" }, 1.2)

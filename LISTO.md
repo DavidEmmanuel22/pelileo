@@ -54,7 +54,7 @@ La demo (`vive-pelileo-kit`) también tiene que estar publicada, y su URL va en 
 | 8 | Datos | El panel del municipio se arma pieza por pieza: KPIs, tendencia, mapa de calor, demanda que se escribe sola |
 | 9 | Contenido | Muro de reels en columnas que van en sentidos opuestos; los videos se reproducen al pasar el mouse; publicación de @TuMunicipio |
 | 10 | Así se nota | Comparador arrastrable: collage caótico contra Vive limpio. Se mueve solo una vez |
-| 11 | Respaldo | Siluetas de aliados, cifras que cuentan y la foto del comedor de fondo |
+| 11 | Respaldo | Cinta con los 9 logos de gremios y aliados, cifras que cuentan y la foto del comedor de fondo |
 | 12 | Entregables | Bento crema con un visual distinto por entregable y el sello "Operado de principio a fin…" |
 | 13 | Preguntas | Acordeón grande y accesible |
 | 14 | Cierre | Ecuador vuelve encendido, el titular lleva el video del volcán dentro de las letras, y aparecen la tarjeta de demo, el formulario y el pie |

@@ -31,7 +31,7 @@ export function SieteDias() {
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
-        scrollTrigger: { trigger: q("[data-stage]")[0], start: "top top", end: "+=760%", scrub: 0.6, pin: true, anticipatePin: 1, invalidateOnRefresh: true },
+        scrollTrigger: { trigger: q("[data-stage]")[0], start: "top top", end: "+=760%", scrub: 0.6, pin: true, invalidateOnRefresh: true },
       });
 
       // 1 · "7 días" crece hasta llenar la pantalla

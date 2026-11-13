@@ -56,7 +56,6 @@ export function Ganadores() {
           end: () => `+=${dist() * 1.1 + window.innerHeight * 0.7}`,
           scrub: 0.7,
           pin: true,
-          anticipatePin: 1,
           invalidateOnRefresh: true,
           onRefresh: sync,
           onUpdate: (s) => {

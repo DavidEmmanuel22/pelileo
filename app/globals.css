@@ -162,7 +162,8 @@ body {
 .grain {
   pointer-events: none;
   position: fixed;
-  inset: -50%;
+  /* poco más grande que la pantalla: basta para el desplazamiento y no satura la memoria de la GPU */
+  inset: -8%;
   z-index: 90;
   opacity: 0.07;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
@@ -313,6 +314,13 @@ body {
   scrollbar-width: none;
 }
 
+/* escenas fuera de pantalla: animaciones CSS en pausa (ver Progress en Chrome.tsx) */
+[data-off] *,
+[data-off] *::before,
+[data-off] *::after {
+  animation-play-state: paused !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -333,6 +341,18 @@ body {
 }
 html.no-preload .preloader {
   display: none;
+}
+
+/* Hero: antes de que GSAP tome el control, el texto y las pantallas esperan ocultos.
+   Así, al recargar sin precarga, no se ven un instante y luego desaparecen para entrar. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js:not(.hero-set) #inicio [data-line] {
+    transform: translateY(115%);
+  }
+  html.js:not(.hero-set) #inicio [data-in],
+  html.js:not(.hero-set) #inicio [data-scr] {
+    visibility: hidden;
+  }
 }
 
 /* Hero · pantallas flotantes */
@@ -390,11 +410,21 @@ html.no-preload .preloader {
 }
 
 /* Ecuador de noche */
-.andes-star {
-  animation: twinkle 3.4s ease-in-out infinite;
+/* tres grupos de estrellas que titilan desfasados; la opacidad se anima por elemento (GPU) */
+.andes-stars {
+  will-change: opacity;
+  animation: twinkle-soft 4.2s ease-in-out infinite;
 }
-.andes-tw {
-  animation: twinkle 2.4s ease-in-out infinite;
+.andes-stars-1 {
+  animation-delay: -1.4s;
+}
+.andes-stars-2 {
+  animation-delay: -2.8s;
+}
+@keyframes twinkle-soft {
+  0%,
+  100% { opacity: 0.4; }
+  50% { opacity: 0.95; }
 }
 .andes-mist {
   pointer-events: none;
@@ -1306,36 +1336,52 @@ html.no-preload .preloader {
 
 /* ── Escena 11 · Respaldo ────────────────────────────── */
 .rp-logos {
+  --logo-k: 64px;
+  --g: 12px;
   display: flex;
-  gap: 12px;
+  gap: var(--g);
   overflow: hidden;
   margin-left: calc(var(--gutter) * -1);
   margin-right: calc(var(--gutter) * -1);
-  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 .rp-track {
   display: flex;
   flex: none;
-  gap: 12px;
-  animation: rp-marquee 26s linear infinite;
+  gap: var(--g);
+  animation: rp-marquee 42s linear infinite;
+}
+.rp-logos:hover .rp-track {
+  animation-play-state: paused;
 }
 @keyframes rp-marquee {
   to {
-    transform: translateX(calc(-100% - 12px));
+    transform: translateX(calc(-100% - var(--g)));
   }
 }
 .rp-logo {
   display: flex;
+  flex: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 190px;
-  height: 104px;
+  width: 200px;
+  height: 116px;
   border-radius: 22px;
-  background: rgba(255, 236, 214, 0.04);
+  background: rgba(255, 236, 214, 0.045);
   box-shadow: inset 0 0 0 1px var(--line-d);
-  backdrop-filter: blur(8px);
+}
+.rp-img {
+  width: auto;
+  max-width: 76%;
+  object-fit: contain;
+  opacity: 0.82;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.4s;
+}
+.rp-logo:hover .rp-img {
+  opacity: 1;
 }
 .rp-mark {
   width: 30px;
@@ -1345,28 +1391,19 @@ html.no-preload .preloader {
 }
 @media (min-width: 1024px) {
   .rp-logos {
-    margin-left: 0;
-    margin-right: 0;
-    mask-image: none;
-  }
-  .rp-track {
-    display: grid;
-    flex: 1;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 16px;
-    animation: none;
+    --logo-k: 78px;
+    --g: 16px;
   }
   .rp-logo {
-    width: auto;
-    height: 120px;
-  }
-  .rp-dup {
-    display: none;
+    width: 252px;
+    height: 144px;
+    border-radius: 26px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .rp-track {
     animation: none;
+    flex: 1;
     flex-wrap: wrap;
     justify-content: center;
   }

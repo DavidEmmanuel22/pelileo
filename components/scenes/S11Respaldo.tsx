@@ -8,16 +8,17 @@ import { Photo } from "@/components/ui/Photo";
 import { CountUp } from "@/components/ui/CountUp";
 import { MaskLines } from "@/components/ui/MaskLines";
 
-/** Logo real si existe en public/logos; si no, una silueta elegante con el nombre. */
-function Logo({ nombre, archivo, ok }: { nombre: string; archivo: string; ok: boolean }) {
+/** Logo real si existe en public/logos; si no, una silueta con el nombre.
+ *  La altura sale de la proporción (1/√a): así un logo ancho y uno vertical pesan lo mismo a la vista. */
+function Logo({ nombre, archivo, a, ok }: { nombre: string; archivo: string; a: number; ok: boolean }) {
   return (
     <li className="rp-logo">
       {ok ? (
-        <img src={`/logos/${archivo}`} alt={nombre} className="max-h-[56%] max-w-[78%] object-contain opacity-80 [filter:brightness(0)_invert(1)]" />
+        <img src={`/logos/${archivo}`} alt={nombre} loading="lazy" draggable={false} className="rp-img" style={{ height: `calc(var(--logo-k) * ${(1 / Math.sqrt(a)).toFixed(3)})` }} />
       ) : (
         <>
           <span className="rp-mark" aria-hidden="true" />
-          <span className="text-[13px] font-bold tracking-[0.02em] text-fg/45">{nombre}</span>
+          <span className="px-3 text-center text-[13px] font-bold tracking-[0.02em] text-fg/45">{nombre}</span>
         </>
       )}
     </li>
@@ -56,9 +57,9 @@ export function Respaldo({ logosOk }: { logosOk: Record<string, boolean> }) {
           <MaskLines as="h2" id="respaldo-title" lines={["Trabajamos con quienes", "mueven la economía local."]} className="t-h2 mt-5 text-fg" lineClassName={(i) => (i === 1 ? "grad-text" : "")} />
         </div>
 
-        {/* Logos: fila en escritorio, cinta en celular */}
+        {/* Logos: cinta continua (se detiene al pasar el mouse) */}
         <div data-logos className="rp-logos mt-[10svh]">
-          <ul className="rp-track" aria-label="Gremios y cámaras aliadas">
+          <ul className="rp-track" aria-label="Gremios y aliados">
             {logos.map((l) => (
               <Logo key={l.archivo} {...l} />
             ))}

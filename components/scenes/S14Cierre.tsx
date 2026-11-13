@@ -157,7 +157,7 @@ export function Cierre() {
       const stage = q("[data-stage]")[0] as HTMLElement;
       // Ecuador otra vez, ahora encendido entero
       gsap.set(q("[data-town]"), { opacity: 0.25 });
-      const tl = gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: stage, start: "top top", end: "+=130%", scrub: 0.6, pin: true, anticipatePin: 1 } });
+      const tl = gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: stage, start: "top top", end: "+=130%", scrub: 0.6, pin: true } });
       tl.fromTo(q("[data-andes]"), { scale: 1.22 }, { scale: 1, duration: 1.6, ease: "power2.out" }, 0)
         .to(q("[data-town]"), { opacity: 1, stagger: 0.07, duration: 0.5 }, 0.1)
         .fromTo(q("[data-glow]"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, 0.5)
