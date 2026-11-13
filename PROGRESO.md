@@ -24,4 +24,4 @@
 - [x] 11 Respaldo
 - [x] 12 Todo lo que recibe
 - [x] 13 Preguntas
-- [ ] 14 Cierre
+- [x] 14 Cierre

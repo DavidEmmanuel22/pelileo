@@ -14,6 +14,7 @@ import { AntesDespues } from "@/components/scenes/S10AntesDespues";
 import { Respaldo } from "@/components/scenes/S11Respaldo";
 import { Entregables } from "@/components/scenes/S12Entregables";
 import { Preguntas } from "@/components/scenes/S13Preguntas";
+import { Cierre } from "@/components/scenes/S14Cierre";
 import { respaldo } from "@/content/site";
 import { existsSync } from "node:fs";
 import path from "node:path";
@@ -44,9 +45,7 @@ export default function Page() {
         <Respaldo logosOk={logosOk} />
         <Entregables />
         <Preguntas />
-        <section id="cierre" data-scene="14" className="relative h-[100vh] bg-night">
-          <div id="agendar" />
-        </section>
+        <Cierre />
       </main>
       <Progress />
       <MobilePill />
